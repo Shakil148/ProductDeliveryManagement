@@ -13,4 +13,13 @@ class MainWarehouse extends Model
         'discount', 
         'productId',
     ];
+
+    public function product()
+    {
+        return $this->hasMany('App\Product');
+    }
+    public function warehouseInvoice()
+    {
+        return $this->belongsToMany('App\WarehouseInvoice');
+    }
 }

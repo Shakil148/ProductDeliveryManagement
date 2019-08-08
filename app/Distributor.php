@@ -12,4 +12,15 @@ class Distributor extends Model
         'carNo', 
         'status',
     ];
+
+    public function warehouseInvoice()
+    {
+        return $this->belongsTo('App\WarehouseInvoice');
+    }
+    public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
+
+
 }

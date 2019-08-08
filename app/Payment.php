@@ -13,4 +13,10 @@ class Payment extends Model
         'status', 
         'dealerId',
     ];
+
+    public function dealer()
+    {
+        return $this->hasMany('App\Dealer');
+    }
+   
 }

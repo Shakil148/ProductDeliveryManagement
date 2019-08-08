@@ -11,4 +11,13 @@ class Dealer extends Model
         'contact', 
         'address',
     ];
+
+    public function order()
+    {
+        return $this->belongsToMany('App\Order');
+    }
+    public function payment()
+    {
+        return $this->belongsToMany('App\Payement');
+    }
 }

@@ -10,4 +10,13 @@ class Warehouse extends Model
         'address',
         'contact',
     ];
+
+    public function warehouseInvoice()
+    {
+        return $this->belongsToMany('App\WarehouseInvoice');
+    }
+    public function order()
+    {
+        return $this->belongsToMany('App\Order');
+    }
 }

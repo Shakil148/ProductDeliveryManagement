@@ -25,6 +25,8 @@ class CreateWarehouseInvoicesTable extends Migration
             $table->foreign('mainWarehouseId')->references('id')->on('mainWareouses');
             $table->integer('warehouseId')->unsigned()->index()->nullable();
             $table->foreign('warehouseId')->references('id')->on('warehouses');
+            $table->integer('distributorId')->unsigned()->index()->nullable();
+            $table->foreign('distributorId')->references('id')->on('distributors');
             $table->timestamps();
         });
     }
