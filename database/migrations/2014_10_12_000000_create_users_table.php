@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('designation');
             $table->binary('image');
+            $table->string('role');
             $table->timestamps();
         });
     }
