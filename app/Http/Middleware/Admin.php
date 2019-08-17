@@ -30,8 +30,11 @@ class Admin
             elseif (Auth::check() && Auth::user()->role == 'accounts') {
                 return redirect('/accounts');
             }
+            elseif (Auth::check() && Auth::user()->role == 'viewer') {
+                return redirect('/viewer');
+            }
             else  {
-                return redirect('/admin');
+                return redirect('login');
             }
            
             

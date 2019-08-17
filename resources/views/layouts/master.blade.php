@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/student.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-         
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -97,9 +97,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <router-link to="/profile" class="nav-link ">
-              <i class="nav-icon fas fa-user orange"></i>
+              <i class="nav-icon fas fa-cart-plus orange"></i>
               <p>
-                Profile
+                Product
               </p>
             </router-link>
           </li>
@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018-2019 <a href="#">Sultan Global Food Limited</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -12,17 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 //middlewares to controller
-Route::get('/admin', function(){
-    echo "Hello Admin";
-})->middleware('admin');
- 
+//Route::resource('product', 'ProductController', ['middleware' => 'admin']);
+Route::group(['middleware' => 'admin'], function() {
+    Route::resource('admin','ProductController');
+  });
 Route::get('/moderator', function(){
     echo "Hello Moderator";
 })->middleware('moderator');
@@ -34,3 +34,6 @@ Route::get('/tsm', function(){
 Route::get('/accounts', function(){
     echo "Hello Accounts";
 })->middleware('accounts');
+Route::get('/viewer', function(){
+    echo "Hello Viewers";
+})->middleware('viewer');

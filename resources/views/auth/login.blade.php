@@ -39,6 +39,8 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -64,9 +66,6 @@
                                 @endif
                             </div>
                         </div>
-                        <form action="<?php echo action('loginController@store'); ?>" method="post">
-                                @csrf
-                            </form>
                     </form>
                 </div>
             </div>

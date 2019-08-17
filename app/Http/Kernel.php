@@ -62,10 +62,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => 'App\Http\Middleware\Admin',
-        'moderator' => 'App\Http\Middleware\Agent',
-        'tsm' => 'App\Http\Middleware\Customer',
-        'accounts' => 'App\Http\Middleware\Customer',
-        'viewer' => 'App\Http\Middleware\Customer',
+        'moderator' => 'App\Http\Middleware\moderator',
+        'tsm' => 'App\Http\Middleware\tsm',
+        'accounts' => 'App\Http\Middleware\accounts',
+        'viewer' => 'App\Http\Middleware\viewer',
         
     ];
 
