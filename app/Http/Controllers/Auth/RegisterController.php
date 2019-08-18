@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class RegisterController extends Controller
 {
@@ -28,17 +30,13 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'login';
+    
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -53,7 +51,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'contact' => ['required', 'string', 'max:11',],
-            'role' => 'required | in:admin,modrerator,tsm,account,viewer',
+            'role' => 'required | in:admin,modrerator,tsm,accounts,viewer',
         ]);
     }
 
@@ -76,4 +74,22 @@ class RegisterController extends Controller
             'role' => $data['role'],
         ]);
     }
+     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+    //return $this->registered($request, $user)
+            //?: redirect()->intended($this->redirectPath());
+    protected $redirectTo = 'login';
 }

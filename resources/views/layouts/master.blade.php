@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>ProductDeliveryManagementSystem</title>
+  <title>ProductDeliveryManagementSystem - @yield('title')</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
 </head>
@@ -88,10 +88,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/users" class="nav-link">
+                <a href="{{URL::to('user')}}"  class="nav-link">
                   <i class="fa fa-users nav-icon purple"></i>
                   <p>Users</p>
-                </router-link>
+                </a>
               </li>
             </ul>
           </li>
@@ -132,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <router-view></router-view>
+         @yield('content')
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -157,4 +157,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 </html>
 
-@yield('content')
+

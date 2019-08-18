@@ -17,11 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 //middlewares to controller
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
 Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin','ProductController');
+    Route::resource('user','AdminController');
   });
 Route::get('/moderator', function(){
     echo "Hello Moderator";
