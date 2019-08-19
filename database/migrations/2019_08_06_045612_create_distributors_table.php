@@ -18,7 +18,6 @@ class CreateDistributorsTable extends Migration
             $table->string('name');
             $table->string('contact');
             $table->string('carNo');
-            $table->string('status');
             $table->timestamps();
         });
     }

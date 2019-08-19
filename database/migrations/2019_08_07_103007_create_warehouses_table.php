@@ -17,6 +17,7 @@ class CreateWarehousesTable extends Migration
             $table->increments('id');
             $table->text('address');
             $table->string('contact');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

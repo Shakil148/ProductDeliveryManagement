@@ -10,6 +10,7 @@ class Dealer extends Model
         'name', 
         'contact', 
         'address',
+        'status',
     ];
 
     public function order()

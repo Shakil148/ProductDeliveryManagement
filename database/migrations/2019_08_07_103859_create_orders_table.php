@@ -22,7 +22,6 @@ class CreateOrdersTable extends Migration
             $table->string('freeAmount');
             $table->string('totalBill');
             $table->string('advancePayment');
-            $table->boolean('status');
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products');
             $table->integer('warehouseId')->unsigned()->index()->nullable();

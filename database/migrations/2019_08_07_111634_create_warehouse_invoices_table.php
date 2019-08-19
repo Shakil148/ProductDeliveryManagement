@@ -18,7 +18,6 @@ class CreateWarehouseInvoicesTable extends Migration
             $table->string('inviceNo');
             $table->date('orderDate');
             $table->string('amount');
-            $table->boolean('status');
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products');
             $table->integer('mainWarehouseId')->unsigned()->index()->nullable();

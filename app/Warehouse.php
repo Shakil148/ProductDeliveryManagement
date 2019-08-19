@@ -9,6 +9,7 @@ class Warehouse extends Model
     protected $fillable = [
         'address',
         'contact',
+        'status',
     ];
 
     public function warehouseInvoice()
