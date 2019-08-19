@@ -41,6 +41,7 @@
             }
 
             .content {
+                position: absolute;
                 text-align: center;
             }
 

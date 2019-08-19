@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -9,8 +8,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>ProductDeliveryManagementSystem - @yield('title')</title>
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <title>ProductDeliveryManagementSystem</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
 </head>
@@ -96,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/profile" class="nav-link ">
+            <router-link to="/#" class="nav-link ">
               <i class="nav-icon fas fa-cart-plus orange"></i>
               <p>
                 Product
@@ -132,8 +131,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-         @yield('content')
-      </div><!-- /.container-fluid -->
+         
+      </div>
+      <main class="py-4">
+            @yield('content')
+      </main><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
   </div>
@@ -142,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want
@@ -153,7 +155,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<script src="js/app.js"></script> 
+<script src="{{ asset('public/js/app.js')}}" defer></script> 
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
 </html>
 

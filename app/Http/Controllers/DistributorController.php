@@ -3,9 +3,8 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
-use SGFL\User;
 
-class AdminController extends Controller
+class DistributorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +12,8 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $user = User::all();
-        return view('admin.index', compact('user'));
+    {
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        //
     }
 
     /**
@@ -58,8 +56,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.edit', compact('user')); 
+        //
     }
 
     /**
@@ -71,25 +68,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-            'address'=>'required',
-            'contact'=>'required',
-            'email'=>'required',
-            'designation'=>'required',
-            'image'=>'required'
-        ]);
-        $user = User::find($id);
-        $user->name =  $request->get('name');
-        $user->address = $request->get('address');
-        $user->contact = $request->get('contact');
-        $user->email = $request->get('email');
-        $user->designation = $request->get('designation');
-        $user->image = $request->get('image');
-        $user->save();
-
-
-        return redirect('/user')->with('success', 'User updated!');
+        //
     }
 
     /**
