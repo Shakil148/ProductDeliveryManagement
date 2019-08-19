@@ -17,6 +17,7 @@
           <td>Contact</td>
           <td>Email</td>
           <td>Designation</td>
+          <td>Role</td>
           <td>Image</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
@@ -31,6 +32,7 @@
             <td>{{$userlist->contact}}</td>
             <td>{{$userlist->email}}</td>
             <td>{{$userlist->designation}}</td>
+            <td>{{$userlist->role}}</td>
             <td>{{$userlist->image}}</td>
             <td>
                 <a href="{{ route('user.edit',$userlist->id)}}" class="btn btn-primary">Edit</a>
