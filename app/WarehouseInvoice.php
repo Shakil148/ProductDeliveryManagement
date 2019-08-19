@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,18 +19,18 @@ class WarehouseInvoice extends Model
 
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('SGFL\Product');
     }
     public function mainWarehouse()
     {
-        return $this->hasOne('App\MainWarehouse');
+        return $this->hasOne('SGFL\MainWarehouse');
     }
     public function warehouse()
     {
-        return $this->hasOne('App\Warehouse');
+        return $this->hasOne('SGFL\Warehouse');
     }
     public function distributor()
     {
-        return $this->hasOne('App\Distributor');
+        return $this->hasOne('SGFL\Distributor');
     }
 }

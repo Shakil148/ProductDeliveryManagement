@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,18 +23,18 @@ class Order extends Model
 
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('SGFL\Product');
     }
     public function warehouse()
     {
-        return $this->hasOne('App\Warehouse');
+        return $this->hasOne('SGFL\Warehouse');
     }
     public function dealer()
     {
-        return $this->hasOne('App\Dealer');
+        return $this->hasOne('SGFL\Dealer');
     }
     public function distributor()
     {
-        return $this->hasOne('App\Distributor');
+        return $this->hasOne('SGFL\Distributor');
     }
 }

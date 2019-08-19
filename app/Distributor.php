@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,11 +15,11 @@ class Distributor extends Model
 
     public function warehouseInvoice()
     {
-        return $this->belongsTo('App\WarehouseInvoice');
+        return $this->belongsTo('SGFL\WarehouseInvoice');
     }
     public function order()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('SGFL\Order');
     }
 
 

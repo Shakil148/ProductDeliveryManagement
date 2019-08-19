@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,10 +13,10 @@ class Warehouse extends Model
 
     public function warehouseInvoice()
     {
-        return $this->belongsToMany('App\WarehouseInvoice');
+        return $this->belongsToMany('SGFL\WarehouseInvoice');
     }
     public function order()
     {
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('SGFL\Order');
     }
 }

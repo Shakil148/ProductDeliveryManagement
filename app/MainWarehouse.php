@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,10 +16,10 @@ class MainWarehouse extends Model
 
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('SGFL\Product');
     }
     public function warehouseInvoice()
     {
-        return $this->belongsToMany('App\WarehouseInvoice');
+        return $this->belongsToMany('SGFL\WarehouseInvoice');
     }
 }

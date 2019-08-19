@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace SGFL\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use App\User;
-use App\Http\Controllers\Controller;
+use SGFL\User;
+use SGFL\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \SGFL\User
      */
     protected function create(array $data)
     {

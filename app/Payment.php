@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class Payment extends Model
 
     public function dealer()
     {
-        return $this->hasMany('App\Dealer');
+        return $this->hasMany('SGFL\Dealer');
     }
    
 }
