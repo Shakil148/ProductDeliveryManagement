@@ -33,7 +33,7 @@
             <td>{{$userlist->email}}</td>
             <td>{{$userlist->designation}}</td>
             <td>{{$userlist->role}}</td>
-            <td>{{$userlist->image}}</td>
+            <td><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
             <td>
                 <a href="{{ route('user.edit',$userlist->id)}}" class="btn btn-primary">Edit</a>
             </td>
@@ -42,7 +42,7 @@
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+                </form class ="mb-2">
             </td>
         </tr>
         @endforeach

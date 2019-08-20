@@ -21,7 +21,8 @@ Auth::routes();
 //middlewares to controller
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
 Route::group(['middleware' => 'admin'], function() {
-    Route::resource('admin','ProductController');
+    //Route::resource('admin','ProductController');
+    Route::get('/admin', 'AdminController@admin');
     Route::resource('user','AdminController');
   });
 Route::get('/moderator', function(){

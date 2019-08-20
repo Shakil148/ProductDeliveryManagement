@@ -3,6 +3,8 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 use SGFL\User;
 
 class AdminController extends Controller
@@ -12,6 +14,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin()
+    { 
+        return view('admin.page');
+    }
+
     public function index()
     { 
         $user = User::all();
@@ -36,7 +43,53 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'contact' => ['required', 'string', 'max:11',],
+            'role' => 'required | in:admin,modrerator,tsm,accounts,viewer',
+        ]);
+
+
+       /* $request->hasFile('image');
+        $image = $request->file('image');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/' . $filename);
+
+        Image::make($image)->resize(800, 400)->save($location);
+
+        $image->image = $filename; */
+
+//
+       $user = new User();
+       $user->name = $request->input('name');
+       $user ->address = $request->input('address');
+       $user ->contact = $request->input('contact');
+       $user ->email = $request->input('email');
+       $user ->password = $request->input('password');
+       $user ->designation = $request->input('designation');
+       if (Input::hasFile('image'))
+       {
+               $image = Input::file('image');
+           
+           // Do some checks like mime type, file size, etc ....
+           $fileName = $image->getClientOriginalName(); // or change if you want to give it name as per some convention
+       
+           $saveLocation = 'upload'.DIRECTORY_SEPARATOR
+               .'usercontent'.DIRECTORY_SEPARATOR
+               .(Auth::check() ? Auth()->user()->id : 'user');
+           
+           $image->move(public_path($saveLocation), $fileName); 
+           
+           $user->image =  $saveLocation.DIRECTORY_SEPARATOR.$fileName;
+           
+       }
+//
+       $user ->save();
+
+       return redirect('/user')->with('success', 'User Created!');
+
     }
 
     /**
@@ -85,6 +138,7 @@ class AdminController extends Controller
         $user->contact = $request->get('contact');
         $user->email = $request->get('email');
         $user->designation = $request->get('designation');
+        $user->role = $request->get('role');
         $user->image = $request->get('image');
         $user->save();
 
@@ -100,6 +154,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/user')->with('failed', 'User deleted!');
     }
 }

@@ -41,7 +41,21 @@
                 <input type="designation" class="form-control" name="designation" value={{ $user->designation }} />
             </div>
             <div class="form-group">
-                <label for="image">Designation:</label>
+                <label for="role">Role:</label>
+                <div class=>
+                    <select name="role" value="{{ $user->role }}" class="form-control" >
+                        <option value="admin">Admin</option>
+                        <option value="moderator">Moderator</option>
+                        <option value="tsm">TSM</option>
+                        <option value="accounts">Accounts</option>
+                        <option value="viewer">Viwer</option>
+                    </select> 
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="image">Image:</label>
                 <input type="file" class="form-control" name="image" value={{ $user->image }} />
             </div>
             <button type="submit" class="btn btn-primary">Update</button>

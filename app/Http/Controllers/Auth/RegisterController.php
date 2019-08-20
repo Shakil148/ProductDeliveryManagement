@@ -51,8 +51,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'contact' => ['required', 'string', 'max:11',],
-            'role' => 'required | in:admin,modrerator,tsm,accounts,viewer',
+            'role' => 'required | in:admin,moderator,tsm,accounts,viewer',
         ]);
+  
     }
 
     /**
@@ -91,5 +92,5 @@ class RegisterController extends Controller
     }
     //return $this->registered($request, $user)
             //?: redirect()->intended($this->redirectPath());
-    protected $redirectTo = 'login';
+    protected $redirectTo = '/user';
 }
