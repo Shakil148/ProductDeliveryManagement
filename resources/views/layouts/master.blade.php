@@ -12,6 +12,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ProductDeliveryManagementSystem</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
+  <script src="/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <link rel="stylesheet" href="/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+    <link href="/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
@@ -118,12 +122,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/#" class="nav-link ">
+            <a href="{{URL::to('product')}}" class="nav-link ">
               <i class="nav-icon fas fa-cart-plus pink"></i>
               <p>
                 Product
               </p>
-            </router-link>
+            </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -244,6 +248,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>
 </html>
 
 

@@ -24,6 +24,8 @@ Route::group(['middleware' => 'admin'], function() {
     //Route::resource('admin','ProductController');
     Route::get('/admin', 'AdminController@admin');
     Route::resource('user','AdminController');
+    Route::get('/changeStatus', 'ProductController@changeStatus');
+    Route::resource('product', 'ProductController');
   });
 Route::get('/moderator', function(){
     echo "Hello Moderator";

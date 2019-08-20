@@ -4,6 +4,7 @@ namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use SGFL\Product;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product.index');
+        $product = Product::all();
+
+        return view('product.index', compact('product'));
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $product = Product::find($request->id);
+        $product->status = $request->status;
+        $product->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
     }
 
     /**
@@ -24,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -35,7 +47,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'price'=>'required',
+            'unit'=>'required',
+            'date'=>'required',
+            'image'=>'required',
+        ]);
+        $test = new TestModel([
+            'name' => $request->get('name'),
+            'price' => $request->get('price'),
+            'unit' => $request->get('unit'),
+            'date' => $request->get('date'),
+            'image' => $request->get('image'),
+        ]);
+        return redirect('/product')->with('success', 'User Created!');
     }
 
     /**
@@ -57,7 +83,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -69,7 +96,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'price'=>'required',
+            'unit'=>'required',
+            'date'=>'required',
+            'image'=>'required',
+
+        ]);
+        $product = Product::find($id);
+        $product->name =  $request->get('name');
+        $product->price = $request->get('price');
+        $product->unit = $request->get('unit');
+        $product->date = $request->get('date');
+        $product->image = $request->get('image');
+        $product->save();
+
+
+        return redirect('/product')->with('success', 'User updated!');
     }
 
     /**
@@ -80,6 +124,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $test = TestModel::find($id);
+        $test->delete();
+
+        return redirect('/user')->with('success', 'User deleted!');
     }
 }
