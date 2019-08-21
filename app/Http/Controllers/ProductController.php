@@ -51,16 +51,16 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'unit'=>'required',
-            'date'=>'required',
             'image'=>'required',
         ]);
-        $test = new TestModel([
+        $product = new Product([
             'name' => $request->get('name'),
             'price' => $request->get('price'),
             'unit' => $request->get('unit'),
             'date' => $request->get('date'),
             'image' => $request->get('image'),
         ]);
+        $product->save();
         return redirect('/product')->with('success', 'User Created!');
     }
 
@@ -100,7 +100,6 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'unit'=>'required',
-            'date'=>'required',
             'image'=>'required',
 
         ]);
@@ -113,7 +112,7 @@ class ProductController extends Controller
         $product->save();
 
 
-        return redirect('/product')->with('success', 'User updated!');
+        return redirect('/product')->with('success', 'Product updated!');
     }
 
     /**
@@ -124,9 +123,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $test = TestModel::find($id);
-        $test->delete();
+        $product = Product::find($id);
+        $product->delete();
 
-        return redirect('/user')->with('success', 'User deleted!');
+        return redirect('/product')->with('success', 'Product deleted!');
     }
 }

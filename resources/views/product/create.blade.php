@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="row">
- <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Create s New User</h1>
+ <div class="col-sm-6 offset-sm-2">
+    <h1 class="display-5 text-center mt-2">Create New Product</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -17,33 +17,33 @@
       <form method="post" action="{{ route('product.store') }}">
           @csrf
           <div class="form-group">    
-              <label for="name">First Name:</label>
+              <label for="name">Name:</label>
               <input type="text" class="form-control" name="name"/>
           </div>
 
           <div class="form-group">
               <label for="price">Price:</label>
-              <input type="integer" class="form-control" name="price"/>
+              <input type="number" min="0" class="form-control" name="price"/>
           </div>
           <div class="form-group">
               <label for="unit">Unit Cost:</label>
-              <input type="number" class="form-control" name="unit"/>
+              <input type="number" min="0" class="form-control" name="unit"/>
           </div>
           <div class="form-group">
+          <label for="date">Date:</label>
             <div id="datetimepicker1" class="input-append date">
-                <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" type="text">
-                <span class="add-on">
+              <input type="date_format" name="date"  class="col-md-12" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
+              <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
-                </span>
+              </span>
             </div>
-            </div>
+          </div>
           <div class="form-group">
               <label for="image">Image:</label>
               <input type="file" class="form-control" name="image"/>
           </div>                       
-          <button type="submit" class="btn btn-primary-outline">Add User</button>
+          <button type="submit" class="btn btn-primary mb-5">Add Product</button>
       </form>
   </div>
 </div>

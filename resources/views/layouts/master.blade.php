@@ -16,7 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
     <link href="/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-</head>
+  </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
 
@@ -139,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('user')}}"  class="nav-link">
+                <a href="{{URL::to('mainwarehouse')}}"  class="nav-link">
                   <i class="nav-icon fas fa-warehouse pink "></i>
                   <p>Main Warehouse</p>
                 </a>
@@ -254,6 +254,71 @@ scratch. This page gets rid of all links and provides the needed markup only.
       language: 'pt-BR'
     });
   });
+</script>
+<script>
+  $(function() {
+    $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'id': id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
+
+<!-- Script -->
+<script type='text/javascript'>
+
+$(document).ready(function(){
+
+  // Department Change
+  $('#productId').change(function(){
+
+     // Department id
+     var id = $(this).val();
+
+     // Empty the dropdown
+     $('#productId').find('option').not(':first').remove();
+
+     // AJAX request 
+     $.ajax({
+       url: 'getEmployees/'+id,
+       type: 'get',
+       dataType: 'json',
+       success: function(response){
+
+         var len = 0;
+         if(response['data'] != null){
+           len = response['data'].length;
+         }
+
+         if(len > 0){
+           // Read data and create <option >
+           for(var i=0; i<len; i++){
+
+             var id = response['data'][i].id;
+             var name = response['data'][i].name;
+
+             var option = "<option value='"+id+"'>"+name+"</option>"; 
+
+             $("#productId").append(option); 
+           }
+         }
+
+       }
+    });
+  });
+
+});
+
 </script>
 </html>
 

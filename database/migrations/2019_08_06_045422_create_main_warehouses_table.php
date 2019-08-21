@@ -13,7 +13,7 @@ class CreateMainWarehousesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mainWareouses', function (Blueprint $table) {
+        Schema::create('main_warehouses', function (Blueprint $table) {
             $table->increments('id');
             $table->datetime('date');
             $table->text('address');
@@ -32,6 +32,6 @@ class CreateMainWarehousesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mainWareouses');
+        Schema::dropIfExists('main_warehouses');
     }
 }

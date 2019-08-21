@@ -35,13 +35,14 @@
             <td>{{$userlist->role}}</td>
             <td><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
             <td>
-                <a href="{{ route('user.edit',$userlist->id)}}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('user.edit',$userlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
-                <form action="{{ route('user.destroy', $userlist->id)}}" method="post">
+                <form onclick="return confirm('Are you sure?')" 
+                action="{{ route('user.destroy', $userlist->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
+                  <button class="btn btn-danger"  type="submit"><i class="fa fa-trash"></i></button>
                 </form class ="mb-2">
             </td>
         </tr>

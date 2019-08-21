@@ -18,8 +18,7 @@ class CreateDealersTable extends Migration
             $table->string('name');
             $table->string('contact');
             $table->text('address');
-            $table->boolean('status');
-
+            $table->boolean('status')->nullable()->change();
             $table->timestamps();
         });
     }

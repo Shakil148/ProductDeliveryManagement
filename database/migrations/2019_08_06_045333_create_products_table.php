@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->Integer('price');
             $table->Integer('unit');
             $table->date('date');
-            $table->boolean('status');
+            $table->boolean('status')->nullable()->change();
             $table->binary('image');
             $table->timestamps();
         });

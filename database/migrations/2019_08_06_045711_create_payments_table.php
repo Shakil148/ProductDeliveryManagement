@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->date('date');
             $table->string('type');
             $table->string('amount');
-            $table->boolean('status');
+            $table->boolean('status')->nullable()->change();;
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers');
             $table->timestamps();

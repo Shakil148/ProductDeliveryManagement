@@ -3,8 +3,10 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SGFL\MainWarehouse;
+use SGFL\Product;
 
-class MainWareHouseController extends Controller
+class MainWarehouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,10 @@ class MainWareHouseController extends Controller
      */
     public function index()
     {
-        //
+        $mainWarehouse = MainWarehouse::with('Product')->get();
+
+        return view('mainwarehouse.index')->with('mainWarehouse',$mianWarehouse);
+
     }
 
     /**
@@ -23,7 +28,7 @@ class MainWareHouseController extends Controller
      */
     public function create()
     {
-        //
+        return view('mainwarehouse.create');
     }
 
     /**
@@ -34,7 +39,19 @@ class MainWareHouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'amount'=>'required',
+            'productId'=>'required',
+            'discount'=>'required',
+        ]);
+        $mainWarehouse = new MainWarehouse([
+            'date' => $request->get('date'),
+            'amount' => $request->get('amount'),
+            'productId' => $request->get('productId'),
+            'discount' => $request->get('discount'),
+        ]);
+        $mainWarehouse->save();
+        return redirect('/mainwarehouse')->with('success', 'MainWarehouse Created!');
     }
 
     /**
@@ -56,7 +73,8 @@ class MainWareHouseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mainWarehouse = MainWarehouse::find($id);
+        return view('mainwarehouse.edit', compact('mainWarehouse'));
     }
 
     /**
@@ -68,7 +86,20 @@ class MainWareHouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'amount' => $request->get('amount'),
+            'productId' => $request->get('productId'),
+            'discount' => $request->get('discount'),
+
+        ]);
+        $mainWarehouse = MainWarehouse::find($id);
+        $mainWarehouse->date =  $request->get('date');
+        $mainWarehouse->amount = $request->get('amount');
+        $mainWarehouse->discount = $request->get('discount');
+        $mainWarehouse->save();
+
+
+        return redirect('/mainwarehouse')->with('success', 'MainWarehouse updated!');
     }
 
     /**
@@ -79,6 +110,9 @@ class MainWareHouseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mainWarehouse = MainWarehouse::find($id);
+        $mainWarehouse->delete();
+
+        return redirect('/product')->with('success', 'Data deleted!');
     }
 }

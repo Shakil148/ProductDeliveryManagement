@@ -9,6 +9,16 @@
                 <div class="text-center">
                     <div class="card-header col-md-12 ">{{ __('User Registeration') }}</div>
                 </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div><br />
+                    @endif
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf

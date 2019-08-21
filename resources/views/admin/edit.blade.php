@@ -1,8 +1,8 @@
 @extends('layouts.master') 
 @section('content')
 <div class="row">
-    <div class="col-sm-8 offset-sm-2">
-        <h6 class="display-3 text-center">Update a User</h6>
+    <div class="col-sm-6 offset-sm-2">
+        <h2 class="display-5 text-center mt-2">Update a User</h2>
 
         @if ($errors->any())
         <div class="alert alert-danger">

@@ -16,10 +16,10 @@ class MainWarehouse extends Model
 
     public function product()
     {
-        return $this->hasMany('SGFL\Product');
+        return $this->belongsTo('SGFL\Product');
     }
     public function warehouseInvoice()
     {
-        return $this->belongsToMany('SGFL\WarehouseInvoice');
+        return $this->belongsTo('SGFL\WarehouseInvoice');
     }
 }
