@@ -15,9 +15,10 @@ class MainWarehouseController extends Controller
      */
     public function index()
     {
-        $mainWarehouse = MainWarehouse::with('Product')->get();
+        $test = MainWarehouse::all();
 
-        return view('mainwarehouse.index')->with('mainWarehouse',$mianWarehouse);
+        return view('mainwarehouse.index',compact('test'))
+        ->with('product', Product::all());
 
     }
 
@@ -28,7 +29,9 @@ class MainWarehouseController extends Controller
      */
     public function create()
     {
-        return view('mainwarehouse.create');
+        $test = MainWarehouse::with('Product');
+        $product = Product::all();
+        return view('mainwarehouse.create',compact('test','product'));
     }
 
     /**
@@ -46,6 +49,7 @@ class MainWarehouseController extends Controller
         ]);
         $mainWarehouse = new MainWarehouse([
             'date' => $request->get('date'),
+            'address' => $request->get('address'),
             'amount' => $request->get('amount'),
             'productId' => $request->get('productId'),
             'discount' => $request->get('discount'),
@@ -74,7 +78,8 @@ class MainWarehouseController extends Controller
     public function edit($id)
     {
         $mainWarehouse = MainWarehouse::find($id);
-        return view('mainwarehouse.edit', compact('mainWarehouse'));
+        return view('mainwarehouse.edit', compact('mainWarehouse'))
+        ->with('product', Product::all());
     }
 
     /**
@@ -87,6 +92,7 @@ class MainWarehouseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'address' => $request->get('address'),
             'amount' => $request->get('amount'),
             'productId' => $request->get('productId'),
             'discount' => $request->get('discount'),
@@ -94,6 +100,7 @@ class MainWarehouseController extends Controller
         ]);
         $mainWarehouse = MainWarehouse::find($id);
         $mainWarehouse->date =  $request->get('date');
+        $mainWarehouse->address =  $request->get('address');
         $mainWarehouse->amount = $request->get('amount');
         $mainWarehouse->discount = $request->get('discount');
         $mainWarehouse->save();
@@ -113,6 +120,6 @@ class MainWarehouseController extends Controller
         $mainWarehouse = MainWarehouse::find($id);
         $mainWarehouse->delete();
 
-        return redirect('/product')->with('success', 'Data deleted!');
+        return redirect('/mainwarehouse')->with('success', 'Data deleted!');
     }
 }

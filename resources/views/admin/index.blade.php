@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row w-auto">
-<div class="col-sm-12">
-    <h3 class="display-5 text-center mt-2 ">All Users List</h3>   
+<div class="container mt-2">
+    <div class="row justify-content-center">
+        <div class="col-md-16">
+    <h3 class="display-5 text-center ">All Users List</h3>   
     <div>
     <a style="margin: 19px;" href="{{ route('user.create')}}" class="btn btn-primary">New User</a>
     </div> 
@@ -43,7 +44,7 @@
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger"  type="submit"><i class="fa fa-trash"></i></button>
-                </form class ="mb-2">
+                </form>
             </td>
         </tr>
         @endforeach
@@ -60,6 +61,7 @@
                 </div>
                 @endif
         </div>
+</div>
 </div>
 </div>
 @endsection

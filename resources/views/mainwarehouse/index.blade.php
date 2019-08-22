@@ -18,6 +18,7 @@
           <td>Price</td>
           <td>Unit Cost</td>
           <td>Date</td>
+          <td>Address</td>
           <td>Amount</td>
           <td>Discount</td>
           <td>Image</td>
@@ -26,26 +27,27 @@
     </thead>
     
     <tbody>
-        @foreach($mainWarehouse as $mainwarehouselist)
+        @foreach($test as $mainwarehouselist)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            @foreach($product['data'] as $productlist)
+            @foreach($product as $productlist)
             <td {{ $productlist->productId }}->{{ $productlist->name }}</td>
             <td {{ $productlist->productId }}->{{ $productlist->price }}</td>
             <td {{ $productlist->productId }}->{{ $productlist->unit }}</td>
             @endforeach
             <td>{{$mainwarehouselist->date}}</td>
-            <td>{{$productlist->amount}}</td>
-            <td>{{$productlist->discount}}</td>
-            @foreach($product['data'] as $productlist)
+            <td>{{$mainwarehouselist->address}}</td>
+            <td>{{$mainwarehouselist->amount}}</td>
+            <td>{{$mainwarehouselist->discount}}</td>
+            @foreach($product as $productlist)
             <td {{ $productlist->productId }}-><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
             @endforeach
             <td>
-                <a href="{{ route('mainwarehouse.edit',$mainwarehouse->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('mainwarehouse.edit',$mainwarehouselist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 
-                action="{{ route('mainwarehouse.destroy', $mainwarehouse->id)}}" method="post">
+                action="{{ route('mainwarehouse.destroy', $mainwarehouselist->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
