@@ -31,6 +31,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('localwarehouse', 'WarehouseController');
     Route::resource('distributor', 'DistributorController');
     Route::resource('dealer', 'DealerController');
+    Route::resource('payment', 'PaymentController');
   });
 
   //Moderator all routes

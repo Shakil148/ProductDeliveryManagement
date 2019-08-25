@@ -20,17 +20,18 @@
              <!-- Product Name Dropdown -->
             <div class="form-group">    
               <label for="productId">Product Name:</label>
-                <select id='productId' name='productId' class="col-md-12">
+                <select id='productId' name='productId' class="form-control">
                 <!-- Read Products -->
                 @foreach($product as $productlist)
-                    <option value='{{ $productlist->id }}'>{{ $productlist->name }}</option>
+                    <option value="{{ $productlist->id }}">{{ $productlist->name }}</option>
                 @endforeach
                 </select>
             </div>
+
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" type="text" value="{{ $mainWarehouse->date }}" />
+                <input data-format="dd/MM/yyyy hh:mm:ss" type="text"  class="form-control" value="{{ $mainWarehouse->date }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -49,10 +50,6 @@
             <div class="form-group">
                 <label for="unit">Discount:</label>
                 <input type="text" class="form-control" name="discount" value="{{ $mainWarehouse->discount }}" />
-            </div>
-            <div class="form-group">
-                <label for="image">image:</label>
-                <input type="file" class="form-control" name="image" value="{{ $mainWarehouse->image }}" />
             </div>
             
             <button type="submit" class="btn btn-primary">Update</button>

@@ -146,7 +146,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          
+          <li class="nav-item">
+            <a href="{{URL::to('localwarehouse')}}"  class="nav-link">
+              <i class="nav-icon fas fa-warehouse teal "></i>
+              <p>Local Warehouse</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{URL::to('dealer')}}"  class="nav-link">
+              <i class="fas fa-user-tie nav-icon cyan"></i>
+              <p>Dealer</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-luggage-cart red"></i>
@@ -158,7 +169,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{URL::to('localwarehouse')}}"  class="nav-link">
-                  <i class="nav-icon fas fa-warehouse ash"></i>
+                  <i class="nav-icon fas fa-warehouse teal"></i>
                   <p>Local Warehouse</p>
                 </a>
               </li>
@@ -170,6 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          
           <li class="nav-item">
             <a href="{{URL::to('distributor')}}" class="nav-link ">
               <i class="nav-icon fas fa-people-carry teal"></i>
@@ -179,12 +191,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <router-link to="/#" class="nav-link ">
+            <a href="{{URL::to('payment')}}" class="nav-link ">
               <i class="nav-icon fas fa-money-check-alt yellow"></i>
               <p>
                 Payment
               </p>
-            </router-link>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"

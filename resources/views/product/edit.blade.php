@@ -35,7 +35,7 @@
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" name="date" class="col-md-12" type="text" value="{{ $product->date }}" />
+                <input data-format="dd/MM/yyyy hh:mm:ss" name="date" class="form-control" type="text" value="{{ $product->date }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>

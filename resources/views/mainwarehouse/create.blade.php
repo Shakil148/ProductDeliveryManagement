@@ -24,7 +24,7 @@
          
           <div class="form-group">    
               <label for="productId">Product Name:</label>
-                <select id='productId' name='productId' class="col-md-12">
+                <select id='productId' name='productId' class="form-control">
                 <option value='0'>-- Select Product --</option>
                 <!-- Read Products -->
                 @foreach($product as $productlist)
@@ -36,7 +36,7 @@
             <div class="form-group">
             <label for="date">Date:</label>
                 <div id="datetimepicker1" class="input-append date">
-                <input type="date_format" name="date"  class="col-md-12" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
+                <input type="date_format" name="date"  class="form-control" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
                 <span class="add-on">
                     <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                     </i>
