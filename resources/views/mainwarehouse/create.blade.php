@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<script src="/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
     <h1 class="display-5 text-center mt-2">Store New Product</h1>
@@ -25,8 +24,8 @@
          
           <div class="form-group">    
               <label for="productId">Product Name:</label>
-                <select id='productId' name='productId'>
-                <option value='0'>-- Select department --</option>
+                <select id='productId' name='productId' class="col-md-12">
+                <option value='0'>-- Select Product --</option>
                 <!-- Read Products -->
                 @foreach($product as $productlist)
                     <option value='{{ $productlist->id }}'>{{ $productlist->name }}</option>

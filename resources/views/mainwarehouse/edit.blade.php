@@ -20,8 +20,7 @@
              <!-- Product Name Dropdown -->
             <div class="form-group">    
               <label for="productId">Product Name:</label>
-                <select id='productId' name='productId'>
-                <option value='0'>-- Select department --</option>
+                <select id='productId' name='productId' class="col-md-12">
                 <!-- Read Products -->
                 @foreach($product as $productlist)
                     <option value='{{ $productlist->id }}'>{{ $productlist->name }}</option>
@@ -44,12 +43,12 @@
             </div>
             <div class="form-group">
                 <label for="amount">Amount:</label>
-                <input type="number" min="0" class="form-control" name="amount" value="{{ $mainWarehouse->price }}" />
+                <input type="number" min="0" class="form-control" name="amount" value={{ $mainWarehouse->amount }} />
             </div>
 
             <div class="form-group">
                 <label for="unit">Discount:</label>
-                <input type="text" class="form-control" name="discount" value="{{ $mainWarehouse->unit }}" />
+                <input type="text" class="form-control" name="discount" value="{{ $mainWarehouse->discount }}" />
             </div>
             <div class="form-group">
                 <label for="image">image:</label>

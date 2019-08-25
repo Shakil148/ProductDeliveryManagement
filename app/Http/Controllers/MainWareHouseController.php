@@ -15,10 +15,24 @@ class MainWarehouseController extends Controller
      */
     public function index()
     {
+
+        //$test = DB::table('main_warehouses')->where('productId', Product::id())->get();
+
         $test = MainWarehouse::all();
 
         return view('mainwarehouse.index',compact('test'))
         ->with('product', Product::all());
+        //$product = Product::find($id);
+        //$test = MianWarehouse::whereproductId($id)->get(); // or ->paginate(20);
+        //return compact('product', 'test');
+
+        //$test = MainWarehouse::where('productId')->with('Product')->get();
+       //return view('mainwarehouse.index',compact('test'));
+
+        //$test = MainWarehouse::where('id','=', $id)
+    //->leftJoin('Product', 'MainWarehouse.productId', '=', 'product.id')
+    //->select('product.id','MainWarehouse.name')->first();
+    //return view('mainwarehouse.index',compact('test'));
 
     }
 
@@ -29,9 +43,10 @@ class MainWarehouseController extends Controller
      */
     public function create()
     {
-        $test = MainWarehouse::with('Product');
-        $product = Product::all();
-        return view('mainwarehouse.create',compact('test','product'));
+        
+        return view('mainwarehouse.create')
+        ->with('product', Product::all());
+
     }
 
     /**

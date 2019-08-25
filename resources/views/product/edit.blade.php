@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-6 offset-sm-2">
-        <h1 class="display-5 text-center">Update a User</h1>
+        <h1 class="display-5 text-center">Update a Product</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -20,22 +20,22 @@
             <div class="form-group">
 
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" name="name" value={{ $product->name }} />
+                <input type="text" class="form-control" name="name" value="{{ $product->name }}" />
             </div>
 
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" min="0" class="form-control" name="price" value={{ $product->price }} />
+                <input type="number" min="0" class="form-control" name="price" value="{{ $product->price }}" />
             </div>
 
             <div class="form-group">
                 <label for="unit">Unit Cost:</label>
-                <input type="number" min="0" class="form-control" name="unit" value={{ $product->unit }} />
+                <input type="number" min="0" class="form-control" name="unit" value="{{ $product->unit }}" />
             </div>
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" type="text" value={{ $product->date }} />
+                <input data-format="dd/MM/yyyy hh:mm:ss" name="date" class="col-md-12" type="text" value="{{ $product->date }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>

@@ -27,7 +27,10 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('user','AdminController');
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController');
-    Route::resource('mainwarehouse', 'MainWareHouseController');
+    Route::resource('mainwarehouse', 'MainWarehouseController');
+    Route::resource('localwarehouse', 'WarehouseController');
+    Route::resource('distributor', 'DistributorController');
+    Route::resource('dealer', 'DealerController');
   });
 
   //Moderator all routes

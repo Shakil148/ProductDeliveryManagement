@@ -144,12 +144,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Main Warehouse</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{URL::to('user')}}"  class="nav-link">
-                  <i class="nav-icon fas fa-warehouse purple"></i>
-                  <p>Local Warehouse</p>
-                </a>
-              </li>
             </ul>
           </li>
           
@@ -163,9 +157,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('user')}}"  class="nav-link">
+                <a href="{{URL::to('localwarehouse')}}"  class="nav-link">
                   <i class="nav-icon fas fa-warehouse ash"></i>
-                  <p>Warehouse</p>
+                  <p>Local Warehouse</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -177,12 +171,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/#" class="nav-link ">
+            <a href="{{URL::to('distributor')}}" class="nav-link ">
               <i class="nav-icon fas fa-people-carry teal"></i>
               <p>
                 Distributor
               </p>
-            </router-link>
+            </a>
           </li>
           <li class="nav-item">
             <router-link to="/#" class="nav-link ">

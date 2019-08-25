@@ -3,6 +3,7 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SGFL\Distributor;
 
 class DistributorController extends Controller
 {
@@ -13,7 +14,9 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //
+        $distributor = Distributor::all();
+
+        return view('distributor.index', compact('distributor'));
     }
 
     /**
@@ -23,7 +26,7 @@ class DistributorController extends Controller
      */
     public function create()
     {
-        //
+        return view('distributor.create');
     }
 
     /**
@@ -34,7 +37,18 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'contact'=>'required',
+            'carNo'=>'required',
+        ]);
+        $distributor = new Distributor([
+            'name' => $request->get('name'),
+            'contact' => $request->get('contact'),
+            'carNo' => $request->get('carNo'),
+        ]);
+        $distributor->save();
+        return redirect('/distributor')->with('success', 'Distributor Created!');
     }
 
     /**
@@ -56,7 +70,8 @@ class DistributorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $distributor = Distributor::find($id);
+        return view('distributor.edit', compact('distributor'));
     }
 
     /**
@@ -68,7 +83,20 @@ class DistributorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'contact'=>'required',
+            'carNo'=>'required',
+
+        ]);
+        $distributor = Distributor::find($id);
+        $distributor->name =  $request->get('name');
+        $distributor->contact = $request->get('contact');
+        $distributor->carNo = $request->get('carNo');
+        $distributor->save();
+
+
+        return redirect('/distributor')->with('success', 'Distributor updated!');
     }
 
     /**
@@ -79,6 +107,9 @@ class DistributorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $distributor = Distributor::find($id);
+        $distributor->delete();
+
+        return redirect('/distributor')->with('success', 'Distributor deleted!');
     }
 }

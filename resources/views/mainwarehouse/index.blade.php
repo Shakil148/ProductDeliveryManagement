@@ -30,18 +30,12 @@
         @foreach($test as $mainwarehouselist)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            @foreach($product as $productlist)
-            <td {{ $productlist->productId }}->{{ $productlist->name }}</td>
-            <td {{ $productlist->productId }}->{{ $productlist->price }}</td>
-            <td {{ $productlist->productId }}->{{ $productlist->unit }}</td>
-            @endforeach
+            <td {{ $mainwarehouselist->name }}</td>
             <td>{{$mainwarehouselist->date}}</td>
             <td>{{$mainwarehouselist->address}}</td>
             <td>{{$mainwarehouselist->amount}}</td>
             <td>{{$mainwarehouselist->discount}}</td>
-            @foreach($product as $productlist)
-            <td {{ $productlist->productId }}-><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
-            @endforeach
+            <td {{ $mainwarehouselist->productId }}-><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
             <td>
                 <a href="{{ route('mainwarehouse.edit',$mainwarehouselist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
