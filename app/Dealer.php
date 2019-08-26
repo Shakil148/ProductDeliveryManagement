@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dealer extends Model
 {
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name', 
         'contact', 
@@ -19,6 +21,6 @@ class Dealer extends Model
     }
     public function payment()
     {
-        return $this->belongsToMany('SGFL\Payement');
+        return $this->belongsTo('SGFL\Payement','dealerId','id');
     }
 }

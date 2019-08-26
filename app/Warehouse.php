@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Warehouse extends Model
 {
+    protected $primaryKey = 'id';
     protected $fillable = [
         'address',
         'contact',

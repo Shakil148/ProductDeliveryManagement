@@ -3,6 +3,8 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SGFL\Payment;
+use SGFL\Dealer;
 
 class PaymentController extends Controller
 {
@@ -13,8 +15,17 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payment = \DB::table('payments')
+            ->join('dealers', 'payments.dealerId', '=', 'dealers.id')
+            ->select('payments.*', 'dealers.name')
+            ->get();
+            
+        return view('payment.index', compact('payment'));    
+    
+        //$payment = Payment::with('dealer')->get();
+        //return view('payment.index', compact('payment'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +34,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('payment.create')
+        ->with('dealer', Dealer::all());
     }
 
     /**
@@ -34,7 +46,22 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dealerId'=>'required',
+            'type'=>'required',
+            'amount'=>'required',
+            'status'=>'required',
+        ]);
+        $payment = new Payment([
+            'dealerId' => $request->get('dealerId'),
+            'date' => $request->get('date'),
+            'type' => $request->get('type'),
+            'accountNo' => $request->get('accountNo'),
+            'amount' => $request->get('amount'),
+            'status' => $request->get('status'),
+        ]);
+        $payment->save();
+        return redirect('/payment')->with('success', 'Payment Created!');
     }
 
     /**
@@ -56,7 +83,12 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment = Payment::find($id);
+        $payment_new = \DB::table('payments')
+            ->join('dealers', 'payments.dealerId', '=', 'dealers.id')
+            ->select('payments.*', 'dealers.name')
+            ->get();
+        return view('payment.edit', compact('payment','payment_new'));
     }
 
     /**
@@ -68,7 +100,23 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'dealerId'=>'required',
+            'type'=>'required',
+            'amount'=>'required',
+            'status'=>'required',
+
+        ]);
+        $payment = Payment::find($id);
+        $payment->date =  $request->get('date');
+        $payment->type = $request->get('type');
+        $payment->amount = $request->get('amount');
+        $payment->accountNo = $request->get('accountNo');
+        $payment->status = $request->get('status');
+        $payment->save();
+
+
+        return redirect('/payment')->with('success', 'Payment record updated!');
     }
 
     /**
@@ -79,6 +127,9 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = Payment::find($id);
+        $payment->delete();
+
+        return redirect('/payment')->with('success', 'Payment deleted!');
     }
 }

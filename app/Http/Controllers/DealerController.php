@@ -93,7 +93,7 @@ class DealerController extends Controller
             'status'=>'required',
 
         ]);
-        $dealer = Product::find($id);
+        $dealer = Dealer::find($id);
         $dealer->name =  $request->get('name');
         $dealer->contact = $request->get('contact');
         $dealer->address = $request->get('address');

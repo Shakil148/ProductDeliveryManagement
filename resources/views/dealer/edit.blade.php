@@ -34,10 +34,11 @@
             </div>
             <div class="form-group">    
               <label for="status">Status:</label>
-                <select id='status' name='status' class="col-md-12">
-                <option value="{{$dealer->status}}" @if($dealer->status == Inactive) selected @endif>{{$value->status->Active}}</option></select>
+                <select id='status' name='status' class="form-control">
+                    <option {{ $dealer->status == 'Active' ? 'selected':'' }}>Active</option>
+                    <option {{ $dealer->status == 'Inactive' ? 'selected':'' }}>Inactive</option>
+                </select>
             </div>
-            
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
