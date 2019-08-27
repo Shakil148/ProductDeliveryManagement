@@ -23,7 +23,7 @@
 
           <div class="form-group">
               <label for="contact">Contact:</label>
-              <input type="number" min="0" class="form-control" name="contact"/>
+              <input type="number" min="0" maxlength="11" class="form-control" name="contact"/>
           </div>
           <div class="form-group">
               <label for="address">Address:</label>

@@ -16,4 +16,8 @@ class Product extends Model
         'image',
     ];
 
+    public function mainWarehouse()
+    {
+        return $this->belongsTo('SGFL\MainWarehouse','productId','id');
+    }
 }

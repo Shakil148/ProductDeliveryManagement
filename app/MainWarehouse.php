@@ -17,7 +17,7 @@ class MainWarehouse extends Model
 
     public function product()
     {
-        return $this->belongsTo('SGFL\Product');
+        return $this->hasMany('SGFL\Product','productId','id');
     }
     public function warehouseInvoice()
     {

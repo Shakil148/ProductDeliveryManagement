@@ -14,16 +14,15 @@
         </div>
         <br /> 
         @endif
-        <form class = "mb-5" method="post" action="{{ route('mainwarehouse.update', $mainWarehouse->id) }}">
+        <form class = "mb-5" method="post" action="{{ route('mainwarehouse.update', $mainwarehouse->id) }}">
             @method('PATCH') 
             @csrf
              <!-- Product Name Dropdown -->
             <div class="form-group">    
               <label for="productId">Product Name:</label>
                 <select id='productId' name='productId' class="form-control">
-                <!-- Read Products -->
-                @foreach($product as $productlist)
-                    <option value="{{ $productlist->id }}">{{ $productlist->name }}</option>
+                @foreach($mainwarehouse_new as $mainwarehouselist)
+                <option {{ $mainwarehouselist->id == $mainwarehouse->productId ? 'selected':'' }}>{{$mainwarehouselist->name}}</option>
                 @endforeach
                 </select>
             </div>
@@ -31,7 +30,7 @@
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" type="text"  class="form-control" value="{{ $mainWarehouse->date }}" />
+                <input data-format="dd/MM/yyyy hh:mm:ss" type="text"  class="form-control" value="{{ $mainwarehouse->created_at }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -40,16 +39,16 @@
 
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" class="form-control" name="address" value="{{ $mainWarehouse->address }}" />
+                <input type="text" class="form-control" name="address" value="{{ $mainwarehouse->address }}" />
             </div>
             <div class="form-group">
                 <label for="amount">Amount:</label>
-                <input type="number" min="0" class="form-control" name="amount" value={{ $mainWarehouse->amount }} />
+                <input type="number" min="0" class="form-control" name="amount" value={{ $mainwarehouse->amount }} />
             </div>
 
             <div class="form-group">
                 <label for="unit">Discount:</label>
-                <input type="text" class="form-control" name="discount" value="{{ $mainWarehouse->discount }}" />
+                <input type="text" class="form-control" name="discount" value="{{ $mainwarehouse->discount }}" />
             </div>
             
             <button type="submit" class="btn btn-primary">Update</button>

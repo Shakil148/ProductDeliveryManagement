@@ -16,6 +16,7 @@
           <td>#</td>
           <td>Dealer Name</td>
           <td>Payment Type</td>
+          <td>Account No</td>
           <td>Amount</td>
           <td>Date</td>
           <td>Status</td>
@@ -30,6 +31,7 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$paymentlist->name}}</td>
             <td>{{$paymentlist->type}}</td>
+            <td>{{$paymentlist->accountNo}}</td>
             <td>{{$paymentlist->amount}}</td>
             <td>{{$paymentlist->date}}</td>
             <td>{{$paymentlist->status}}</td>

@@ -27,15 +27,17 @@
     </thead>
     
     <tbody>
-        @foreach($test as $mainwarehouselist)
+        @foreach($mainwarehouse as $mainwarehouselist)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            <td {{ $mainwarehouselist->name }}</td>
-            <td>{{$mainwarehouselist->date}}</td>
+            <td>{{$mainwarehouselist->name}}</td>
+            <td>{{$mainwarehouselist->price}}</td>
+            <td>{{$mainwarehouselist->unit}}</td>
+            <td>{{$mainwarehouselist->created_at}}</td>
             <td>{{$mainwarehouselist->address}}</td>
             <td>{{$mainwarehouselist->amount}}</td>
             <td>{{$mainwarehouselist->discount}}</td>
-            <td {{ $mainwarehouselist->productId }}-><img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
+            <td> <img src="data:image/jpeg;base64,'.base64_encode( $image ).'"/></td>
             <td>
                 <a href="{{ route('mainwarehouse.edit',$mainwarehouselist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

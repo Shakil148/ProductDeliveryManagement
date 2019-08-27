@@ -1,7 +1,7 @@
 <?php
 
 namespace SGFL\Http\Controllers;
-
+use SGFL\validator;
 use Illuminate\Http\Request;
 use SGFL\MainWarehouse;
 use SGFL\Product;
@@ -17,11 +17,12 @@ class MainWarehouseController extends Controller
     {
 
         //$test = DB::table('main_warehouses')->where('productId', Product::id())->get();
+        $mainwarehouse = \DB::table('main_warehouses')
+            ->join('products', 'main_warehouses.productId', '=', 'products.id')
+            ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
+            ->get();
 
-        $test = MainWarehouse::all();
-
-        return view('mainwarehouse.index',compact('test'))
-        ->with('product', Product::all());
+        return view('mainwarehouse.index',compact('mainwarehouse'));
         //$product = Product::find($id);
         //$test = MianWarehouse::whereproductId($id)->get(); // or ->paginate(20);
         //return compact('product', 'test');
@@ -62,14 +63,14 @@ class MainWarehouseController extends Controller
             'productId'=>'required',
             'discount'=>'required',
         ]);
-        $mainWarehouse = new MainWarehouse([
+        $mainwarehouse = new MainWarehouse([
             'date' => $request->get('date'),
             'address' => $request->get('address'),
             'amount' => $request->get('amount'),
             'productId' => $request->get('productId'),
             'discount' => $request->get('discount'),
         ]);
-        $mainWarehouse->save();
+        $mainwarehouse->save();
         return redirect('/mainwarehouse')->with('success', 'MainWarehouse Created!');
     }
 
@@ -92,9 +93,12 @@ class MainWarehouseController extends Controller
      */
     public function edit($id)
     {
-        $mainWarehouse = MainWarehouse::find($id);
-        return view('mainwarehouse.edit', compact('mainWarehouse'))
-        ->with('product', Product::all());
+        $mainwarehouse = MainWarehouse::find($id);
+        $mainwarehouse_new = \DB::table('main_warehouses')
+        ->join('products', 'main_warehouses.productId', '=', 'products.id')
+        ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
+        ->get();
+        return view('mainwarehouse.edit', compact('mainwarehouse','mainwarehouse_new'));
     }
 
     /**
