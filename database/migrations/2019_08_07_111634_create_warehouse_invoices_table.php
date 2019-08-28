@@ -15,7 +15,7 @@ class CreateWarehouseInvoicesTable extends Migration
     {
         Schema::create('warehouse_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('inviceNo');
+            $table->string('orderNo');
             $table->date('orderDate');
             $table->string('amount');
             $table->integer('productId')->unsigned()->index()->nullable();

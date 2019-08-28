@@ -1,10 +1,12 @@
 <?php
 
 namespace SGFL\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Auth;
 use SGFL\Product;
+use Image;
 
 class ProductController extends Controller
 {
@@ -51,17 +53,31 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'unit'=>'required',
-            'image'=>'required',
         ]);
+
+        //$cover = $request->file('image');
+       // $extension = $cover->getClientOriginalExtension();
+        //Storage::disk('public')->put($cover->getFilename().'.'.$extension,  File::get($cover));
+        
+        
         $product = new Product([
             'name' => $request->get('name'),
             'price' => $request->get('price'),
             'unit' => $request->get('unit'),
             'date' => $request->get('date'),
-            'image' => $request->get('image'),
         ]);
+        //$product->mime = $cover->getClientMimeType();
+        //$product->original_filename = $cover->getClientOriginalName();
+        //$product->filename = $cover->getFilename().'.'.$extension;
+        if ($request->hasfile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/') . $filename;
+            Image::make($image)->save($location);
+            $product->image = $filename;
+          }
         $product->save();
-        return redirect('/product')->with('success', 'User Created!');
+        return redirect('/product')->with('success', 'Product Created!');
     }
 
     /**
@@ -108,7 +124,18 @@ class ProductController extends Controller
         $product->price = $request->get('price');
         $product->unit = $request->get('unit');
         $product->date = $request->get('date');
-        $product->image = $request->get('image');
+        
+        if ($request->hasfile('image')) {
+            Storage::delete($product->image);
+    
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/') . $filename;
+    
+            Image::make($image)->save($location);
+    
+            $product->image = $filename;
+          }
         $product->save();
 
 

@@ -11,6 +11,7 @@ class Product extends Model
         'name', 
         'price', 
         'unit',
+        'unitCost',
         'date',
         'status',
         'image',

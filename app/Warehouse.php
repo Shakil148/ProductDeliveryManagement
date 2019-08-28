@@ -15,10 +15,10 @@ class Warehouse extends Model
 
     public function warehouseInvoice()
     {
-        return $this->belongsToMany('SGFL\WarehouseInvoice');
+        return $this->belongsTo('SGFL\WarehouseInvoice');
     }
     public function order()
     {
-        return $this->belongsToMany('SGFL\Order');
+        return $this->belongsTo('SGFL\Order');
     }
 }

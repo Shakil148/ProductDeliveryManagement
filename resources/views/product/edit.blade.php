@@ -24,12 +24,12 @@
             </div>
 
             <div class="form-group">
-                <label for="price">Price:</label>
+                <label for="price">Per Price:</label>
                 <input type="number" min="0" class="form-control" name="price" value="{{ $product->price }}" />
             </div>
 
             <div class="form-group">
-                <label for="unit">Unit Cost:</label>
+                <label for="unit">Unit Price:</label>
                 <input type="number" min="0" class="form-control" name="unit" value="{{ $product->unit }}" />
             </div>
             <div class="form-group">

@@ -22,7 +22,7 @@
               <label for="productId">Product Name:</label>
                 <select id='productId' name='productId' class="form-control">
                 @foreach($mainwarehouse_new as $mainwarehouselist)
-                <option {{ $mainwarehouselist->id == $mainwarehouse->productId ? 'selected':'' }}>{{$mainwarehouselist->name}}</option>
+                <option value="{{ $mainwarehouse->productId}}" @if($mainwarehouselist->id == $mainwarehouse->productId ) selected='selected' @endif >{{$mainwarehouselist->name}}</option>
                 @endforeach
                 </select>
             </div>
@@ -30,7 +30,7 @@
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" type="text"  class="form-control" value="{{ $mainwarehouse->created_at }}" />
+                <input type="date_format" name ="date" class="form-control" value="{{ $mainwarehouse->created_at }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>

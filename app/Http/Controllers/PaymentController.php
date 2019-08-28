@@ -54,10 +54,10 @@ class PaymentController extends Controller
         ]);
         $payment = new Payment([
             'dealerId' => $request->get('dealerId'),
-            'date' => $request->get('date'),
             'type' => $request->get('type'),
             'accountNo' => $request->get('accountNo'),
             'amount' => $request->get('amount'),
+            'date' => $request->get('date'),
             'status' => $request->get('status'),
         ]);
         $payment->save();
@@ -108,6 +108,7 @@ class PaymentController extends Controller
 
         ]);
         $payment = Payment::find($id);
+        $payment->dealerId =  $request->get('dealerId');
         $payment->date =  $request->get('date');
         $payment->type = $request->get('type');
         $payment->amount = $request->get('amount');

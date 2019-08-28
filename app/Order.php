@@ -8,9 +8,8 @@ class Order extends Model
 {
     protected $primaryKey = 'id';
     protected $fillable = [
-        'invoiceNo', 
+        'orderNo', 
         'orderDate', 
-        'deliveryDate', 
         'amount', 
         'freeAmount',
         'totalBill', 

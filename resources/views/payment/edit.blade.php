@@ -21,7 +21,7 @@
               <label for="dealerId">Dealer Name:</label>
                 <select id='dealerId' name='dealerId' class="form-control">
                 @foreach($payment_new as $paymentlist)
-                <option {{ $paymentlist->id == $payment->dealerId ? 'selected':'' }}>{{$paymentlist->name}}</option>
+                <option value='{{$paymentlist->dealerId}}'>{{  $paymentlist->id == $payment->dealerId ? 'selected': $paymentlist->name}}</option>
                 @endforeach
                 </select>
             </div>
@@ -45,7 +45,7 @@
             </div>
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" name="date" class="form-control" type="text" value="{{ $payment->date }}" />
+                <input type="date_format" name="date" class="form-control" value="{{ $payment->date }}" />
                 <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>

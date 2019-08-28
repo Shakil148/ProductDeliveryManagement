@@ -8,7 +8,7 @@ class WarehouseInvoice extends Model
 {
     protected $primaryKey = 'id';
     protected $fillable = [
-        'invoiceNo',
+        'orderNo',
         'orderDate',
         'amount',
         'status',

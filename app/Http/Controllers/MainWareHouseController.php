@@ -59,6 +59,7 @@ class MainWarehouseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'address'=>'required',
             'amount'=>'required',
             'productId'=>'required',
             'discount'=>'required',
@@ -96,7 +97,7 @@ class MainWarehouseController extends Controller
         $mainwarehouse = MainWarehouse::find($id);
         $mainwarehouse_new = \DB::table('main_warehouses')
         ->join('products', 'main_warehouses.productId', '=', 'products.id')
-        ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
+        ->select('main_warehouses.*', 'products.name')
         ->get();
         return view('mainwarehouse.edit', compact('mainwarehouse','mainwarehouse_new'));
     }
@@ -111,18 +112,18 @@ class MainWarehouseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'address' => $request->get('address'),
-            'amount' => $request->get('amount'),
-            'productId' => $request->get('productId'),
-            'discount' => $request->get('discount'),
+            'address'=>'required',
+            'amount'=>'required',
+            'productId'=>'required',
+            'discount'=>'required',
 
         ]);
-        $mainWarehouse = MainWarehouse::find($id);
-        $mainWarehouse->date =  $request->get('date');
-        $mainWarehouse->address =  $request->get('address');
-        $mainWarehouse->amount = $request->get('amount');
-        $mainWarehouse->discount = $request->get('discount');
-        $mainWarehouse->save();
+        $mainwarehouse = MainWarehouse::find($id);
+        $mainwarehouse->date =  $request->get('date');
+        $mainwarehouse->address =  $request->get('address');
+        $mainwarehouse->amount = $request->get('amount');
+        $mainwarehouse->discount = $request->get('discount');
+        $mainwarehouse->save();
 
 
         return redirect('/mainwarehouse')->with('success', 'MainWarehouse updated!');
@@ -136,8 +137,8 @@ class MainWarehouseController extends Controller
      */
     public function destroy($id)
     {
-        $mainWarehouse = MainWarehouse::find($id);
-        $mainWarehouse->delete();
+        $mainwarehouse = MainWarehouse::find($id);
+        $mainwarehouse->delete();
 
         return redirect('/mainwarehouse')->with('success', 'Data deleted!');
     }

@@ -15,8 +15,8 @@
         <tr>
           <td>#</td>
           <td>Name</td>
-          <td>Price</td>
-          <td>Unit Cost</td>
+          <td>Per Price</td>
+          <td>Unit Price</td>
           <td>Date</td>
           <td>Address</td>
           <td>Amount</td>
