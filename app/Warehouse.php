@@ -15,7 +15,7 @@ class Warehouse extends Model
 
     public function warehouseInvoice()
     {
-        return $this->belongsTo('SGFL\WarehouseInvoice');
+        return $this->hasMany('SGFL\WarehouseOrder');
     }
     public function order()
     {

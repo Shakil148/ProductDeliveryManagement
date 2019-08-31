@@ -21,6 +21,6 @@ class MainWarehouse extends Model
     }
     public function warehouseInvoice()
     {
-        return $this->belongsTo('SGFL\WarehouseInvoice');
+        return $this->belongsTo('SGFL\WarehouseOrder');
     }
 }

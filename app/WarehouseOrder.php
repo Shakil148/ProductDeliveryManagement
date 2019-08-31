@@ -4,14 +4,15 @@ namespace SGFL;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WarehouseInvoice extends Model
+class WarehouseOrder extends Model
 {
     protected $primaryKey = 'id';
     protected $fillable = [
         'orderNo',
         'orderDate',
         'amount',
-        'status',
+        'cart',
+        'paymentId',
         'productId',
         'mainwarehouseId',
         'warehouseId',
@@ -28,7 +29,7 @@ class WarehouseInvoice extends Model
     }
     public function warehouse()
     {
-        return $this->hasOne('SGFL\Warehouse');
+        return $this->belongsTo('SGFL\Warehouse');
     }
     public function distributor()
     {

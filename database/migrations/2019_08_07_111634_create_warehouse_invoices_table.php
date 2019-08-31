@@ -13,11 +13,13 @@ class CreateWarehouseInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('warehouse_invoices', function (Blueprint $table) {
+        Schema::create('warehouse_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('orderNo');
-            $table->date('orderDate');
-            $table->string('amount');
+            $table->string('orderNo')->nullable();
+            $table->date('orderDate')->nullable();
+            $table->string('amount')->nullable();
+            $table->text('cart')->nullable();
+            $table->string('paymentId')->nullable();
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products');
             $table->integer('mainWarehouseId')->unsigned()->index()->nullable();
@@ -37,6 +39,6 @@ class CreateWarehouseInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warehouse_invoices');
+        Schema::dropIfExists('warehouse_orders');
     }
 }

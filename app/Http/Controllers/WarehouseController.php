@@ -3,7 +3,7 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use SGFL\Product;
 class WarehouseController extends Controller
 {
     /**
@@ -13,8 +13,10 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::all();
+        return view ('warehouse.index',compact('product'));
     }
+
 
     /**
      * Show the form for creating a new resource.

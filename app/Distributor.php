@@ -16,7 +16,7 @@ class Distributor extends Model
 
     public function warehouseInvoice()
     {
-        return $this->belongsTo('SGFL\WarehouseInvoice');
+        return $this->belongsTo('SGFL\WarehouseOrder');
     }
     public function order()
     {

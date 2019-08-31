@@ -28,6 +28,9 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController');
     Route::resource('mainwarehouse', 'MainWarehouseController');
+    Route::get('/localwarehouseorder', 'WarehouseOrderController@order');
+    Route::get('/getaddtocart', 'WarehouseOrderController@getAddToCart');
+    Route::get('/shoppingcart', 'WarehouseOrderController@getCart');
     Route::resource('localwarehouse', 'WarehouseController');
     Route::resource('distributor', 'DistributorController');
     Route::resource('dealer', 'DealerController');
