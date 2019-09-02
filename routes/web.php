@@ -28,9 +28,17 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController');
     Route::resource('mainwarehouse', 'MainWarehouseController');
-    Route::get('/localwarehouseorder', 'WarehouseOrderController@order');
-    Route::get('/getaddtocart', 'WarehouseOrderController@getAddToCart');
-    Route::get('/shoppingcart', 'WarehouseOrderController@getCart');
+    Route::get('/localwarehouseorder',[
+        'uses' => 'WarehouseOrderController@order',
+        'as' =>'warehouses.order']);
+    Route::get('/addtocart/{id}',[
+        'uses' =>  'WarehouseOrderController@getAddToCart',
+        'as' =>'warehouses.addtocart']);
+    Route::get('/shoppingcart', [
+        'uses' => 'WarehouseOrderController@getCart',
+        'as' => 'warehouses.shoppingcart']);
+    Route::get('/checkout', 'WarehouseOrderController@getCheckout');
+    Route::post('/checkout', 'WarehouseOrderController@postCheckout');
     Route::resource('localwarehouse', 'WarehouseController');
     Route::resource('distributor', 'DistributorController');
     Route::resource('dealer', 'DealerController');

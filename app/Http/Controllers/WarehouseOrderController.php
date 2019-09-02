@@ -4,6 +4,7 @@ namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SGFL\Product;
+use SGFL\Cart;
 use Session;
 class WarehouseOrderController extends Controller
 {
@@ -18,17 +19,18 @@ class WarehouseOrderController extends Controller
     }
     public function order()
     {
-        $product = Product::all();
-        return view ('warehouse.order',compact('product'));
+        $products = Product::all();
+        return view ('warehouse.order',['products' => $products]);
     }
-    public function getAddToCart(Request $request,$id){
+    public function getAddToCart(Request $request, $id){
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
-        return redirect()->route('warehouse.order');
+        dd($request->session()->get('cart'));
+        return redirect()->route('warehouses.order');
     }
 
     public function getCart(){
@@ -40,10 +42,27 @@ class WarehouseOrderController extends Controller
         return view('warehouse.shoppingcart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
+    public function getCheckout(){
+        if(!Session::has('cart')){
+            return view('warehouse.shoppingcart');
+        }
+        $oldcart = Session::get('cart');
+        $cart = new Cart($oldcart);
+        $total = $cart->totalPrice;
+        return view('warehouse.checkout',['total' => $total]);
+    }
+
+    public function postCheckout(Request $request){
+        //if(!Session::has('cart')){
+           // return view('warehouse.shoppingcart');  
+
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     
      */
     public function create()
     {
