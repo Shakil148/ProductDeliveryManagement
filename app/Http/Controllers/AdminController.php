@@ -2,10 +2,13 @@
 
 namespace SGFL\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-
+use Auth;
 use SGFL\User;
+use Image;
 
 class AdminController extends Controller
 {
@@ -48,7 +51,7 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'contact' => ['required', 'string', 'max:11',],
-            'role' => 'required | in:admin,modrerator,tsm,accounts,viewer',
+            'role' => 'required | in:admin,moderator,tsm,accounts,viewer',
         ]);
 
 
@@ -62,6 +65,8 @@ class AdminController extends Controller
         $image->image = $filename; */
 
 //
+
+
        $user = new User();
        $user->name = $request->input('name');
        $user ->address = $request->input('address');
@@ -69,22 +74,14 @@ class AdminController extends Controller
        $user ->email = $request->input('email');
        $user ->password = $request->input('password');
        $user ->designation = $request->input('designation');
-       if (Input::hasFile('image'))
-       {
-               $image = Input::file('image');
-           
-           // Do some checks like mime type, file size, etc ....
-           $fileName = $image->getClientOriginalName(); // or change if you want to give it name as per some convention
-       
-           $saveLocation = 'upload'.DIRECTORY_SEPARATOR
-               .'usercontent'.DIRECTORY_SEPARATOR
-               .(Auth::check() ? Auth()->user()->id : 'user');
-           
-           $image->move(public_path($saveLocation), $fileName); 
-           
-           $user->image =  $saveLocation.DIRECTORY_SEPARATOR.$fileName;
-           
-       }
+       $user ->role = $request->input('role');
+       if ($request->hasfile('image')) {
+        $image = $request->file('image');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/') . $filename;
+        Image::make($image)->save($location);
+        $user->image = $filename;
+      }
 //
        $user ->save();
 
@@ -139,7 +136,19 @@ class AdminController extends Controller
         $user->email = $request->get('email');
         $user->designation = $request->get('designation');
         $user->role = $request->get('role');
-        $user->image = $request->get('image');
+
+        if ($request->hasfile('image')) {
+            Storage::delete($user->image);
+    
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/') . $filename;
+    
+            Image::make($image)->save($location);
+    
+            $user->image = $filename;
+          }
+
         $user->save();
 
 

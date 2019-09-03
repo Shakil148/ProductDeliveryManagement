@@ -1,4 +1,7 @@
 
+@extends('layouts.master')
+
+@section('content')
 @include('partials.header')
     @foreach($products->chunk(3) as $product)
     <div class="row mt-3 mb-3">
@@ -21,3 +24,4 @@
     </div>   
 
     @endforeach
+@endsection

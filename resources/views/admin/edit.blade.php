@@ -14,7 +14,7 @@
         </div>
         <br /> 
         @endif
-        <form class = "mb-5" method="post" action="{{ route('user.update', $user->id) }}">
+        <form class = "mb-5" method="post" action="{{ route('user.update', $user->id) }}"enctype="multipart/form-data">
             @method('PATCH') 
             @csrf
             <div class="form-group">
@@ -40,20 +40,16 @@
                 <label for="designation">Designation:</label>
                 <input type="designation" class="form-control" name="designation" value="{{ $user->designation }}" />
             </div>
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <div class=>
-                    <select name="role" value="{{ $user->role }}" class="form-control" >
-                        <option value="admin">Admin</option>
-                        <option value="moderator">Moderator</option>
-                        <option value="tsm">TSM</option>
-                        <option value="accounts">Accounts</option>
-                        <option value="viewer">Viwer</option>
-                    </select> 
-
-                </div>
+            <div class="form-group">    
+              <label for="role">Role:</label>
+                <select id='role' name='role' class="form-control">
+                    <option {{ $user->role == 'admin' ? 'selected':'' }}>Admin</option>
+                    <option {{ $user->role == 'moderator' ? 'selected':'' }}>Moderator</option>
+                    <option {{ $user->role == 'tsm' ? 'selected':'' }}>TSM</option>
+                    <option {{ $user->role == 'accounts' ? 'selected':'' }}>Accounts</option>
+                    <option {{ $user->role == 'viewer' ? 'selected':'' }}>Viewer</option>
+                </select>
             </div>
-        
             <div class="form-group">
                 <label for="image">Image:</label>
                 <input type="file" class="form-control" name="image" value={{ $user->image }} />

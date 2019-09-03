@@ -35,7 +35,7 @@
             <td>{{$paymentlist->accountNo}}</td>
             <td>{{$paymentlist->amount}}</td>
             <td>{{$paymentlist->status}}</td>
-            <td>{{$paymentlist->created_at}}</td>
+            <td>{{date('d-m-y',strtotime($paymentlist->created_at))}}</td>
             <td>
                 <a href="{{ route('payment.edit',$paymentlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

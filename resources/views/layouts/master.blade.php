@@ -12,12 +12,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ProductDeliveryManagementSystem</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
-  <script src="/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-    <link rel="stylesheet" href="/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
-    <link href="/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <link href="js/jquery.dataTables.min.css" type="text/css">
+    <link href="{{asset('frontend/css/price-range.css')}}" rel="stylesheet">
+
+  <script src="js/jquery.js" type="text/javascript"  defer ></script>
+  <script src="js/jquery.dataTables.js" type="text/javascript"  defer ></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"defer></script>
+  <script src="{{asset('frontend/js/bootstrap.min.js')}}"defer></script>
+  <script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}"defer></script>
+  <script src="{{asset('frontend/js/jquery.js')}}"defer></script>
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js"defer></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"defer></script>
+  
+  
+
   </head>
 <body class="hold-transition sidebar-mini">
+
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
@@ -51,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="../img/admin.png" alt="SGFL Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('images/1567415894.png') }}" alt="SGFL Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">SGFL Logo</span>
     </a>
@@ -61,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../img/student.png" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" class="img-circle elevation-2" alt="{{ asset('images/1567415894.png') }}">
         </div>
         <div class="info">
         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -250,82 +261,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<script src="{{ asset('public/js/app.js')}}" defer></script> 
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap.js') }}" defer></script>
-</body>
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-      language: 'pt-BR'
-    });
-  });
-</script>
+
+
 <script>
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var id = $(this).data('id'); 
-         
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '/changeStatus',
-            data: {'status': status, 'id': id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
-</script>
-
-<!-- Script -->
-<script type='text/javascript'>
-
-$(document).ready(function(){
-
-  // Department Change
-  $('#productId').change(function(){
-
-     // Department id
-     var id = $(this).val();
-
-     // Empty the dropdown
-     $('#productId').find('option').not(':first').remove();
-
-     // AJAX request 
-     $.ajax({
-       url: 'getEmployees/'+id,
-       type: 'get',
-       dataType: 'json',
-       success: function(response){
-
-         var len = 0;
-         if(response['data'] != null){
-           len = response['data'].length;
-         }
-
-         if(len > 0){
-           // Read data and create <option >
-           for(var i=0; i<len; i++){
-
-             var id = response['data'][i].id;
-             var name = response['data'][i].name;
-
-             var option = "<option value='"+id+"'>"+name+"</option>"; 
-
-             $("#productId").append(option); 
-           }
-         }
-
-       }
-    });
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable({
+    "paging": true // false to disable pagination (or any other option)
   });
-
+  $('.dataTables_length').addClass('bs-select')
 });
-
 </script>
+
+</body>
+
 </html>
 
 

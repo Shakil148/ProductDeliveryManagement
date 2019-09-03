@@ -41,6 +41,9 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form class ="mb-2">
             </td>
+            <td>
+            <a href="{{ route('warehouses.order')}}" type="button" class="btn btn-indigo btn-rounded">Order</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

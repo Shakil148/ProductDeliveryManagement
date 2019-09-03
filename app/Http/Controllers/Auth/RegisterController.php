@@ -1,6 +1,8 @@
 <?php
 
 namespace SGFL\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use SGFL\User;
@@ -8,6 +10,7 @@ use SGFL\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Image;
 
 
 class RegisterController extends Controller
@@ -74,6 +77,7 @@ class RegisterController extends Controller
             'image' => $data['image'],
             'role' => $data['role'],
         ]);
+
     }
      /**
      * Handle a registration request for the application.
