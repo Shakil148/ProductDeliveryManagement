@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 window.Vue = require('vue');
+Vue.config.productionTip = false
 
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform'

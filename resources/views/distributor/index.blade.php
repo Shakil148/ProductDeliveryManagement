@@ -44,6 +44,7 @@
         @endforeach
     </tbody>
   </table>
+    {{$distributor->links()}}
   </div>
 
 

@@ -9,7 +9,7 @@
     <a style="margin: 19px;" href="{{ route('user.create')}}" class="btn btn-primary">New User</a>
     </div> 
   <div class="table-hover table-striped table-bordered ">
-  <table class="table table-responsive fixed-table-body">
+  <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
           <td>#</td>
@@ -50,6 +50,7 @@
         @endforeach
     </tbody>
   </table>
+    {{$user->links()}}
   </div>
  
 </tbody>

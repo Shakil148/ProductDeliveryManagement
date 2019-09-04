@@ -8,26 +8,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  
   <title>ProductDeliveryManagementSystem</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
-  <link href="js/jquery.dataTables.min.css" type="text/css">
-    <link href="{{asset('frontend/css/price-range.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/css/price-range.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 
-  <script src="js/jquery.js" type="text/javascript"  defer ></script>
-  <script src="js/jquery.dataTables.js" type="text/javascript"  defer ></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.js"defer></script>
-  <script src="{{asset('frontend/js/bootstrap.min.js')}}"defer></script>
-  <script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}"defer></script>
-  <script src="{{asset('frontend/js/jquery.js')}}"defer></script>
-  <script src="http://code.jquery.com/jquery-3.4.1.min.js"defer></script>
-  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"defer></script>
   
   
 
   </head>
 <body class="hold-transition sidebar-mini">
+  <script src="{{ asset('js/app.js') }}" ></script>
+  <script src="{{asset('frontend/js/bootstrap.min.js')}}" ></script>
+  <script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}" ></script>
+  <script src="{{asset('frontend/js/jquery.js')}}" ></script>
+  <script src="{{asset('frontend/js/jquery-1.10.2.min.map')}}" ></script>
+  <script src="{{asset('frontend/js/jquery.dataTables.js')}}" ></script>
 
 <div class="wrapper" id="app">
 
@@ -262,15 +260,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 
-
 <script>
+// Basic example
 $(document).ready(function () {
   $('#dtBasicExample').DataTable({
     "paging": true // false to disable pagination (or any other option)
   });
-  $('.dataTables_length').addClass('bs-select')
+  $('.dataTables_length').addClass('bs-select');
 });
 </script>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>
+
 
 </body>
 
