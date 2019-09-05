@@ -1,34 +1,18 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{route('warehouses.order')}}" >Order More</a>
-        </div>
+
+            <a style="margin: 19px;" href="{{ route('warehouses.order')}}"><i class=" fas fa-luggage-cart red" aria-hidden="true"></i> Order More</a>
+
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
+  
+
                 <a href="{{route('warehouses.shoppingcart')}}" >
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
-                    <span class ="badge">{{ Session::has('cart') ? Session::get('cart') ->totalQty : '' }}</span> 
+                <i class="fa fa-shopping-cart green" aria-hidden="true"></i> Order Cart
+                    <span class ="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span> 
                  </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Account <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Dealer Account</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+ 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

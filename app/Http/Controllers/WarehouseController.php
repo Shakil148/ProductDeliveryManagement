@@ -13,8 +13,8 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $product = Product::all();
-        return view ('warehouse.index',compact('product'));
+       // $product = Product::all();
+        //eturn view ('warehouse.index',compact('product'));
     }
 
 

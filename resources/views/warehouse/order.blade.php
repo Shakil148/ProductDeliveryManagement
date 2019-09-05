@@ -4,7 +4,7 @@
 @section('content')
 @include('partials.header')
     @foreach($products->chunk(3) as $product)
-    <div class="row mt-3 mb-3">
+    <div style="margin: 19px;" class="row mt-3 mb-3">
          @foreach($product as $productlist)
         <div class="col-sm-6 col-md-4"> 
             <div class="thumbnail">
@@ -24,4 +24,5 @@
     </div>   
 
     @endforeach
+    {{$products->links()}}
 @endsection

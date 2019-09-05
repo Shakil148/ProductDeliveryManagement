@@ -37,7 +37,9 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/shoppingcart', [
         'uses' => 'WarehouseOrderController@getCart',
         'as' => 'warehouses.shoppingcart']);
-    Route::get('/checkout', 'WarehouseOrderController@getCheckout');
+    Route::get('/checkout',[
+    'uses' => 'WarehouseOrderController@getCheckout',
+    'as' => 'warehouses.checkout']);
     Route::post('/checkout', 'WarehouseOrderController@postCheckout');
     Route::resource('localwarehouse', 'WarehouseController');
     Route::resource('distributor', 'DistributorController');

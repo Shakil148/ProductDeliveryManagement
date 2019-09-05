@@ -19,7 +19,7 @@ class WarehouseOrderController extends Controller
     }
     public function order()
     {
-        $products = Product::all();
+        $products = Product::paginate(6);
         return view ('warehouse.order',['products' => $products]);
     }
     public function getAddToCart(Request $request, $id){
@@ -29,8 +29,7 @@ class WarehouseOrderController extends Controller
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
-        dd($request->session()->get('cart'));
-        return redirect()->route('warehouses.order');
+         return redirect()->route('warehouses.order');
     }
 
     public function getCart(){

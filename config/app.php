@@ -230,6 +230,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
+
     ],
 
 ];
