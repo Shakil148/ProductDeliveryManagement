@@ -177,13 +177,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('localwarehouseorder')}}"  class="nav-link">
+                <a href="#"  class="nav-link">
                   <i class="nav-icon fas fa-warehouse teal"></i>
                   <p>Local Warehouse</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('user')}}"  class="nav-link">
+                <a href="{{URL::to('localwarehouseorder')}}"  class="nav-link">
                   <i class="fas fa-user-tie nav-icon cyan"></i>
                   <p>Dealer</p>
                 </a>

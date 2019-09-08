@@ -34,12 +34,24 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/addtocart/{id}',[
         'uses' =>  'WarehouseOrderController@getAddToCart',
         'as' =>'warehouses.addtocart']);
+    Route::get('/reduce/{id}',[
+        'uses' => 'WarehouseOrderController@getReducebyOne',
+        'as' => 'warehouses.reducebyone'
+    ]);
+    Route::get('/remove/{id}',[
+        'uses' => 'WarehouseOrderController@getRemoveItem',
+        'as' => 'warehouses.removeitem'
+    ]);
+    Route::get('/add/{id}',[
+        'uses' => 'WarehouseOrderController@getAddByTen',
+        'as' => 'warehouses.addbyten'
+    ]);
     Route::get('/shoppingcart', [
         'uses' => 'WarehouseOrderController@getCart',
         'as' => 'warehouses.shoppingcart']);
     Route::get('/checkout',[
-    'uses' => 'WarehouseOrderController@getCheckout',
-    'as' => 'warehouses.checkout']);
+        'uses' => 'WarehouseOrderController@getCheckout',
+        'as' => 'warehouses.checkout']);
     Route::post('/checkout', 'WarehouseOrderController@postCheckout');
     Route::resource('localwarehouse', 'WarehouseController');
     Route::resource('distributor', 'DistributorController');

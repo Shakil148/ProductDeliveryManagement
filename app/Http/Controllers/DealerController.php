@@ -4,6 +4,7 @@ namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SGFL\Dealer;
+use SGFL\Payment;
 
 class DealerController extends Controller
 {
@@ -16,7 +17,16 @@ class DealerController extends Controller
     {
         $dealer = Dealer::paginate(8);
 
-        return view('dealer.index', compact('dealer'));
+        $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
+        ->select(\DB::raw('dealers.id, SUM(payments.amount) as amounts'))
+        ->groupBy('dealers.id')
+        ->get();
+        // $dealersPayment = \DB::table('payments')
+        // ->join('dealers', 'payments.dealerId','=','dealers.id')
+        // ->where('payments.status', '=','paid')
+        // ->sum('payments.amount');
+
+        return view('dealer.index', compact('dealer','dealersPayment'));
     }
 
 

@@ -18,6 +18,7 @@
           <td>Contact</td>
           <td>Address</td>
           <td>Status</td>
+          <td>balance</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
     </thead>
@@ -30,6 +31,9 @@
             <td>{{$dealerlist->contact}}</td>
             <td>{{$dealerlist->address}}</td>
             <td>{{$dealerlist->status}}</td>
+            @foreach($dealersPayment as $payment)
+                <td>{{$payment->amounts}}</td>
+            @endforeach
             <td>
                 <a href="{{ route('dealer.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -41,9 +45,7 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form class ="mb-2">
             </td>
-            <td>
-            <a href="{{ route('warehouses.order')}}" type="button" class="btn btn-indigo btn-rounded">Order</a>
-            </td>
+
         </tr>
         @endforeach
     </tbody>

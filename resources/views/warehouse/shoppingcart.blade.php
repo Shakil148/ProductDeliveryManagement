@@ -14,7 +14,7 @@
           <td>Product Name</td>
           <td>Qty</td>
           <td>Unit Price</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td colspan = 3 class="text-center">Actions</td>
         </tr>
     </thead>
     
@@ -23,27 +23,23 @@
         <tr>
             <td>{{$loop->iteration}}</td>
             <td>{{$product['item']['name']}}</td>
-            <td>{{$product['qty']}}</td>
+            <td contenteditable="true">{{$product['qty']}}</td>
             <td>{{$product['price']}}</td>
             <td>
-                <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <a href="{{route('warehouses.addbyten',['id'=>$product['item']['id']])}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
             </td>
             <td>
-                <form onclick="return confirm('Are you sure?')" 
-                action="#" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit"><i class="fa fa-minus"></i></button>
-                </form>
+                  <a href="{{route('warehouses.reducebyone',['id'=>$product['item']['id']])}}" class="btn btn-danger" ><i class="fa fa-minus"></i></a>
+            </td>
+            <td>
+                  <a href="{{route('warehouses.removeitem',['id'=>$product['item']['id']])}}" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
             </td>
         </tr>
         @endforeach
     </tbody>
   </table>
   </div>
-
-
-        </div>
+        
     </div>
 </div>
         <div class="row">

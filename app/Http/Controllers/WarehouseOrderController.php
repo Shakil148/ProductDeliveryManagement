@@ -5,6 +5,8 @@ namespace SGFL\Http\Controllers;
 use Illuminate\Http\Request;
 use SGFL\Product;
 use SGFL\Cart;
+use SFGL\Order;
+use SGFL\Dealer;
 use Session;
 class WarehouseOrderController extends Controller
 {
@@ -32,6 +34,39 @@ class WarehouseOrderController extends Controller
          return redirect()->route('warehouses.order');
     }
 
+    public function getReduceByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        if(count($cart->items) > 0){
+            Session::put('cart', $cart);
+        }else{
+            Session::forget('cart');
+        }
+        return redirect()->route('warehouses.shoppingcart');
+    }
+    public function getRemoveItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+
+        if(count($cart->items) > 0){
+            Session::put('cart', $cart);
+        }else{
+            Session::forget('cart');
+        }
+       
+        return redirect()->route('warehouses.shoppingcart');
+    }
+    public function getAddByTen($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->addByTen($id);
+
+        Session::put('cart', $cart);
+        return redirect()->route('warehouses.shoppingcart');
+    }
+
     public function getCart(){
         if(!Session::has('cart')){
             return view('warehouse.shoppingcart');
@@ -52,11 +87,22 @@ class WarehouseOrderController extends Controller
     }
 
     public function postCheckout(Request $request){
-        //if(!Session::has('cart')){
-           // return view('warehouse.shoppingcart');  
-
+        if(!Session::has('cart')){
+           return view('warehouse.shoppingcart');  
     }
-    
+        $oldcart = Session::get('cart');
+        $cart = new Cart($oldcart);
+        try
+        {
+
+        }
+        catch(\Exception $e)
+        {
+
+        }
+        Session::forget('cart');
+        return redirect()->route('warehouses.order')->with('success','Successfully purchase Order');
+    }
     /**
      * Show the form for creating a new resource.
      *
