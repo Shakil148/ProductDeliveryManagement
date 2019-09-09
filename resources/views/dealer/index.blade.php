@@ -19,7 +19,7 @@
           <td>Address</td>
           <td>Status</td>
           <td>balance</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td colspan = 3 class="text-center">Actions</td>
         </tr>
     </thead>
     
@@ -31,9 +31,7 @@
             <td>{{$dealerlist->contact}}</td>
             <td>{{$dealerlist->address}}</td>
             <td>{{$dealerlist->status}}</td>
-            @foreach($dealersPayment as $payment)
-                <td>{{$payment->amounts}}</td>
-            @endforeach
+            <td>{{$dealerlist->balance}}</td>
             <td>
                 <a href="{{ route('dealer.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -43,15 +41,39 @@
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                </form class ="mb-2">
+                </form>
             </td>
-
+            <td>
+            <form action="{{ route('dealer.balance', $dealerlist->id)}}" method="post">
+                  @csrf
+                  <button class="btn btn-danger" type="submit"><i class="fas fa-sync-alt"></i></button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
     {{$dealer->links()}}
   </table>
   </div>
+  <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+          <td>#</td>
+          <td>Name</td>
+          <td>balance</td>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach($dealer as $dealerlist)
+        <tr class="table-info">
+            <td>{{$loop->iteration}}</td>
+            <td>{{$dealerlist->name}}</td>
+            <td>{{$dealerlist->balance}}</td>
+        </tr>
+        @endforeach
+    </tbody>
+  </table>
 
 
             </div>

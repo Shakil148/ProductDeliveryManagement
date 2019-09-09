@@ -40,6 +40,10 @@
                 <input type="number" min="0" class="form-control" name="accountNo" value="{{ $payment->accountNo }}" />
             </div>
             <div class="form-group">
+                <label for="accountNo">Bank Name:</label>
+                <input type="text" max="20" class="form-control" name="bankName" value="{{ $payment->bankName }}" />
+            </div>
+            <div class="form-group">
                 <label for="amount">Amount:</label>
                 <input type="number" min="0" class="form-control" name="amount" value={{ $payment->amount }} />
             </div>

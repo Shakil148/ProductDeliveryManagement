@@ -56,6 +56,7 @@ class PaymentController extends Controller
             'dealerId' => $request->get('dealerId'),
             'type' => $request->get('type'),
             'accountNo' => $request->get('accountNo'),
+            'bankName' => $request->get('bankName'),
             'amount' => $request->get('amount'),
             'date' => $request->get('date'),
             'status' => $request->get('status'),
@@ -112,6 +113,7 @@ class PaymentController extends Controller
         $payment->date =  $request->get('date');
         $payment->type = $request->get('type');
         $payment->amount = $request->get('amount');
+        $payment->bankName = $request->get('bankName');
         $payment->accountNo = $request->get('accountNo');
         $payment->status = $request->get('status');
         $payment->save();

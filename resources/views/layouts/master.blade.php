@@ -121,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{URL::to('user')}}"  class="nav-link">
+                  <a href="{{URL::to('orderinvoice')}}"  class="nav-link">
                     <i class="fas fa-user-tie nav-icon cyan"></i>
                     <p>Dealer</p>
                   </a>
@@ -261,20 +261,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <script>
-// Basic example
+// Basic example of pagination
 $(document).ready(function () {
   $('#dtBasicExample').DataTable({
     "paging": true // false to disable pagination (or any other option)
   });
   $('.dataTables_length').addClass('bs-select');
 });
-</script>
-<script type="text/javascript">
+
+//datetime picker
   $(function() {
     $('#datetimepicker1').datetimepicker({
       language: 'pt-BR'
     });
   });
+
+// Invoice javascript 
+
+// $(document).ready(function(){
+//     var i=1;
+//     $("#add_row").click(function(){b=i-1;
+//       	$('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
+//       	$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+//       	i++; 
+//   	});
+//     $("#delete_row").click(function(){
+//     	if(i>1){
+// 		$("#addr"+(i-1)).html('');
+// 		i--;
+// 		}
+// 		calc();
+// 	});
+	
+// 	$('#tab_logic tbody').on('keyup change',function(){
+// 		calc();
+// 	});
+// 	$('#tax').on('keyup change',function(){
+// 		calc_total();
+// 	});
+	
+
+// });
+
+// function calc()
+// {
+// 	$('#tab_logic tbody tr').each(function(i, element) {
+// 		var html = $(this).html();
+// 		if(html!='')
+// 		{
+// 			var qty = $(this).find('.qty').val();
+// 			var price = $(this).find('.price').val();
+// 			$(this).find('.total').val(qty*price);
+			
+// 			calc_total();
+// 		}
+//     });
+// }
+
+// function calc_total()
+// {
+// 	total=0;
+// 	$('.total').each(function() {
+//         total += parseInt($(this).val());
+//     });
+// 	$('#sub_total').val(total.toFixed(2));
+// 	tax_sum=total/100*$('#tax').val();
+// 	$('#tax_amount').val(tax_sum.toFixed(2));
+// 	$('#total_amount').val((tax_sum+total).toFixed(2));
+// }
+
 </script>
 
 

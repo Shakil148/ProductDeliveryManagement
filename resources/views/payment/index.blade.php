@@ -18,6 +18,7 @@
           <td>Payment Type</td>
           <td>Date</td>
           <td>Account No</td>
+          <td>Bank Name</td>
           <td>Amount</td>
           <td>Status</td>
           <td>Created Date</td>
@@ -33,7 +34,8 @@
             <td>{{$paymentlist->type}}</td>
             <td>{{$paymentlist->date}}</td>
             <td>{{$paymentlist->accountNo}}</td>
-            <td>{{$paymentlist->amount}}</td>
+            <td>{{$paymentlist->bankName}}</td>
+            <td>{{$paymentlist->amount}}<b>tk</b></td>
             <td>{{$paymentlist->status}}</td>
             <td>{{date('d-m-y',strtotime($paymentlist->created_at))}}</td>
             <td>

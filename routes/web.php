@@ -53,8 +53,20 @@ Route::group(['middleware' => 'admin'], function() {
         'uses' => 'WarehouseOrderController@getCheckout',
         'as' => 'warehouses.checkout']);
     Route::post('/checkout', 'WarehouseOrderController@postCheckout');
+    
     Route::resource('localwarehouse', 'WarehouseController');
+    Route::get('/orderinvoice',[
+        'uses' => 'OrderController@orderInvoice',
+        'as' => 'order.invoice']);
+    Route::post('/delearinvoice',[
+        'uses' => 'OrderController@dealerInvoice',
+        'as' => 'dealerinvoice.store']);
+    Route::resource('order', 'OrderController');
     Route::resource('distributor', 'DistributorController');
+    Route::post('/delearspayment/{id}',[
+        'uses' => 'DealerController@balance',
+        'as' => 'dealer.balance']);
+   
     Route::resource('dealer', 'DealerController');
     Route::resource('payment', 'PaymentController');
   });

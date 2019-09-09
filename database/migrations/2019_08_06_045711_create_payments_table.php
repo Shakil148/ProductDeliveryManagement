@@ -15,10 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
-            $table->string('type');
-            $table->string('amount');
-            $table->boolean('status')->nullable()->change();;
+            $table->date('date')->nullable();
+            $table->string('type')->nullable();
+            $table->string('accountNo')->nullable();
+            $table->string('bankName')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('status')->nullable();
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers');
             $table->timestamps();

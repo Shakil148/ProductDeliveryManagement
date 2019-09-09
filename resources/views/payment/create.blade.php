@@ -41,8 +41,12 @@
               <input type="number" min="0" class="form-control" name="accountNo"/>
           </div>
           <div class="form-group">
+              <label for="accountNo">Bank Name:</label>
+              <input type="number" max="30" class="form-control" name="bankName"/>
+          </div>
+          <div class="form-group">
               <label for="amount">Amount:</label>
-              <input type="number" min="0" class="form-control" name="amount"/>
+              <input type="text" min="0" class="form-control" name="amount"/>
           </div>
           <div class="form-group">
           <label for="date">Date:</label>

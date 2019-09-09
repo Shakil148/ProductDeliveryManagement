@@ -13,22 +13,38 @@ class DealerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        
         $dealer = Dealer::paginate(8);
-
-        $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
-        ->select(\DB::raw('dealers.id, SUM(payments.amount) as amounts'))
-        ->groupBy('dealers.id')
-        ->get();
+        
         // $dealersPayment = \DB::table('payments')
         // ->join('dealers', 'payments.dealerId','=','dealers.id')
         // ->where('payments.status', '=','paid')
         // ->sum('payments.amount');
-
+        
+        $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
+       ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
+       ->groupBy('dealers.id')
+       ->get();
         return view('dealer.index', compact('dealer','dealersPayment'));
     }
+    
+    public function balance(Request $request,$id){
+       $dealers = Dealer::find($id);
+       $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
+       ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
+       ->groupBy('dealers.id')
+       ->count();
+       $balance = $dealersPayment;
+       $dealers->balance =  $request->get('balance');
 
+       $dealers->save();
+
+       $dealer = Dealer::paginate(8);
+       return view('dealer.index',compact('dealer'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -48,6 +64,8 @@ class DealerController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $request->validate([
             'name'=>'required',
             'contact'=>'required',
