@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentsTable extends Migration
+class CreateDealerBalanceRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('dealer_balance_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date')->nullable();
-            $table->string('type')->nullable();
-            $table->string('accountNo')->nullable();
-            $table->string('bankName')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('status')->nullable();
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers')->onDelete('cascade');
+            $table->text('type')->nullable();
+            $table->string('accountNo')->nullable();
+            $table->text('bankName')->nullable();
+            $table->integer('amount')->nullable();
+            $table->datetime('date')->nullable();
+            $table->text('status')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('dealer_balance_records');
     }
 }

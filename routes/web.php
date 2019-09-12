@@ -66,9 +66,18 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('/delearspayment/{id}',[
         'uses' => 'DealerController@balance',
         'as' => 'dealer.balance']);
-   
     Route::resource('dealer', 'DealerController');
+    Route::get('/paymentcreate/{id}',[
+        'uses' => 'PaymentController@paymentCreate',
+        'as' => 'payment.creates']);
+    Route::post('/dealerbalance/{id}',[
+        'uses' => 'PaymentController@balance',
+        'as' => 'payment.balance']);
     Route::resource('payment', 'PaymentController');
+    // Route::post('/create/{id}',[
+    //     'uses' => 'DealerBalanceRecordController@store',
+    //     'as' => 'balances.store']);
+    Route::resource('balance', 'DealerBalanceRecordController');
   });
 
   //Moderator all routes

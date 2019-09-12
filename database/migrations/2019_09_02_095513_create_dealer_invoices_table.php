@@ -17,9 +17,9 @@ class CreateDealerInvoicesTable extends Migration
             $table->increments('id');
             $table->string('invoiceNo')->nullable();
             $table->integer('orderId')->unsigned()->index()->nullable();
-            $table->foreign('orderId')->references('id')->on('orders');
+            $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('productId')->unsigned()->index()->nullable();
-            $table->foreign('productId')->references('id')->on('products');
+            $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->integer('invoiceUnit')->nullable();
             $table->integer('freeUnit')->nullable();
             $table->integer('totalUnit')->nullable();

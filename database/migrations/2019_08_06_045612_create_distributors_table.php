@@ -15,9 +15,9 @@ class CreateDistributorsTable extends Migration
     {
         Schema::create('distributors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('contact');
-            $table->string('carNo');
+            $table->string('name')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('carNo')->nullable();
             $table->timestamps();
         });
     }

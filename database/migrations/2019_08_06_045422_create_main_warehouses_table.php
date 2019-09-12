@@ -15,12 +15,12 @@ class CreateMainWarehousesTable extends Migration
     {
         Schema::create('main_warehouses', function (Blueprint $table) {
             $table->increments('id');
-            $table->datetime('date');
-            $table->text('address');
-            $table->Integer('amount');
-            $table->string('discount');
+            $table->datetime('date')->nullable();
+            $table->text('address')->nullable();
+            $table->Integer('amount')->nullable();
+            $table->string('discount')->nullable();
             $table->integer('productId')->unsigned()->index()->nullable();
-            $table->foreign('productId')->references('id')->on('products');
+            $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

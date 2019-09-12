@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2">Payments Details</h1>
+    <h1 class="display-5 text-center mt-2">Payments Record</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -14,7 +14,7 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('payment.store') }}">
+      <form method="post" action="{{ route('balance.store') }}">
           @csrf
           <div class="form-group">    
               <label for="dealerId">Dealer Name:</label>
@@ -67,6 +67,10 @@
                     <option value='Refund'>Refund</option>
                 </select>
             </div>
+          <div class="form-group">
+              <label for="comment">Comment:</label>
+              <input type="textarea" class="form-control" name="comment"/>
+          </div>
                       
           <button type="submit" class="btn btn-primary mb-5">Add Payment</button>
       </form>

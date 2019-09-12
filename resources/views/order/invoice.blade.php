@@ -20,8 +20,8 @@
         </ul>
       </div><br />
     @endif
-    <!-- <form method="post" action="{{ route('dealerinvoice.store') }}">
-          @csrf -->
+    <form method="post" action="{{ route('dealerinvoice.store') }}">
+          @csrf
           <div class="form-group col-md-6">    
               <label for="dealerId">Dealer Name:</label>
                 <select id='dealerId' name='dealerId' class="form-control">
@@ -107,7 +107,7 @@
           </tr> -->
         </tbody>
       </table>
-      <!-- <button type="submit" class="btn btn-primary mb-5">Add Invoice</button> -->
+      <button type="submit" class="btn btn-primary mb-5">Add Invoice</button>
     </form>
     </div>
   </div>

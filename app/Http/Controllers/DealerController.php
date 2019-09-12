@@ -5,6 +5,7 @@ namespace SGFL\Http\Controllers;
 use Illuminate\Http\Request;
 use SGFL\Dealer;
 use SGFL\Payment;
+use SGFL\DealerBalance;
 
 class DealerController extends Controller
 {
@@ -23,6 +24,13 @@ class DealerController extends Controller
         // ->join('dealers', 'payments.dealerId','=','dealers.id')
         // ->where('payments.status', '=','paid')
         // ->sum('payments.amount');
+
+        // $result = \DB::select('SELECT * 
+        //                   FROM  `dealers` 
+        //                   WHERE dealers.balance = ( 
+        //                       SELECT SUM( payments.amount ) 
+        //                       FROM payments
+        //                       WHERE payments.dealerId = dealers.id )');
         
         $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
        ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
@@ -33,11 +41,10 @@ class DealerController extends Controller
     
     public function balance(Request $request,$id){
        $dealers = Dealer::find($id);
-       $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
-       ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
-       ->groupBy('dealers.id')
-       ->count();
+       $payment = Payment::all();
+       $dealersPayment = $payment->sum('amount');
        $balance = $dealersPayment;
+       return dd($balance);
        $dealers->balance =  $request->get('balance');
 
        $dealers->save();
@@ -64,21 +71,27 @@ class DealerController extends Controller
      */
     public function store(Request $request)
     {
-        
-
         $request->validate([
-            'name'=>'required',
+            'name'=>['required', 'unique:dealers'],
             'contact'=>'required',
             'address'=>'required',
             'status'=>'required',
         ]);
-        $dealer = new Dealer([
-            'name' => $request->get('name'),
-            'contact' => $request->get('contact'),
-            'address' => $request->get('address'),
-            'status' => $request->get('status'),
-        ]);
+        $dealer = new Dealer;
+        $dealer->name = $request->get('name');
+        $dealer->contact = $request->get('contact');
+        $dealer->address = $request->get('address');
+        $dealer->status = $request->get('status');
         $dealer->save();
+        
+        // $dealerbalance = new DealerBalance();
+        // $dealerbalance->name = $request->get('name');
+        // $dealerbalance->dealer = $request->get('id');
+        // $dealerbalance->save();
+        
+        
+
+ 
         return redirect('/dealer')->with('success', 'Dealer Created!');
     }
 

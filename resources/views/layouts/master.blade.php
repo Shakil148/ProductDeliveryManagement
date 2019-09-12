@@ -200,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{URL::to('payment')}}" class="nav-link ">
+            <a href="{{URL::to('balance')}}" class="nav-link ">
               <i class="nav-icon fas fa-money-check-alt yellow"></i>
               <p>
                 Payment

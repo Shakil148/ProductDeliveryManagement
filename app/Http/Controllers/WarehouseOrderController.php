@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use SGFL\Product;
 use SGFL\Cart;
 use SFGL\Order;
+use SFGL\WarehouseOrder;
 use SGFL\Dealer;
 use Session;
 class WarehouseOrderController extends Controller
@@ -77,13 +78,14 @@ class WarehouseOrderController extends Controller
     }
 
     public function getCheckout(){
+        $dealer = Dealer::all();
         if(!Session::has('cart')){
             return view('warehouse.shoppingcart');
         }
         $oldcart = Session::get('cart');
         $cart = new Cart($oldcart);
         $total = $cart->totalPrice;
-        return view('warehouse.checkout',['total' => $total]);
+        return view('warehouse.checkout',['total' => $total, 'dealer' => $dealer]);
     }
 
     public function postCheckout(Request $request){
@@ -94,11 +96,18 @@ class WarehouseOrderController extends Controller
         $cart = new Cart($oldcart);
         try
         {
-
+            $WarehouseOrder = new warehouseOrder();
+            $WarehouseOrder->$orderNo = $request->input('orderNo');
+            $WarehouseOrder->$cart = serialize($cart);
+            $WarehouseOrder->$date = $request->input('date');
+            $WarehouseOrder->$address = $request->input('address');
+            $WarehouseOrder->$dealerId = $request->input('dealerId');
+            $WarehouseOrder->$paymentId = $request->input('paymentId');
+            $WarehouseOrders->save($WarehouseOrder);
         }
         catch(\Exception $e)
         {
-
+            return redirect()->route('warehouses.checkout')->with('error', $e->getMessage());
         }
         Session::forget('cart');
         return redirect()->route('warehouses.order')->with('success','Successfully purchase Order');

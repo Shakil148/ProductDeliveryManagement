@@ -13,7 +13,7 @@ class Dealer extends Model
         'contact', 
         'address',
         'status',
-        'balance',
+        'amount',
     ];
 
     public function order()
@@ -23,5 +23,13 @@ class Dealer extends Model
     public function payment()
     {
         return $this->belongsTo('SGFL\Payement','dealerId','id');
+    }
+    public function dealerBalance()
+    {
+        return $this->hasOne('SGFL\DealerBalance','dealerId','id');
+    }
+    public function dealerBalanceRecord()
+    {
+        return $this->hasMany('SGFL\DealerBalanceRecord','dealerId','id');
     }
 }

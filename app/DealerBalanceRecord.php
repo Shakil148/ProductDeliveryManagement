@@ -1,0 +1,25 @@
+<?php
+
+namespace SGFL;
+
+use Illuminate\Database\Eloquent\Model;
+
+class DealerBalanceRecord extends Model
+{
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'dealerId', 
+        'type',
+        'accountNo',
+        'bankName',
+        'amount',
+        'date',
+        'status',
+        'comment',
+    ];
+    public function dealer()
+    {
+        return $this->belongsTo('SGFL\Dealer','dealerId','id');
+    }
+}

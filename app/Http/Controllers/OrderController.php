@@ -46,42 +46,78 @@ class OrderController extends Controller
     }
 
     public function dealerInvoice(Request $request){
-        $request->validate([
-            // 'name'=>'required',
-            // 'price'=>'required',
-            // 'unit'=>'required',
-            // 'image'=>'required',
-        ]);
+        // $request->validate([
+        //     // 'name'=>'required',
+        //     // 'price'=>'required',
+        //     // 'unit'=>'required',
+        //     // 'image'=>'required',
+        // ]);
 
-    //     $cover = $request->file('image');
-    //    $extension = $cover->getClientOriginalExtension();
-    //     Storage::disk('public')->put($cover->getFilename().'.'.$extension,  File::get($cover));
-        
-        
-        $dealerInvoice = new DealerInvoice([
-            'invoiceNo' => $request->get('invoiceNo'),
-            'orderId' => $request->get('orderId'),
-            'productId' => $request->get('productId'),
-            'invoiceUnit' => $request->get('invoiceUnit'),
-            'freeUnit' => $request->get('freeUnit'),
-            'totalUnit' => $request->get('totalUnit'),
-            'totalPrice' => $request->get('totalPrice'),
-            'remainUnit' => $request->get('remainUnit'),
-            'remainBalance' => $request->get('remainBalance'),
-        ]);
-        //$product->mime = $cover->getClientMimeType();
-        //$product->original_filename = $cover->getClientOriginalName();
-        //$product->filename = $cover->getFilename().'.'.$extension;
-        // if ($request->hasfile('image')) {
-        //     $image = $request->file('image');
-        //     $filename = time() . '.' . $image->getClientOriginalExtension();
-        //     $location = public_path('images/') . $filename;
-        //     Image::make($image)->save($location);
-        //     $product->image = $filename;
-        //   }
-        $dealerInvoice->save();
-        return redirect('/dealerinvoice')->with('success', 'Product Created!');
+        // $dealerInvoice = DealerInvoice::create([
+        //     'invoiceNo' => $request->invoiceNo[$i],
+        //     'orderId' => $request->orderId[$i],
+        //     'productId' => $request->productId[$i],
+        //     'invoiceUnit' => $request->invoiceUnit[$i],
+        //     'freeUnit' => $request->freeUnit[$i],
+        //     'totalUnit' => $request->totalUnit[$i],
+        //     'totalPrice' => $request->totalPrice[$i],
+        //     'remainUnit' => $request->remainUnit[$i],
+        //     'remainBalance' => $request->remainBalance[$i],
+        //     ]);
+        $data=$request->all();
+        //$lastid=Orders::create($data)->id;
+        if(count($request->product) > 0)
+        {
+        foreach($request->product as $i=>$v){
+            $data2=array(
+                //'orders_id'=>$lastid,
+                // 'product_name'=>$request->product_name[$item],
+                // 'brand'=>$request->brand[$item],
+                // 'quantity'=>$request->quantity[$item],
+                // 'budget'=>$request->budget[$item],
+                // 'amount'=>$request->amount[$item],
+                'invoiceNo' => $request->invoiceNo[$i],
+                'productId' => $request->productId[$i],
+                'invoiceUnit' => $request->invoiceUnit[$i],
+                'freeUnit' => $request->freeUnit[$i],
+                'totalUnit' => $request->totalUnit[$i],
+            );
+        DealerInvoice::insert($data2);
+      }
+        }
+        return redirect()->back()->with('success','data insert successfully');
     }
+    
+        // for($i = 0; $i < 100; ++$i){
+    
+        //     $dealerInvoice = new DealerInvoice;
+        //     $dealerInvoice->orderId = $request->orderId;
+        //     $dealerInvoice->dealerId = $request->dealerId;
+        //     $dealerInvoice->invoiceNo = $request->invoiceNo[$i];
+        //     $dealerInvoice->productId = $request->productId[$i];
+        //     $dealerInvoice->invoiceUnit = $request->invoiceUnit[$i];
+        //     $dealerInvoice->freeUnit = $request->freeUnit[$i];
+        //     $dealerInvoice->totalUnit = $request->totalUnit[$i];
+        //     $dealerInvoice->totalPrice = $request->totalPrice;
+        //     $dealerInvoice->remainUnit = $request->remainUnit;
+        //     $dealerInvoice->remainBalance = $request->remainBalance;
+        //     $dealerInvoice->save();
+        // }
+        // $dealerInvoice = new DealerInvoice([
+        //     'invoiceNo' => $request->get('invoiceNo'),
+        //     'orderId' => $request->get('orderId'),
+        //     'productId' => $request->get('productId'),
+        //     'invoiceUnit' => $request->get('invoiceUnit'),
+        //     'freeUnit' => $request->get('freeUnit'),
+        //     'totalUnit' => $request->get('totalUnit'),
+        //     'totalPrice' => $request->get('totalPrice'),
+        //     'remainUnit' => $request->get('remainUnit'),
+        //     'remainBalance' => $request->get('remainBalance'),
+        // ]);
+  
+        // $dealerInvoice->save();
+       //return redirect('/dealerinvoice')->with('success', 'Invoice Created!');
+    
 
 
     /**

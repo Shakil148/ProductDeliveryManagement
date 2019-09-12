@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDealersTable extends Migration
+class CreateDealerBalancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateDealersTable extends Migration
      */
     public function up()
     {
-        Schema::create('dealers', function (Blueprint $table) {
+        Schema::create('dealer_balances', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('contact')->nullable();
-            $table->text('address')->nullable();
-            $table->boolean('status')->nullable();
+            $table->integer('dealerId')->unsigned()->index()->nullable();
+            $table->foreign('dealerId')->references('id')->on('dealers')->onDelete('cascade');
             $table->integer('amount')->nullable();
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateDealersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dealers');
+        Schema::dropIfExists('dealer_balances');
     }
 }

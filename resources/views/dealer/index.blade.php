@@ -65,7 +65,7 @@
     </thead>
     
     <tbody>
-        @foreach($dealer as $dealerlist)
+        @foreach($dealersPayment as $dealerlist)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
             <td>{{$dealerlist->name}}</td>

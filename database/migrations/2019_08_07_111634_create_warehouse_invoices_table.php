@@ -23,11 +23,11 @@ class CreateWarehouseInvoicesTable extends Migration
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products');
             $table->integer('mainWarehouseId')->unsigned()->index()->nullable();
-            $table->foreign('mainWarehouseId')->references('id')->on('main_warehouses');
+            $table->foreign('mainWarehouseId')->references('id')->on('main_warehouses')->onDelete('cascade');
             $table->integer('warehouseId')->unsigned()->index()->nullable();
-            $table->foreign('warehouseId')->references('id')->on('warehouses');
+            $table->foreign('warehouseId')->references('id')->on('warehouses')->onDelete('cascade');
             $table->integer('distributorId')->unsigned()->index()->nullable();
-            $table->foreign('distributorId')->references('id')->on('distributors');
+            $table->foreign('distributorId')->references('id')->on('distributors')->onDelete('cascade');
             $table->timestamps();
         });
     }
