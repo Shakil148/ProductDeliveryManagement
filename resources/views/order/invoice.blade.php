@@ -95,7 +95,7 @@
           <tr>
             <td><input type="number" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
-            <td><input type="number" class="form-group" name='remainBalance' id="total_amount" value="{{$dealer->amount}}" class="form-control" readonly/></td>
+            <td><input type="number" class="form-group" name='remainBalance' id="total_amount" placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
           </tr>
           <!-- <tr>
             <th class="text-center">Tax</th>
@@ -110,6 +110,10 @@
           </tr> -->
         </tbody>
       </table>
+      <div class="form-group">
+            <label for="address">Comment:</label>
+            <input type="textarea" id="exampleFormControlTextarea2" rows="3" class="col-md-4" name="comment"/>
+      </div>
       <button type="submit" class="btn btn-primary mb-5">Add Invoice</button>
     </form>
     </div>

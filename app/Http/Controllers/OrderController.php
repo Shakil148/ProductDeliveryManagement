@@ -47,26 +47,38 @@ class OrderController extends Controller
     }
 
     public function dealerInvoice(Request $request,$id){
-        // $request->validate([
-        //     // 'name'=>'required',
-        //     // 'price'=>'required',
-        //     // 'unit'=>'required',
-        //     // 'image'=>'required',
-        // ]);
+        $request->validate([
+            // 'name'=>'required',
+            // 'price'=>'required',
+            // 'unit'=>'required',
+            // 'image'=>'required',
+            'invoiceNo' => ['unique:dealer_invoices'],
+        ]);
 
         $dealer = Dealer::find($id);
         $dealerInvoice = new DealerInvoice;
         $dealerInvoice->dealerId =$id;
+        $dealerInvoice->invoiceNo = $request->get('invoiceNo');
+        $dealerInvoice->totalPrice = $request->get('totalPrice');
+        $dealerInvoice->comment = $request->get('comment');
         $dealerInvoice->save();
-        $data=$request->all();
-        $lastid= DealerInvoice::create($data)->id;
+        $invoice =$dealerInvoice->id;
+        // $data=$request->all();
+        // $lastid= DealerInvoice::create( 
+        //     [
+        //     'dealerId' => $id,
+        //     'invoiceNo' => $request['invoiceNo'],
+        //     'totalPrice' => $request['totalPrice'],
+        //     'comment' => $request['comment'],
+        //     ]
+        // )->id;
         $dealer->amount -= $request->get('totalPrice');
         $dealer->save();
         if(count($request->product) > 0)
         {
         foreach($request->product as $i=>$v){
             $data2=array(
-                'dealerInvoiceId'=>$lastid,
+                'dealerInvoiceId'=>$invoice,
                 // 'product_name'=>$request->product_name[$item],
                 // 'brand'=>$request->brand[$item],
                 // 'quantity'=>$request->quantity[$item],
