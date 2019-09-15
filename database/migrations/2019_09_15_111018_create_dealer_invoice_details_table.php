@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDealerInvoicesTable extends Migration
+class CreateDealerInvoiceDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateDealerInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dealer_invoices', function (Blueprint $table) {
+        Schema::create('dealer_invoice_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('invoiceNo')->nullable();
-            $table->integer('orderId')->unsigned()->index()->nullable();
-            $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
+            $table->integer('dealerInvoiceId')->unsigned()->index()->nullable();
+            $table->foreign('dealerInvoiceId')->references('id')->on('dealer_invoices')->onDelete('cascade');
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
+            $table->text('product')->nullable();
+            $table->integer('price')->nullable();
             $table->integer('invoiceUnit')->nullable();
             $table->integer('freeUnit')->nullable();
             $table->integer('totalUnit')->nullable();
-            $table->integer('totalPrice')->nullable();
-            $table->integer('remainUnit')->nullable();
-            $table->integer('remainBalance')->nullable();
+            $table->integer('total')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ class CreateDealerInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dealer_invoices');
+        Schema::dropIfExists('dealer_invoice_details');
     }
 }

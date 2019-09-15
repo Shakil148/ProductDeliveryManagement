@@ -19,7 +19,7 @@
           <td>Unit Price</td>
           <td>Date</td>
           <td>Address</td>
-          <td>Amount</td>
+          <td>Total Quantity</td>
           <td>Discount</td>
           <td>Image</td>
           <td colspan = 2 class="text-center">Actions</td>

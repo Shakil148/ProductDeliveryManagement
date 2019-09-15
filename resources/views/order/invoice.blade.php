@@ -20,16 +20,11 @@
         </ul>
       </div><br />
     @endif
-    <form method="post" action="{{ route('dealerinvoice.store') }}">
+    <form method="post" action="{{ route('dealer.invoice', $dealer->id) }}">
           @csrf
           <div class="form-group col-md-6">    
-              <label for="dealerId">Dealer Name:</label>
-                <select id='dealerId' name='dealerId' class="form-control">
-                <option value=''>-- Select Dealer --</option>
-                @foreach($dealer as $dealerlist)
-                    <option value='{{ $dealerlist->id }}'>{{ $dealerlist->name }}</option>
-                @endforeach
-                </select>
+              <label for="dealerId">Dealer Name: <b class="blue">{{$dealer->name}}</b></label>
+
 
 
           <!-- <div class="pull-right">
@@ -44,12 +39,20 @@
           </div> -->
 
         </div>
+        <div class="form-group ">
+              <label for="address">Invoice No:</label>
+              <input type="text" class="col-md-4" name="invoiceNo"/>
+        </div>
+        <div class="form-group">
+            <label for="address">Order No:</label>
+            <input type="text" class="col-md-4" name="orderNo"/>
+        </div>
       <table class="table table-bordered table-hover" id="tab_logic">
         <thead >
           <tr>
             <th class="text-center"> # </th>
-            <th class="text-center"> Invoice No </th>
-            <th class="text-center"> Order No </th>
+            <!-- <th class="text-center"> Invoice No </th>
+            <th class="text-center"> Order No </th> -->
             <th class="text-center"> Product </th>
             <th class="text-center"> Invoice Unit</th>
             <th class="text-center"> Free Unit</th>
@@ -62,8 +65,8 @@
         <tbody>
           <tr id='addr0'>
             <td>1</td>
-            <td><input type="text"   name='invoiceNo[]' placeholder='Enter Invoice No' class="form-control"/></td>
-            <td><input type="text"   name='orderId[]' placeholder='Enter Order No' class="form-control"/></td>
+            <!-- <td><input type="text"   name='invoiceNo[]' placeholder='Enter Invoice No' class="form-control"/></td>
+            <td><input type="text"   name='orderId[]' placeholder='Enter Order No' class="form-control"/></td> -->
             <td><input type="text"   name='product[]' placeholder='Enter Product Name' class="form-control"/></td>
             <td><input type="number" name='qty[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
             <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0"/></td>
@@ -92,7 +95,7 @@
           <tr>
             <td><input type="number" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
-            <td><input type="number" class="form-group" name='remainBalance' id="total_amount" placeholder='0.00' class="form-control" readonly/></td>
+            <td><input type="number" class="form-group" name='remainBalance' id="total_amount" value="{{$dealer->amount}}" class="form-control" readonly/></td>
           </tr>
           <!-- <tr>
             <th class="text-center">Tax</th>

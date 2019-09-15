@@ -5,8 +5,6 @@ namespace SGFL\Http\Controllers;
 use Illuminate\Http\Request;
 use SGFL\DealerBalanceRecord;
 use SGFL\Dealer;
-use SGFL\DealerBalance;
-
 
 class DealerBalanceRecordController extends Controller
 {
@@ -28,8 +26,7 @@ class DealerBalanceRecordController extends Controller
      */
     public function create()
     {
-        return view('balance.create')
-        ->with('dealer', Dealer::all());
+        //
     }
 
     /**
@@ -40,33 +37,7 @@ class DealerBalanceRecordController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'dealerId'=>'required',
-            'type'=>'required',
-            'amount'=>'required',
-            'status'=>'required',
-        ]);
-
-        $dealer = Dealer::find(1);
-        $dealerbalancerecord = new DealerBalanceRecord;
-        $dealerbalancerecord->dealerId = $dealer->id;
-        $dealerbalancerecord->dealerId = $request->get('dealerId');
-        $dealerbalancerecord->type = $request->get('type');
-        $dealerbalancerecord->accountNo = $request->get('accountNo');
-        $dealerbalancerecord->bankName = $request->get('bankName');
-        $dealerbalancerecord->amount = $request->get('amount');
-        $dealerbalancerecord->date = $request->get('date');
-        $dealerbalancerecord->status = $request->get('status');
-        $dealerbalancerecord->comment = $request->get('comment');
-        $dealerbalancerecord->save();
         
-        
-        $dealerbalance = new DealerBalance();
-        $dealerbalance->dealerId = $dealer->id;
-        $dealerbalance->amount += $request->get('amount');
-        $dealerbalance->save();
-
-        return redirect('/balance')->with('success', 'Payment Created!');
     }
 
     /**
@@ -88,7 +59,8 @@ class DealerBalanceRecordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dealer = Dealer::find($id);
+        return view('balance.edit', compact('dealer'));
     }
 
     /**
@@ -100,7 +72,28 @@ class DealerBalanceRecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'type'=>'required',
+            'amount'=>'required',
+            'status'=>'required',
+        ]);
+
+        $dealer = Dealer::find($id);
+        $dealerbalancerecord = new DealerBalanceRecord;
+        $dealerbalancerecord->dealerId =$id;
+        $dealerbalancerecord->type = $request->get('type');
+        $dealerbalancerecord->accountNo = $request->get('accountNo');
+        $dealerbalancerecord->bankName = $request->get('bankName');
+        $dealerbalancerecord->amount = $request->get('amount');
+        $dealerbalancerecord->date = $request->get('date');
+        $dealerbalancerecord->status = $request->get('status');
+        $dealerbalancerecord->comment = $request->get('comment');
+        $dealerbalancerecord->save();
+        
+        $dealer->amount += $request->get('amount');
+        $dealer->save();
+
+        return redirect('/balance')->with('success', 'Payment Created!');
     }
 
     /**

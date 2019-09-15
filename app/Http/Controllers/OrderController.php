@@ -5,6 +5,7 @@ namespace SGFL\Http\Controllers;
 use Illuminate\Http\Request;
 use SGFL\Dealer;
 use SGFL\DealerInvoice;
+use SGFL\DealerInvoiceDetail;
 class OrderController extends Controller
 {
     /**
@@ -17,9 +18,9 @@ class OrderController extends Controller
         //
     }
 
-    public function orderInvoice()
+    public function orderInvoice($id)
     {
-        $dealer = Dealer::all();
+        $dealer = Dealer::find($id);
         return view('order.invoice', compact('dealer'));
     }
 
@@ -45,7 +46,7 @@ class OrderController extends Controller
         //
     }
 
-    public function dealerInvoice(Request $request){
+    public function dealerInvoice(Request $request,$id){
         // $request->validate([
         //     // 'name'=>'required',
         //     // 'price'=>'required',
@@ -53,39 +54,35 @@ class OrderController extends Controller
         //     // 'image'=>'required',
         // ]);
 
-        // $dealerInvoice = DealerInvoice::create([
-        //     'invoiceNo' => $request->invoiceNo[$i],
-        //     'orderId' => $request->orderId[$i],
-        //     'productId' => $request->productId[$i],
-        //     'invoiceUnit' => $request->invoiceUnit[$i],
-        //     'freeUnit' => $request->freeUnit[$i],
-        //     'totalUnit' => $request->totalUnit[$i],
-        //     'totalPrice' => $request->totalPrice[$i],
-        //     'remainUnit' => $request->remainUnit[$i],
-        //     'remainBalance' => $request->remainBalance[$i],
-        //     ]);
+        $dealer = Dealer::find($id);
+        $dealerInvoice = new DealerInvoice;
+        $dealerInvoice->dealerId =$id;
+        $dealerInvoice->save();
         $data=$request->all();
-        //$lastid=Orders::create($data)->id;
+        $lastid= DealerInvoice::create($data)->id;
+        $dealer->amount -= $request->get('totalPrice');
+        $dealer->save();
         if(count($request->product) > 0)
         {
         foreach($request->product as $i=>$v){
             $data2=array(
-                //'orders_id'=>$lastid,
+                'dealerInvoiceId'=>$lastid,
                 // 'product_name'=>$request->product_name[$item],
                 // 'brand'=>$request->brand[$item],
                 // 'quantity'=>$request->quantity[$item],
                 // 'budget'=>$request->budget[$item],
                 // 'amount'=>$request->amount[$item],
-                'invoiceNo' => $request->invoiceNo[$i],
+                'product' => $request->product[$i],
                 'productId' => $request->productId[$i],
+                'price' => $request->price[$i],
                 'invoiceUnit' => $request->invoiceUnit[$i],
                 'freeUnit' => $request->freeUnit[$i],
                 'totalUnit' => $request->totalUnit[$i],
             );
-        DealerInvoice::insert($data2);
+        DealerInvoiceDetail::insert($data2);
       }
         }
-        return redirect()->back()->with('success','data insert successfully');
+        return redirect()->back()->with('success','Invoice insert successfully');
     }
     
         // for($i = 0; $i < 100; ++$i){
@@ -141,6 +138,7 @@ class OrderController extends Controller
     {
         //
     }
+
 
     /**
      * Update the specified resource in storage.

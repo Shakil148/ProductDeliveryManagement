@@ -55,24 +55,24 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('/checkout', 'WarehouseOrderController@postCheckout');
     
     Route::resource('localwarehouse', 'WarehouseController');
-    Route::get('/orderinvoice',[
+    Route::get('/orderinvoice/{id}',[
         'uses' => 'OrderController@orderInvoice',
         'as' => 'order.invoice']);
-    Route::post('/delearinvoice',[
+    Route::post('/delearinvoice/{id}',[
         'uses' => 'OrderController@dealerInvoice',
-        'as' => 'dealerinvoice.store']);
+        'as' => 'dealer.invoice']);
     Route::resource('order', 'OrderController');
     Route::resource('distributor', 'DistributorController');
-    Route::post('/delearspayment/{id}',[
-        'uses' => 'DealerController@balance',
-        'as' => 'dealer.balance']);
+    // Route::post('/delearspayment/{id}',[
+    //     'uses' => 'DealerController@balance',
+    //     'as' => 'dealer.balance']);
     Route::resource('dealer', 'DealerController');
-    Route::get('/paymentcreate/{id}',[
-        'uses' => 'PaymentController@paymentCreate',
-        'as' => 'payment.creates']);
-    Route::post('/dealerbalance/{id}',[
-        'uses' => 'PaymentController@balance',
-        'as' => 'payment.balance']);
+    // Route::get('/paymentcreate/{id}',[
+    //     'uses' => 'PaymentController@paymentCreate',
+    //     'as' => 'payment.creates']);
+    // Route::post('/dealerbalance/{id}',[
+    //     // 'uses' => 'PaymentController@balance',
+    //     // 'as' => 'payment.balance']);
     Route::resource('payment', 'PaymentController');
     // Route::post('/create/{id}',[
     //     'uses' => 'DealerBalanceRecordController@store',

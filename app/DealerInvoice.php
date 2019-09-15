@@ -11,22 +11,14 @@ class DealerInvoice extends Model
     protected $fillable = [
         'invoiceNo', 
         'orderId', 
-        'productId',
-        'invoiceUnit',
-        'freeUnit',
-        'totalUnit',
         'totalPrice',
         'remainUnit',
         'remainBalance',
     ];
-    public function order()
+    public function dealerInvoiceDetail()
     {
-        return $this->belongsTo('SGFL\Order');
+        return $this->belongsTo('SGFL\DealerInvoiceDetail','dealearInvoiceId','id');
     }
     
-    public function warehouseInvoice()
-    {
-        return $this->belongsTo('SGFL\Product');
-    }
 
 }

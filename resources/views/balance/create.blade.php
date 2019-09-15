@@ -16,15 +16,7 @@
     @endif
       <form method="post" action="{{ route('balance.store') }}">
           @csrf
-          <div class="form-group">    
-              <label for="dealerId">Dealer Name:</label>
-                <select id='dealerId' name='dealerId' class="form-control">
-                <option value=''>-- Select Dealer --</option>
-                @foreach($dealer as $dealerlist)
-                    <option value='{{ $dealerlist->id }}'>{{ $dealerlist->name }}</option>
-                @endforeach
-                </select>
-            </div>
+
 
           <div class="form-group">    
               <label for="type">Payment Type:</label>

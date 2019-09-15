@@ -1,16 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container mt-2">
+<div class="container mt-2"style="background-color: lightgoldenrodyellow">
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 ">Payment List</h3>
+
+            <h3 class="display-5 text-center mt-2 ">Products List</h3>
     <div>
-    <a style="margin: 19px;" href="{{ route('balance.create')}}" class="btn btn-primary">New Payment</a>
+    
     </div>
  <div class="table-hover table-striped table-bordered ">
- <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
+<table id="table" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
           <td>#</td>
@@ -21,6 +22,7 @@
           <td>Bank Name</td>
           <td>Amount</td>
           <td>Status</td>
+          <td>Comments</td>
           <td>Created Date</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
@@ -37,9 +39,10 @@
             <td>{{$paymentlist->bankName}}</td>
             <td>{{$paymentlist->amount}}<b>tk</b></td>
             <td>{{$paymentlist->status}}</td>
+            <td>{{$paymentlist->comment}}</td>
             <td>{{date('d-m-y',strtotime($paymentlist->created_at))}}</td>
             <td>
-                <a href="{{ route('balance.edit',$paymentlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 
@@ -53,7 +56,7 @@
         @endforeach
     </tbody>
   </table>
-    {{$payment->links()}}
+
   </div>
 
 
