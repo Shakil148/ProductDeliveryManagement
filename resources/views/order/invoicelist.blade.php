@@ -31,7 +31,9 @@
             <td>{{$invoiceList->grandTotalUnit}}</td>
             <td>{{$invoiceList->totalPrice}}</td>
             <td>{{$invoiceList->comment}}</td>
-            <td> <a href="/invoicedetail/{{$invoiceList->id}}">Detail</a></td>
+            <td class="text-center"> 
+                <a href="/invoicedetail/{{$invoiceList->id}}"><i class="fa fa-eye"></i></a>
+            </td>
 
             <td>
                 <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
