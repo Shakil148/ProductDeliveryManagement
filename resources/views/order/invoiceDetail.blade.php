@@ -5,41 +5,34 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 ">Payment List</h3>
-    <div>
-    
-    </div>
+            <h3 class="display-5 text-center mt-2 ">All Invoiced Products </h3>
+   
  <div class="table-hover table-striped table-bordered ">
 <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
           <td>#</td>
-          <td>Dealer Name</td>
-          <td>Payment Type</td>
-          <td>Date</td>
-          <td>Account No</td>
-          <td>Bank Name</td>
-          <td>Amount</td>
-          <td>Status</td>
-          <td>Comments</td>
-          <td>Created Date</td>
+          <td>Products</td>
+          <td>Unit Price</td>
+          <td>Invoice Unit</td>
+          <td>Free Unit</td>
+          <td>Total Unit</td>
+          <td>Total Price</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
     </thead>
     
     <tbody>
-        @foreach($dealerbalancerecord as $paymentlist)
+        @foreach($invoiceDetail as $invoiceList)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            <td>{{$paymentlist->dealer->name}}</td>
-            <td>{{$paymentlist->type}}</td>
-            <td>{{$paymentlist->date}}</td>
-            <td>{{$paymentlist->accountNo}}</td>
-            <td>{{$paymentlist->bankName}}</td>
-            <td>{{$paymentlist->amount}}<b>tk</b></td>
-            <td>{{$paymentlist->status}}</td>
-            <td>{{$paymentlist->comment}}</td>
-            <td>{{date('d-m-y',strtotime($paymentlist->created_at))}}</td>
+            <td>{{$invoiceList->product}}</td>
+            <td>{{$invoiceList->price}}</td>
+            <td>{{$invoiceList->invoiceUnit}}</td>
+            <td>{{$invoiceList->freeUnit}}</td>
+            <td>{{$invoiceList->totalUnit}}</td>
+            <td>{{$invoiceList->total}}</td>
+
             <td>
                 <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -55,8 +48,6 @@
         @endforeach
     </tbody>
   </table>
-    {{$dealerbalancerecord->links()}}
-
   </div>
 
 

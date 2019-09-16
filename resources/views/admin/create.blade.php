@@ -64,7 +64,7 @@
               <label for="image">Image:</label>
               <input type="file" class="form-control" name="image"/>
           </div>                       
-          <button type="submit" class="btn btn-primary mb-5">Add Product</button>
+          <button type="submit" class="btn btn-primary mb-5">Add User</button>
       </form>
   </div>
 </div>

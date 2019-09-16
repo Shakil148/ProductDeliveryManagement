@@ -34,7 +34,10 @@
             <td>{{$userlist->email}}</td>
             <td>{{$userlist->designation}}</td>
             <td>{{$userlist->role}}</td>
-            <td><img src="{{ asset('images/' . $userlist->image) }}" width="50" height="50" alt="{{ $userlist->name }} photo" class="rounded"></td>
+            
+            <td>
+            <img src="{{ asset('images/images.jpg') }}" width="50" height="50" class="img-circle elevation-2" alt="{{ asset('images/images.jpg') }}">
+            </td>
             <td>
                 <a href="{{ route('user.edit',$userlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

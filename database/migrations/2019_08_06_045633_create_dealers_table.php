@@ -18,7 +18,7 @@ class CreateDealersTable extends Migration
             $table->string('name')->unique();
             $table->string('contact')->nullable();
             $table->text('address')->nullable();
-            $table->boolean('status')->nullable();
+            $table->string('status')->nullable();
             $table->integer('amount')->nullable();
             $table->timestamps();
         });

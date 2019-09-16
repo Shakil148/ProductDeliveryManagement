@@ -22,7 +22,7 @@ class WarehouseOrderController extends Controller
     }
     public function order()
     {
-        $products = Product::paginate(6);
+        $products = Product::orderBy('created_at', 'desc')->paginate(6);
         return view ('warehouse.order',['products' => $products]);
     }
     public function getAddToCart(Request $request, $id){

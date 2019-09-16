@@ -32,4 +32,8 @@ class Dealer extends Model
     {
         return $this->hasMany('SGFL\DealerBalanceRecord','dealerId','id');
     }
+    public function dealerInvoice()
+    {
+        return $this->belongsTo('SGFL\DealerInvoice','dealerId','id');
+    }
 }

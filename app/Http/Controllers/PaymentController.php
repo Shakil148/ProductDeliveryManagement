@@ -18,6 +18,7 @@ class PaymentController extends Controller
         $payment = \DB::table('payments')
             ->join('dealers', 'payments.dealerId', '=', 'dealers.id')
             ->select('payments.*', 'dealers.name')
+            ->orderBy('created_at', 'desc')
             ->paginate(8);
             
         return view('payment.index', compact('payment'));    

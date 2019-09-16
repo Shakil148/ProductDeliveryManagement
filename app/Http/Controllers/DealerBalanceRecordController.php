@@ -15,7 +15,9 @@ class DealerBalanceRecordController extends Controller
      */
     public function index()
     {
-        $dealerbalancerecord = DealerBalanceRecord::with('dealer')->get();
+        $dealerbalancerecord = DealerBalanceRecord::with('dealer')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
         return view('balance.index', compact('dealerbalancerecord')); 
     }
 
@@ -93,7 +95,7 @@ class DealerBalanceRecordController extends Controller
         $dealer->amount += $request->get('amount');
         $dealer->save();
 
-        return redirect('/balance')->with('success', 'Payment Created!');
+        return redirect()->back()->with('success','Payment insert successfully');
     }
 
     /**

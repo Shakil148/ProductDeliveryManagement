@@ -18,20 +18,7 @@ class DealerController extends Controller
     public function index()
     {
         
-        $dealer = Dealer::paginate(8);
-        
-        // $dealersPayment = \DB::table('payments')
-        // ->join('dealers', 'payments.dealerId','=','dealers.id')
-        // ->where('payments.status', '=','paid')
-        // ->sum('payments.amount');
-
-        // $result = \DB::select('SELECT * 
-        //                   FROM  `dealers` 
-        //                   WHERE dealers.balance = ( 
-        //                       SELECT SUM( payments.amount ) 
-        //                       FROM payments
-        //                       WHERE payments.dealerId = dealers.id )');
-        
+        $dealer = Dealer::orderBy('created_at', 'desc')->paginate(8);        
         $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
        ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
        ->groupBy('dealers.id')
@@ -39,19 +26,6 @@ class DealerController extends Controller
         return view('dealer.index', compact('dealer','dealersPayment'));
     }
     
-    public function balance(Request $request,$id){
-       $dealers = Dealer::find($id);
-       $payment = Payment::all();
-       $dealersPayment = $payment->sum('amount');
-       $balance = $dealersPayment;
-       return dd($balance);
-       $dealers->balance =  $request->get('balance');
-
-       $dealers->save();
-
-       $dealer = Dealer::paginate(8);
-       return view('dealer.index',compact('dealer'));
-    }
 
     /**
      * Show the form for creating a new resource.

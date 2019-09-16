@@ -68,7 +68,7 @@
             <!-- <td><input type="text"   name='invoiceNo[]' placeholder='Enter Invoice No' class="form-control"/></td>
             <td><input type="text"   name='orderId[]' placeholder='Enter Order No' class="form-control"/></td> -->
             <td><input type="text"   name='product[]' placeholder='Enter Product Name' class="form-control"/></td>
-            <td><input type="number" name='qty[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
+            <td><input type="number" name='invoiceUnit[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
             <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
             <td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0"/></td>
@@ -88,11 +88,13 @@
       <table class="table table-bordered table-hover" id="tab_logic_total">
         <tbody>
           <tr>
-            <th class="text-center">Grand Total</th>
+            <th class="text-center">Grand Total Unit</th>
+            <th class="text-center">Grand Total Price</th>
             <th class="text-center">Remain Order Unit</th>
             <th class="text-center">Remain Balance</th>
           </tr>
           <tr>
+            <td><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
             <td><input type="number" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
             <td><input type="number" class="form-group" name='remainBalance' id="total_amount" placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
@@ -213,6 +215,7 @@ function calc_total()
 	tax_sum=total/100*$('#tax').val();
 	$('#tax_amount').val(tax_sum.toFixed(2));
 	$('#total_amount').val((tax_sum+total).toFixed(2));
+  $('#sub_grand_total').val(totalUnit.toFixed(2));
 }
 </script>
 @endsection

@@ -17,6 +17,20 @@ class OrderController extends Controller
     {
         //
     }
+    public function orderInvoicelist()
+    {
+        $dealerInvoice = DealerInvoice::with('dealerInvoiceDetail','dealer')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+        return view('order.invoicelist', compact('dealerInvoice'));
+    }
+
+    public function invoiceDetail($id)
+    {
+        $invoiceDetail = dealerInvoiceDetail::where('dealerInvoiceId','=',$id)->get();
+        return view('order.invoiceDetail',compact('invoiceDetail'));
+    }
+
 
     public function orderInvoice($id)
     {
@@ -60,6 +74,7 @@ class OrderController extends Controller
         $dealerInvoice->dealerId =$id;
         $dealerInvoice->invoiceNo = $request->get('invoiceNo');
         $dealerInvoice->totalPrice = $request->get('totalPrice');
+        $dealerInvoice->grandTotalUnit = $request->get('grandTotalUnit');
         $dealerInvoice->comment = $request->get('comment');
         $dealerInvoice->save();
         $invoice =$dealerInvoice->id;
@@ -90,6 +105,7 @@ class OrderController extends Controller
                 'invoiceUnit' => $request->invoiceUnit[$i],
                 'freeUnit' => $request->freeUnit[$i],
                 'totalUnit' => $request->totalUnit[$i],
+                'total' => $request->total[$i],
             );
         DealerInvoiceDetail::insert($data2);
       }

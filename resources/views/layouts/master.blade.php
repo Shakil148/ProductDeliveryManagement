@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="{{ asset('images/1567415894.png') }}" alt="SGFL Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">SGFL Logo</span>
@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-        <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" class="img-circle elevation-2" alt="{{ asset('images/1567415894.png') }}">
+        <img src="{{ asset('images/images.jpg') }}" width="50" height="50" class="img-circle elevation-2" alt="{{ asset('images/1567415894.png') }}">
         </div>
         <div class="info">
         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -115,15 +115,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{URL::to('user')}}"  class="nav-link">
+                  <a href="{{URL::to('#')}}"  class="nav-link">
                     <i class="nav-icon fas fa-warehouse ash"></i>
-                    <p>Warehouse</p>
+                    <p>Warehouse Invoices</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{URL::to('orderinvoice')}}"  class="nav-link">
+                  <a href="{{URL::to('orderinvoicelist')}}"  class="nav-link">
                     <i class="fas fa-user-tie nav-icon cyan"></i>
-                    <p>Dealer</p>
+                    <p>Dealer Invoices </p>
                   </a>
                 </li>
               </ul>
@@ -156,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{URL::to('localwarehouse')}}"  class="nav-link">
+            <a href="{{URL::to('#')}}"  class="nav-link">
               <i class="nav-icon fas fa-warehouse teal "></i>
               <p>Local Warehouse</p>
             </a>
@@ -251,7 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Developed by <i><b>Colour Consultancy</B></i>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2018-2019 <a href="#">Sultan Global Food Limited</a>.</strong> All rights reserved.

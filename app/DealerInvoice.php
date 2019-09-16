@@ -9,6 +9,7 @@ class DealerInvoice extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'dealerId', 
         'invoiceNo', 
         'orderId', 
         'totalPrice',
@@ -16,9 +17,13 @@ class DealerInvoice extends Model
         'remainBalance',
         'comment',
     ];
+    public function dealer()
+    {
+        return $this->belongsTo('SGFL\Dealer','dealerId','id');
+    }
     public function dealerInvoiceDetail()
     {
-        return $this->belongsTo('SGFL\DealerInvoiceDetail','dealearInvoiceId','id');
+        return $this->hasOne('SGFL\DealerInvoiceDetail','dealerInvoiceId','id');
     }
     
 

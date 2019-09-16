@@ -23,8 +23,8 @@ Auth::routes();
 //Admin all routes
 Route::group(['middleware' => 'admin'], function() {
     //Route::resource('admin','ProductController');
-    Route::get('/admin', 'AdminController@admin');
     Route::resource('user','AdminController');
+    Route::get('/admin', 'AdminController@admin');
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController');
     Route::resource('mainwarehouse', 'MainWarehouseController');
@@ -58,9 +58,15 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/orderinvoice/{id}',[
         'uses' => 'OrderController@orderInvoice',
         'as' => 'order.invoice']);
+    Route::get('/orderinvoicelist',[
+        'uses' => 'OrderController@orderInvoicelist',
+        'as' => 'order.invoicelist']);
     Route::post('/delearinvoice/{id}',[
         'uses' => 'OrderController@dealerInvoice',
         'as' => 'dealer.invoice']);
+    Route::get('/invoicedetail/{id}',[
+        'uses' => 'OrderController@invoiceDetail',
+        'as' => 'invoice.detail']);
     Route::resource('order', 'OrderController');
     Route::resource('distributor', 'DistributorController');
     // Route::post('/delearspayment/{id}',[

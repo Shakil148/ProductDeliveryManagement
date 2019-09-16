@@ -20,6 +20,7 @@ class MainWarehouseController extends Controller
         $mainwarehouse = \DB::table('main_warehouses')
             ->join('products', 'main_warehouses.productId', '=', 'products.id')
             ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
+            ->orderBy('created_at', 'desc')
             ->paginate(8);
 
         return view('mainwarehouse.index',compact('mainwarehouse'));

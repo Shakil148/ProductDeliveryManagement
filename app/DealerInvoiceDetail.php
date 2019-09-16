@@ -22,5 +22,4 @@ class DealerInvoiceDetail extends Model
     {
         return $this->belongsTo('SGFL\DealerInvoice','dealerInvoiceId','id');
     }
-    
 }
