@@ -19,12 +19,28 @@ class OrderController extends Controller
     }
     public function orderInvoicelist()
     {
-        $dealerInvoice = DealerInvoice::with('dealerInvoiceDetail','dealer')
+        $dealerInvoice = DealerInvoice::with('dealer')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
         return view('order.invoicelist', compact('dealerInvoice'));
     }
+    public function orderInvoicePrint($id)
+    {
+        // $invoicePrint = \DB::table('dealer_invoices')
+        // ->where('dealer_invoices.id', '=', $id)
+        // ->join('dealers', 'dealers.id', '=', 'dealer_invoices.dealerId')
+        // ->join('dealer_invoice_details', 'dealer_invoices.id', '=', 'dealer_invoice_details.dealerInvoiceId')
+        // ->select('dealer_invoices.*', 'dealers.name', 'dealers.address', 'dealers.contact',
+        // 'dealer_invoice_details.product', 'dealer_invoice_details.price', 'dealer_invoice_details.invoiceUnit', 'dealer_invoice_details.freeUnit', 'dealer_invoice_details.totalUnit', 'dealer_invoice_details.total')
+        // ->get();
 
+        $invoicePrint = DealerInvoice::with('dealerInvoiceDetail','dealer')
+        ->where('id', '=', $id)
+        ->get();
+        // dd($invoicePrint);
+        return view('order.invoicePrint', compact('invoicePrint'));
+    }
+    
     public function invoiceDetail($id)
     {
         $invoiceDetail = dealerInvoiceDetail::where('dealerInvoiceId','=',$id)->get();

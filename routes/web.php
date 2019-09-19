@@ -26,7 +26,9 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('user','AdminController');
     Route::get('/admin', 'AdminController@admin');
     Route::get('/changeStatus', 'ProductController@changeStatus');
-    Route::resource('product', 'ProductController');
+    Route::resource('product', 'ProductController',['parameters' => [
+        'product' => 'admin_product'
+    ]]);
     Route::resource('mainwarehouse', 'MainWarehouseController');
     Route::get('/localwarehouseorder',[
         'uses' => 'WarehouseOrderController@order',
@@ -61,6 +63,9 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/orderinvoicelist',[
         'uses' => 'OrderController@orderInvoicelist',
         'as' => 'order.invoicelist']);
+    Route::get('/orderinvoiceprint/{id}',[
+        'uses' => 'OrderController@orderInvoicePrint',
+        'as' => 'order.invoiceprint']);
     Route::post('/delearinvoice/{id}',[
         'uses' => 'OrderController@dealerInvoice',
         'as' => 'dealer.invoice']);
@@ -83,67 +88,20 @@ Route::group(['middleware' => 'admin'], function() {
     // Route::post('/create/{id}',[
     //     'uses' => 'DealerBalanceRecordController@store',
     //     'as' => 'balances.store']);
+    Route::get('/dealerbalanceprint/{id}',[
+        'uses' => 'DealerBalanceRecordController@balancePrint',
+        'as' => 'balance.print']);
     Route::resource('balance', 'DealerBalanceRecordController');
   });
 
   //Moderator all routes
-//   Route::group(['middleware' => 'moderator'], function() {
-//     //Route::resource('admin','ProductController');
-//     Route::get('/moderator', 'ModeratorController@moderator');
-//     Route::resource('product', 'ProductController')->except(['edit','delete','update']);
-//     Route::resource('mainwarehouse', 'MainWarehouseController')->except(['edit','delete','update']);
-//     Route::get('/orderinvoicelist',[
-//         'uses' => 'OrderController@orderInvoicelist',
-//         'as' => 'order.invoicelist']);
-//     Route::get('/invoicedetail/{id}',[
-//         'uses' => 'OrderController@invoiceDetail',
-//         'as' => 'invoice.detail']);
-//     Route::resource('order', 'OrderController');
-//     // Route::post('/delearspayment/{id}',[
-//     //     'uses' => 'DealerController@balance',
-//     //     'as' => 'dealer.balance']);
-//     Route::resource('dealer', 'DealerController')->except(['create','edit','delete','update']);
-//     // Route::get('/paymentcreate/{id}',[
-//     //     'uses' => 'PaymentController@paymentCreate',
-//     //     'as' => 'payment.creates']);
-//     // Route::post('/dealerbalance/{id}',[
-//     //     // 'uses' => 'PaymentController@balance',
-//     //     // 'as' => 'payment.balance']);
-//     //Route::resource('payment', 'PaymentController');
-//     // Route::post('/create/{id}',[
-//     //     'uses' => 'DealerBalanceRecordController@store',
-//     //     'as' => 'balances.store']);
-//     Route::resource('balance', 'DealerBalanceRecordController')->except(['create','edit','delete','update']);
+
 //   });
  
 //TSM all route
+
 Route::group(['middleware' => 'tsm'], function() {
-    //Route::resource('admin','ProductController');
-    Route::get('/tsm', 'TsmController@tsm');
-    Route::resource('product', 'ProductController')->except(['edit','delete','update']);
-    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['edit','delete','update']);
-    Route::get('/orderinvoicelist',[
-        'uses' => 'OrderController@orderInvoicelist',
-        'as' => 'order.invoicelist']);
-    Route::get('/invoicedetail/{id}',[
-        'uses' => 'OrderController@invoiceDetail',
-        'as' => 'invoice.detail']);
-    Route::resource('order', 'OrderController');
-    // Route::post('/delearspayment/{id}',[
-    //     'uses' => 'DealerController@balance',
-    //     'as' => 'dealer.balance']);
-    Route::resource('dealer', 'DealerController')->except(['create','edit','delete','update']);
-    // Route::get('/paymentcreate/{id}',[
-    //     'uses' => 'PaymentController@paymentCreate',
-    //     'as' => 'payment.creates']);
-    // Route::post('/dealerbalance/{id}',[
-    //     // 'uses' => 'PaymentController@balance',
-    //     // 'as' => 'payment.balance']);
-    //Route::resource('payment', 'PaymentController');
-    // Route::post('/create/{id}',[
-    //     'uses' => 'DealerBalanceRecordController@store',
-    //     'as' => 'balances.store']);
-    Route::resource('balance', 'DealerBalanceRecordController')->except(['create','edit','delete','update']);
+    
   });
 
 
@@ -154,30 +112,5 @@ Route::get('/accounts', function(){
 
 //Viewer all routes
 Route::group(['middleware' => 'viewer'], function() {
-    //Route::resource('admin','ProductController');
-    Route::get('/viewer', 'ViewerController@viewer');
-    Route::resource('product', 'ProductController')->except(['create','edit','delete','update']);
-    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['create','edit','delete','update']);
-    Route::get('/orderinvoicelist',[
-        'uses' => 'OrderController@orderInvoicelist',
-        'as' => 'order.invoicelist']);
-    Route::get('/invoicedetail/{id}',[
-        'uses' => 'OrderController@invoiceDetail',
-        'as' => 'invoice.detail']);
-    Route::resource('order', 'OrderController');
-    // Route::post('/delearspayment/{id}',[
-    //     'uses' => 'DealerController@balance',
-    //     'as' => 'dealer.balance']);
-    Route::resource('dealer', 'DealerController')->except(['create','edit','delete','update']);
-    // Route::get('/paymentcreate/{id}',[
-    //     'uses' => 'PaymentController@paymentCreate',
-    //     'as' => 'payment.creates']);
-    // Route::post('/dealerbalance/{id}',[
-    //     // 'uses' => 'PaymentController@balance',
-    //     // 'as' => 'payment.balance']);
-    //Route::resource('payment', 'PaymentController');
-    // Route::post('/create/{id}',[
-    //     'uses' => 'DealerBalanceRecordController@store',
-    //     'as' => 'balances.store']);
-    Route::resource('balance', 'DealerBalanceRecordController')->except(['create','edit','delete','update']);
+    
   });

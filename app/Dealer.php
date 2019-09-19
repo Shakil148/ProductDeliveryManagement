@@ -34,6 +34,6 @@ class Dealer extends Model
     }
     public function dealerInvoice()
     {
-        return $this->belongsTo('SGFL\DealerInvoice','dealerId','id');
+        return $this->hasOne('SGFL\DealerInvoice','dealerId','id');
     }
 }

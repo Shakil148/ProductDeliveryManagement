@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 ">Dealers List</h3>
+            <h3 class="display-5 text-center mt-2 bg-secondary">Dealers List</h3>
     <div>
     <a style="margin: 19px;" href="{{ route('dealer.create')}}" class="btn btn-primary">New Dealer</a>
     </div>
  <div class="table-hover table-striped table-bordered ">
  <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
-    <thead>
+    <thead class="bg-dark">
         <tr>
           <td>#</td>
           <td>Name</td>
@@ -44,10 +44,10 @@
                 </form>
             </td>
             <td>
-                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fab fa-amazon-pay"></i></a>
+                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pay"></i></a>
             </td>
             <td>
-                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-invoice">Invoice</i></a>
+                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fa fa-invoice">Invoice</i></a>
             </td>
         </tr>
         @endforeach

@@ -20,7 +20,14 @@ class DealerBalanceRecordController extends Controller
         ->paginate(10);
         return view('balance.index', compact('dealerbalancerecord')); 
     }
-
+    public function balancePrint($id)
+    {
+        $paymentPrint = DealerBalanceRecord::with('dealer')
+        ->where('dealer_balance_records.id','=',$id)
+        ->get();
+        return view('balance.balancePrint', compact('paymentPrint')); 
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

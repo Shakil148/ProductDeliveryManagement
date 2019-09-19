@@ -18,7 +18,7 @@
           <td>Grand Price</td>
           <td>Comment</td>
           <td>Details</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td colspan = 3 class="text-center">Actions</td>
         </tr>
     </thead>
     
@@ -34,6 +34,9 @@
             <td class="text-center"> 
                 <a href="/invoicedetail/{{$invoiceList->id}}"><i class="fa fa-eye"></i></a>
             </td>
+            <td class="text-center"> 
+                <a href="{{ route('order.invoiceprint', $invoiceList->id)}}"><i class="fa fa-print"></i></a>
+            </td>
 
             <td>
                 <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
@@ -48,6 +51,7 @@
             </td>
         </tr>
         @endforeach
+
     </tbody>
   </table>
   </div>

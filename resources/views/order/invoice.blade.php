@@ -6,11 +6,11 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container mt-5">
+<div class="container mt-1">
   <div class="row clearfix">
     <div class="col-md-12">
 
-    <h2 class="black white-text text-center">Dealer Order Invoice</h2>
+    <h2 class="black white-text text-center bg-info mb-2">Delivery Order Invoice</h2>
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -20,10 +20,10 @@
         </ul>
       </div><br />
     @endif
-    <form method="post" action="{{ route('dealer.invoice', $dealer->id) }}">
+    <form method="post" class="" action="{{ route('dealer.invoice', $dealer->id) }}">
           @csrf
-          <div class="form-group col-md-6">    
-              <label for="dealerId">Dealer Name: <b class="blue">{{$dealer->name}}</b></label>
+          <div class="form-group col-md-12 text-center mb-2">    
+              <label for="dealerId">Dealer Name: <b class="red">{{$dealer->name}}</b></label>
 
 
 
@@ -39,15 +39,15 @@
           </div> -->
 
         </div>
-        <div class="form-group ">
+        <div class="form-group mb-2">
               <label for="address">Invoice No:</label>
               <input type="text" class="col-md-4" name="invoiceNo"/>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="address">Order No:</label>
             <input type="text" class="col-md-4" name="orderNo"/>
         </div>
-      <table class="table table-bordered table-hover" id="tab_logic">
+      <table class="table table-bordered table-hover mb-2" id="tab_logic">
         <thead >
           <tr>
             <th class="text-center"> # </th>
@@ -77,10 +77,10 @@
           <tr id='addr1'></tr>
         </tbody>
         
-        <div class="row clearfix">
+        <div class="row clearfix mb-2">
           <div class="col-md-12">
-            <a id="add_row" class="btn btn-default pull-left">Add Row</a>
-            <a id='delete_row' class=" btn btn-default">Delete Row</a>
+            <a id="add_row" class="btn btn-success pull-left">Add Row</a>
+            <a id='delete_row' class=" btn btn-warning ">Delete Row</a>
           </div>
         </div>
         <div class="row clearfix" style="margin-top:20px">
@@ -116,7 +116,7 @@
             <label for="address">Comment:</label>
             <input type="textarea" id="exampleFormControlTextarea2" rows="3" class="col-md-4" name="comment"/>
       </div>
-      <button type="submit" class="btn btn-primary mb-5">Add Invoice</button>
+      <button type="submit" class="btn btn-success mb-5">Add Invoice</button>
     </form>
     </div>
   </div>
