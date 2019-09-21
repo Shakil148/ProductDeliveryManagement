@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
     //Route::resource('admin','ProductController');
     Route::resource('user','AdminController');
     Route::get('/viewer', 'ViewerController@viewer');
+    Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController',['parameters' => [
