@@ -37,7 +37,7 @@ class OrderController extends Controller
         $invoicePrint = DealerInvoice::with('dealerInvoiceDetail','dealer')
         ->where('id', '=', $id)
         ->get();
-        // dd($invoicePrint);
+         //dd($invoicePrint);
         return view('order.invoicePrint', compact('invoicePrint'));
     }
     
@@ -46,6 +46,8 @@ class OrderController extends Controller
         $invoiceDetail = dealerInvoiceDetail::where('dealerInvoiceId','=',$id)->get();
         return view('order.invoiceDetail',compact('invoiceDetail'));
     }
+
+
 
 
     public function orderInvoice($id)
@@ -82,7 +84,7 @@ class OrderController extends Controller
             // 'price'=>'required',
             // 'unit'=>'required',
             // 'image'=>'required',
-            'invoiceNo' => ['unique:dealer_invoices'],
+            'invoiceNo' => ['required','unique:dealer_invoices'],
         ]);
 
         $dealer = Dealer::find($id);

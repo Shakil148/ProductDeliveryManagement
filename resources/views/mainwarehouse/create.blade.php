@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2">Store New Product</h1>
+    <h1 class="display-5 text-center mt-2 bg-secondary">Store New Product</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -55,7 +55,7 @@
               <label for="discount">Discount:</label>
               <input type="text" class="form-control" name="discount"/>
           </div>                    
-          <button type="submit" class="btn btn-primary mb-5">Add Product</button>
+          <button type="submit" class="btn btn-primary mb-5">Store Product</button>
       </form>
   </div>
 </div>

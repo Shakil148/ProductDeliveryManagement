@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 ">Invoice List</h3>
+            <h3 class="display-5 text-center mt-2 bg-secondary">Invoice List</h3>
    
  <div class="table-hover table-striped table-bordered ">
 <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
-    <thead>
+    <thead class="bg-dark">
         <tr>
           <td>#</td>
           <td>Dealer Name</td>
@@ -32,10 +32,10 @@
             <td>{{$invoiceList->totalPrice}}</td>
             <td>{{$invoiceList->comment}}</td>
             <td class="text-center"> 
-                <a href="/invoicedetail/{{$invoiceList->id}}"><i class="fa fa-eye"></i></a>
+                <a href="/invoicedetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
             </td>
             <td class="text-center"> 
-                <a href="{{ route('order.invoiceprint', $invoiceList->id)}}"><i class="fa fa-print"></i></a>
+                <a href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
             </td>
 
             <td>

@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 ">Distributor List</h3>
+            <h3 class="display-5 text-center mt-2 bg-secondary">Distributor List</h3>
     <div>
     <a style="margin: 19px;" href="{{ route('distributor.create')}}" class="btn btn-primary">New Product</a>
     </div>
  <div class="table-hover table-striped table-bordered ">
   <table class="table table-responsive fixed-table-body">
-    <thead>
+    <thead class="bg-dark">
         <tr>
           <td>#</td>
           <td>Name</td>

@@ -4,6 +4,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 @foreach($invoicePrint as $invoicePrintList)
+ @foreach ($invoicePrintList->dealerInvoiceDetail as $invoiceList)
 <div class="container" id="box">
  <div class="row well">
 <div class="container">
@@ -11,21 +12,21 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row p-5">
-                        <div class="col-md-6 text-center">
+                    <div class="row ">
+                        <div class="col-md-10 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
                             <p><span class="text-muted">Address: </span> Dhaka</p>
                             <p><span class="text-muted">Contact: </span> 12312123</p>
-                            <p><span class="text-muted">Email: </span> sgfl@gmail.come</p>
+                            <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
-                        <div class="col-md-6 text-right d-inline">
+                        <div class="col-md-2 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Due to: {{$invoicePrintList->created_at}}</p>
                         </div>
-                        <div class="col-md-6 d-inline">
+                        <div class="col-md-6">
                             <p class="font-weight-bold">Dealer Information</p>
                             <p>Name:{{$invoicePrintList->dealer->name}}</p>
                             <p>Address:{{$invoicePrintList->dealer->address}}</p>
@@ -50,18 +51,17 @@
                                 <tbody>
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->product}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->price}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->invoiceUnit}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->freeUnit}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->total}}</td>
-                                        <td>{{$invoicePrintList->dealerInvoiceDetail->totalUnit}}</td>
+                                        <td>{{$invoiceList->product}}</td>
+                                        <td>{{$invoiceList->price}}</td>
+                                        <td>{{$invoiceList->invoiceUnit}}</td>
+                                        <td>{{$invoiceList->freeUnit}}</td>
+                                        <td>{{$invoiceList->total}}</td>
+                                        <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                     <div class="d-flex flex-row-reverse bg-danger text-black ">
                         <div class="py-1 px-1 text-right">
                             <div><b> Grand Total Price</b></div>
@@ -90,6 +90,7 @@ function myFunction() {
     window.print();
 }
 </script>
+@endforeach
 @endforeach
 
 

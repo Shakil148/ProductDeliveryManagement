@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2">Order</h1>
+    <h1 class="display-5 text-center mt-2 bg-secondary">Order</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">

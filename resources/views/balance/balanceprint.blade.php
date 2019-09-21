@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row p-5">
+                    <div class="row">
                         <div class="col-md-11 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
@@ -64,7 +64,7 @@
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right "><b>Signature By<b></div>
+    <div class="text-dark mt-5 mb-0 text-right mb-4"><b>Signature By<b></div>
 
 </div>
         
@@ -85,7 +85,7 @@ function myFunction() {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row p-5">
+                    <div class="row">
                         <div class="col-md-11 text-center ">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>

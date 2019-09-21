@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-6 offset-sm-2">
-        <h1 class="display-5 text-center">Update a Product</h1>
+        <h1 class="display-5 text-center bg-secondary">Update a Product</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">

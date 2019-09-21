@@ -4,13 +4,13 @@
 <div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-16">
-    <h3 class="display-5 text-center ">All Users List</h3>   
+    <h3 class="display-5 text-center bg-secondary">All Users List</h3>   
     <div>
     <a style="margin: 19px;" href="{{ route('user.create')}}" class="btn btn-primary">New User</a>
     </div> 
   <div class="table-hover table-striped table-bordered ">
   <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
-    <thead>
+    <thead class="bg-dark">
         <tr>
           <td>#</td>
           <td>Name</td>

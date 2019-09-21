@@ -23,7 +23,7 @@ class DealerInvoice extends Model
     }
     public function dealerInvoiceDetail()
     {
-        return $this->hasOne('SGFL\DealerInvoiceDetail','dealerInvoiceId','id');
+        return $this->hasMany('SGFL\DealerInvoiceDetail','dealerInvoiceId','id');
     }
     
 
