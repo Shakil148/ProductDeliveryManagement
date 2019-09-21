@@ -21,9 +21,10 @@ Auth::routes();
 //middlewares to controller
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
 //Admin all routes
-Route::group(['middleware' => 'admin'], function() {
+Route::group(['middleware' => 'auth'], function() {
     //Route::resource('admin','ProductController');
     Route::resource('user','AdminController');
+    Route::get('/viewer', 'ViewerController@viewer');
     Route::get('/admin', 'AdminController@admin');
     Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController',['parameters' => [
@@ -111,6 +112,16 @@ Route::get('/accounts', function(){
 })->middleware('accounts');
 
 //Viewer all routes
-Route::group(['middleware' => 'viewer'], function() {
+Route::group(['middleware' => 'admin'], function() {
     
+    Route::resource('user','AdminController');
+    Route::resource('product', 'ProductController',['parameters' => [
+        'product' => 'admin_product'
+    ]])->except(['index','create']);
+    Route::resource('balance', 'DealerBalanceRecordController')->except(['index','edit','update']);
+    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['index','create']);
+    Route::resource('dealer', 'DealerController')->except(['index','create']);
+    Route::resource('distributor', 'DistributorController')->except(['index','create']);
+    Route::resource('order', 'OrderController');
+
   });
