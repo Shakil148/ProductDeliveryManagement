@@ -21,4 +21,8 @@ class Product extends Model
     {
         return $this->belongsTo('SGFL\MainWarehouse','productId','id');
     }
+    public function dealerInvoiceDetail()
+    {
+        return $this->hasOne('SGFL\DealerInvoiceDetail','productId','id');
+    }
 }

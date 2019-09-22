@@ -20,7 +20,7 @@ class CreateDealerInvoicesTable extends Migration
             $table->integer('orderId')->unsigned()->index()->nullable();
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->text('invoiceNo')->nullable();
-            $table->integer('totalPrice')->nullable();
+            $table->float('totalPrice')->nullable();
             $table->integer('remainUnit')->nullable();
             $table->integer('remainBalance')->nullable();
             $table->text('comment')->nullable();

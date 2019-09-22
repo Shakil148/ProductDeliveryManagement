@@ -47,7 +47,7 @@
                 <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pay"></i></a>
             </td>
             <td>
-                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fa fa-invoice">Invoice</i></a>
+                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-moving"></i></a>
             </td>
         </tr>
         @endforeach

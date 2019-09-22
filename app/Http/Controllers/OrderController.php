@@ -3,6 +3,7 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SGFL\Product;
 use SGFL\Dealer;
 use SGFL\DealerInvoice;
 use SGFL\DealerInvoiceDetail;
@@ -52,8 +53,17 @@ class OrderController extends Controller
 
     public function orderInvoice($id)
     {
+        $lastorderId = DealerInvoice::orderBy('id', 'desc')->first()->invoiceNo;
+
+        // Get last 3 digits of last order id
+        $lastIncreament = substr($lastorderId, -5);
+
+        // Make a new order id with appending last increment + 1
+        $newOrderId = 'SF' . date('Ymd') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+
         $dealer = Dealer::find($id);
-        return view('order.invoice', compact('dealer'));
+        $product = Product::with('dealerInvoiceDetail')->get();
+        return view('order.invoice', compact('dealer','newOrderId','product'));
     }
 
     

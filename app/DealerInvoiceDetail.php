@@ -22,4 +22,8 @@ class DealerInvoiceDetail extends Model
     {
         return $this->belongsTo('SGFL\DealerInvoice','dealerInvoiceId','id');
     }
+    public function product()
+    {
+        return $this->belongsTo('SGFL\Product','productId','id');
+    }
 }

@@ -5,6 +5,8 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
 <div class="container mt-1">
   <div class="row clearfix">
@@ -23,7 +25,7 @@
     <form method="post" class="" action="{{ route('dealer.invoice', $dealer->id) }}">
           @csrf
           <div class="form-group col-md-12 text-center mb-2">    
-              <label for="dealerId">Dealer Name: <b class="red">{{$dealer->name}}</b></label>
+              <h5 for="dealerId">Dealer Name: <b class="red">{{$dealer->name}}</b></h5>
 
 
 
@@ -41,11 +43,11 @@
         </div>
         <div class="form-group mb-2">
               <label for="address">Invoice No:</label>
-              <input type="text" class="col-md-4" name="invoiceNo"/>
+              <input type="text" value="{{$newOrderId}}" class="col-md-3" name="invoiceNo" readonly/>
         </div>
         <div class="form-group mb-2">
             <label for="address">Order No:</label>
-            <input type="text" class="col-md-4" name="orderNo"/>
+            <input type="text" class="col-md-3" name="orderNo"/>
         </div>
       <table class="table table-bordered table-hover mb-2" id="tab_logic">
         <thead >
@@ -62,17 +64,32 @@
           </tr>
         </thead>
         
-        <tbody>
+        <tbody >
           <tr id='addr0'>
             <td>1</td>
             <!-- <td><input type="text"   name='invoiceNo[]' placeholder='Enter Invoice No' class="form-control"/></td>
             <td><input type="text"   name='orderId[]' placeholder='Enter Order No' class="form-control"/></td> -->
-            <td><input type="text"   name='product[]' placeholder='Enter Product Name' class="form-control"/></td>
+            <td>
+            <div class="form-group product-type">
+                <select id='product' for="product" name='product[]' class="form-control product">
+                  <option value='0'>-- Select Product --</option>
+                  <!-- Read Products -->
+                  @foreach($product as $productlist)
+                    <option data-price='{{ $productlist->unit }}'>{{ $productlist->name }}</option>
+                  @endforeach
+                </select>
+            </div>
+            </td>
             <td><input type="number" name='invoiceUnit[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
             <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
-            <td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0"/></td>
-            <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
+            <td>
+            <div class="form-group">
+              <input type="text" for="price" name='price[]' placeholder='0.00' 
+              class="form-control price" readonly/>
+            </div>
+            </td>
+            <td><input type="text" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
           </tr>
           <tr id='addr1'></tr>
         </tbody>
@@ -95,7 +112,7 @@
           </tr>
           <tr>
             <td><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
-            <td><input type="number" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
+            <td><input type="text" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
             <td><input type="number" class="form-group" name='remainBalance' id="total_amount" placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
           </tr>
@@ -159,6 +176,14 @@
 
 <!-- // Invoice javascript  -->
 <script>
+
+$('.product-type').on('change', function() {
+  $('.price')
+  .val(
+    $(this).find(':selected').data('price')
+  );
+});
+
 $(document).ready(function(){
     var i=1;
     $("#add_row").click(function(){b=i-1;
@@ -205,11 +230,11 @@ function calc_total()
 {
 	totalUnit=0;
 	$('.totalUnit').each(function() {
-        totalUnit += parseInt($(this).val());
+        totalUnit += parseFloat($(this).val());
     });
 	total=0;
 	$('.total').each(function() {
-        total += parseInt($(this).val());
+        total += parseFloat($(this).val());
     });
 	$('#sub_total').val(total.toFixed(2));
 	tax_sum=total/100*$('#tax').val();
@@ -217,5 +242,7 @@ function calc_total()
 	$('#total_amount').val((tax_sum+total).toFixed(2));
   $('#sub_grand_total').val(totalUnit.toFixed(2));
 }
+
+
 </script>
 @endsection

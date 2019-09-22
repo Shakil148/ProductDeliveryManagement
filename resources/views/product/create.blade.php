@@ -23,11 +23,11 @@
 
           <div class="form-group">
               <label for="price">Per Price:</label>
-              <input type="number" min="0" class="form-control" name="price"/>
+              <input type="text" min="0" class="form-control" name="price"/>
           </div>
           <div class="form-group">
               <label for="unit">Unit Price:</label>
-              <input type="number" min="0" class="form-control" name="unit"/>
+              <input type="text" min="0" class="form-control" name="unit"/>
           </div>
           <div class="form-group">
           <label for="date">Date:</label>

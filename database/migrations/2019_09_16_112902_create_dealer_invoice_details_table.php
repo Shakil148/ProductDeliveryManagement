@@ -20,11 +20,11 @@ class CreateDealerInvoiceDetailsTable extends Migration
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->text('product')->nullable();
-            $table->integer('price')->nullable();
+            $table->float('price')->nullable();
             $table->integer('invoiceUnit')->nullable();
             $table->integer('freeUnit')->nullable();
             $table->integer('totalUnit')->nullable();
-            $table->integer('total')->nullable();
+            $table->float('total')->nullable();
             $table->timestamps();
         });
     }
