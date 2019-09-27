@@ -72,7 +72,7 @@
             <td>
             <div class="form-group product-type">
                 <select id='product' for="product" name='product[]' class="form-control product">
-                  <option value='0'>-- Select Product --</option>
+                  <option disabled selected>-- Select Product --</option>
                   <!-- Read Products -->
                   @foreach($product as $productlist)
                     <option data-price='{{ $productlist->unit }}'>{{ $productlist->name }}</option>
@@ -176,20 +176,21 @@
 
 <!-- // Invoice javascript  -->
 <script>
-
-$('.product-type').on('change', function() {
-  $('.price')
-  .val(
-    $(this).find(':selected').data('price')
-  );
+function product(){
+$('.product-type').click(function() {
+  var price = $(this).find(':selected').data('price');
+     $(this).parent().parent().find('.price')
+.val(price);
 });
 
+}
 $(document).ready(function(){
     var i=1;
     $("#add_row").click(function(){b=i-1;
       	$('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
       	$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       	i++; 
+        
   	});
     $("#delete_row").click(function(){
     	if(i>1){
@@ -201,6 +202,7 @@ $(document).ready(function(){
 	
 	$('#tab_logic tbody').on('keyup change',function(){
 		calc();
+    product();
 	});
 	$('#tax').on('keyup change',function(){
 		calc_total();
