@@ -24,6 +24,7 @@ class CreateDealerBalanceRecordsTable extends Migration
             $table->datetime('date')->nullable();
             $table->text('status')->nullable();
             $table->text('comment')->nullable();
+            $table->text('userName')->nullable();
             $table->timestamps();
         });
     }

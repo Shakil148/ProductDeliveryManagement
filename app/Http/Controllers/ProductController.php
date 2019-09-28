@@ -66,6 +66,7 @@ class ProductController extends Controller
             'price' => $request->get('price'),
             'unit' => $request->get('unit'),
             'date' => $request->get('date'),
+            
         ]);
         //$product->mime = $cover->getClientMimeType();
         //$product->original_filename = $cover->getClientOriginalName();
@@ -77,6 +78,7 @@ class ProductController extends Controller
             Image::make($image)->save($location);
             $product->image = $filename;
           }
+        $product->userName = Auth::user()->name;
         $product->save();
         return redirect('/product')->with('success', 'Product Created!');
     }

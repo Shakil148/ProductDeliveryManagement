@@ -5,6 +5,7 @@ namespace SGFL\Http\Controllers;
 use Illuminate\Http\Request;
 use SGFL\DealerBalanceRecord;
 use SGFL\Dealer;
+use Auth;
 
 class DealerBalanceRecordController extends Controller
 {
@@ -97,6 +98,7 @@ class DealerBalanceRecordController extends Controller
         $dealerbalancerecord->date = $request->get('date');
         $dealerbalancerecord->status = $request->get('status');
         $dealerbalancerecord->comment = $request->get('comment');
+        $dealerbalancerecord->userName = Auth::user()->name;
         $dealerbalancerecord->save();
         
         $dealer->amount += $request->get('amount');

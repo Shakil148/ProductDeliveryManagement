@@ -22,8 +22,10 @@ class CreateDealerInvoicesTable extends Migration
             $table->text('invoiceNo')->nullable();
             $table->float('totalPrice')->nullable();
             $table->integer('remainUnit')->nullable();
-            $table->integer('remainBalance')->nullable();
+            $table->float('remainBalance')->nullable();
+            $table->float('grandTotalUnit')->nullable();
             $table->text('comment')->nullable();
+            $table->text('userName')->nullable();
             $table->timestamps();
         });
     }

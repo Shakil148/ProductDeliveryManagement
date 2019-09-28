@@ -17,6 +17,7 @@ class DealerBalanceRecord extends Model
         'date',
         'status',
         'comment',
+        'userName',
     ];
     public function dealer()
     {

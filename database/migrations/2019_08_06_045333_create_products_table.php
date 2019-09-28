@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->date('date')->nullable();
             $table->boolean('status')->nullable()->change();
             $table->string('image')->nullable();
+            $table->text('userName')->nullable();
             $table->timestamps();
         });
     }

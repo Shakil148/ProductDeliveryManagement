@@ -20,7 +20,7 @@
             <td>Amount</td>
             <td>Status</td>
             <td>Comments</td>
-            <td>Created Date</td>
+            <td>Action By</td>
             <td colspan = 3 class="text-center">Actions</td>
             </tr>
         </thead>
@@ -31,13 +31,13 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$paymentlist->dealer->name}}</td>
                 <td>{{$paymentlist->type}}</td>
-                <td>{{$paymentlist->date}}</td>
+                <td>{{date('d-m-y',strtotime($paymentlist->date))}}</td>
                 <td>{{$paymentlist->accountNo}}</td>
                 <td>{{$paymentlist->bankName}}</td>
                 <td>{{$paymentlist->amount}}<b>tk</b></td>
                 <td>{{$paymentlist->status}}</td>
                 <td>{{$paymentlist->comment}}</td>
-                <td>{{date('d-m-y',strtotime($paymentlist->created_at))}}</td>
+                <td>{{$paymentlist->userName}}</td>
                 <td>
                     <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 </td>

@@ -19,6 +19,7 @@ class CreateMainWarehousesTable extends Migration
             $table->text('address')->nullable();
             $table->Integer('amount')->nullable();
             $table->string('discount')->nullable();
+            $table->text('userName')->nullable();
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

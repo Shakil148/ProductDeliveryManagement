@@ -20,6 +20,7 @@
           <td>Date</td>
           <td>Status</td>
           <td>Image</td>
+          <td>Action By</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
     </thead>
@@ -36,6 +37,7 @@
                 <input data-id="{{$productlist->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $productlist->status ? 'checked' : '' }}>
             </td>
             <td> <img src="{{ asset('images/' . $productlist->image) }}" width="50" height="50" alt="{{ $productlist->title }} photo" class="rounded"></td>
+            <td>{{$productlist->userName}}</td>
             <td>
                 <a href="{{ route('product.edit',$productlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

@@ -3,6 +3,7 @@
 namespace SGFL\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use SGFL\Product;
 use SGFL\Dealer;
 use SGFL\DealerInvoice;
@@ -104,6 +105,7 @@ class OrderController extends Controller
         $dealerInvoice->totalPrice = $request->get('totalPrice');
         $dealerInvoice->grandTotalUnit = $request->get('grandTotalUnit');
         $dealerInvoice->comment = $request->get('comment');
+        $dealerInvoice->userName = Auth::user()->name;
         $dealerInvoice->save();
         $invoice =$dealerInvoice->id;
         // $data=$request->all();

@@ -15,6 +15,7 @@ class Product extends Model
         'date',
         'status',
         'image',
+        'userName',
     ];
 
     public function mainWarehouse()

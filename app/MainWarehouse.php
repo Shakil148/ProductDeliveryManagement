@@ -13,6 +13,7 @@ class MainWarehouse extends Model
         'amount', 
         'discount', 
         'productId',
+        'userName',
     ];
 
     public function product()

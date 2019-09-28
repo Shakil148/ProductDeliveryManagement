@@ -5,6 +5,9 @@
  <div class="col-sm-6 offset-sm-2">
     <h1 class="display-5 text-center mt-2 bg-secondary">Create New Product</h1>
   <div>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -32,11 +35,7 @@
           <div class="form-group">
           <label for="date">Date:</label>
             <div id="datetimepicker1" class="input-append date">
-              <input type="date_format" name="date"  class="form-control" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
+              <input type="date" name="date"  class="form-control" data-format="dd/MM/yyyy" type="text" />
             </div>
           </div>
           <div class="form-group">
@@ -49,3 +48,9 @@
 </div>
 </div>
 @endsection
+<script>
+    $( function() {
+        $('.date').datepicker(); 
+        format: 'dd/mm/yy'       
+    });
+</script>

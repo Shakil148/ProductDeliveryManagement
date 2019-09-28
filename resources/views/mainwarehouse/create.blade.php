@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
     <h1 class="display-5 text-center mt-2 bg-secondary">Store New Product</h1>
@@ -36,11 +39,7 @@
             <div class="form-group">
             <label for="date">Date:</label>
                 <div id="datetimepicker1" class="input-append date">
-                <input type="date_format" name="date"  class="form-control" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
-                <span class="add-on">
-                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                    </i>
-                </span>
+                <input type="date" name="date" class="form-control" type="text" />
                 </div>
             </div>
             <div class="form-group">
@@ -48,7 +47,7 @@
               <input type="text" class="form-control" name="address"/>
           </div>
           <div class="form-group">
-              <label for="amount">Amount:</label>
+              <label for="amount">Quantity:</label>
               <input type="number" min="0" class="form-control" name="amount"/>
           </div>
           <div class="form-group">
@@ -61,3 +60,9 @@
 </div>
 </div>
 @endsection
+<script>
+    $( function() {
+        $('.date').datetimepicker(); 
+        format: 'dd/mm/yy'       
+    });
+</script>

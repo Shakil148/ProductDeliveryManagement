@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-16">
@@ -22,6 +23,7 @@
           <td>Total Quantity</td>
           <td>Discount</td>
           <td>Image</td>
+          <td>Action By</td>
           <td colspan = 2 class="text-center">Actions</td>
         </tr>
     </thead>
@@ -33,11 +35,12 @@
             <td>{{$mainwarehouselist->name}}</td>
             <td>{{$mainwarehouselist->price}}</td>
             <td>{{$mainwarehouselist->unit}}</td>
-            <td>{{$mainwarehouselist->created_at}}</td>
+            <td>{{$mainwarehouselist->date}}</td>
             <td>{{$mainwarehouselist->address}}</td>
             <td>{{$mainwarehouselist->amount}}</td>
             <td>{{$mainwarehouselist->discount}}</td>
             <td> <img src="{{ asset('images/' . $mainwarehouselist->image) }}" width="50" height="50" alt="{{ $mainwarehouselist->name }} photo" class="rounded"></td>
+            <td>{{$mainwarehouselist->userName}}</td>
             <td>
                 <a href="{{ route('mainwarehouse.edit',$mainwarehouselist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

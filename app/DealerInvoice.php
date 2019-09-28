@@ -15,6 +15,8 @@ class DealerInvoice extends Model
         'totalPrice',
         'remainUnit',
         'remainBalance',
+        'grandTotalUnit',
+        'userName',
         'comment',
     ];
     public function dealer()

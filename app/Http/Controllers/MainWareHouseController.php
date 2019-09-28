@@ -3,6 +3,7 @@
 namespace SGFL\Http\Controllers;
 use SGFL\validator;
 use Illuminate\Http\Request;
+use Auth;
 use SGFL\MainWarehouse;
 use SGFL\Product;
 
@@ -72,6 +73,7 @@ class MainWarehouseController extends Controller
             'productId' => $request->get('productId'),
             'discount' => $request->get('discount'),
         ]);
+        $mainwarehouse->userName = Auth::user()->name;
         $mainwarehouse->save();
         return redirect('/mainwarehouse')->with('success', 'MainWarehouse Created!');
     }

@@ -5,8 +5,6 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
 
 <div class="container mt-1">
   <div class="row clearfix">
@@ -72,7 +70,7 @@
             <td>
             <div class="form-group product-type">
                 <select id='product' for="product" name='product[]' class="form-control product">
-                  <option value='0'>-- Select Product --</option>
+                  <option disabled selected>-- Select Product --</option>
                   <!-- Read Products -->
                   @foreach($product as $productlist)
                     <option data-price='{{ $productlist->unit }}'>{{ $productlist->name }}</option>
@@ -176,20 +174,21 @@
 
 <!-- // Invoice javascript  -->
 <script>
-
-$('.product-type').on('change', function() {
-  $('.price')
-  .val(
-    $(this).find(':selected').data('price')
-  );
+function product(){
+$('.product-type').click(function() {
+  var price = $(this).find(':selected').data('price');
+     $(this).parent().parent().find('.price')
+.val(price);
+calc();
 });
-
+}
 $(document).ready(function(){
     var i=1;
     $("#add_row").click(function(){b=i-1;
       	$('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
       	$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       	i++; 
+        
   	});
     $("#delete_row").click(function(){
     	if(i>1){
@@ -201,14 +200,13 @@ $(document).ready(function(){
 	
 	$('#tab_logic tbody').on('keyup change',function(){
 		calc();
+    product();
 	});
 	$('#tax').on('keyup change',function(){
 		calc_total();
 	});
 	
-
 });
-
 function calc()
 {
 	$('#tab_logic tbody tr').each(function(i, element) {
@@ -225,7 +223,6 @@ function calc()
 		}
     });
 }
-
 function calc_total()
 {
 	totalUnit=0;
@@ -242,7 +239,5 @@ function calc_total()
 	$('#total_amount').val((tax_sum+total).toFixed(2));
   $('#sub_grand_total').val(totalUnit.toFixed(2));
 }
-
-
 </script>
 @endsection

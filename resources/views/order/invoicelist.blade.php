@@ -17,6 +17,7 @@
           <td>Grand Unit</td>
           <td>Grand Price</td>
           <td>Comment</td>
+          <td>Invoice By</td>
           <td>Details</td>
           <td colspan = 3 class="text-center">Actions</td>
         </tr>
@@ -31,6 +32,7 @@
             <td>{{$invoiceList->grandTotalUnit}}</td>
             <td>{{$invoiceList->totalPrice}}</td>
             <td>{{$invoiceList->comment}}</td>
+            <td>{{$invoiceList->userName}}</td>
             <td class="text-center"> 
                 <a href="/invoicedetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
             </td>
