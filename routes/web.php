@@ -22,8 +22,8 @@ Auth::routes();
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
 //Admin all routes
 Route::group(['middleware' => 'auth'], function() {
-    //Route::resource('admin','ProductController');
     Route::resource('user','AdminController');
+    //Route::resource('admin','ProductController');
     Route::get('/viewer', 'ViewerController@viewer');
     Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
@@ -114,8 +114,8 @@ Route::get('/accounts', function(){
 
 //Viewer all routes
 Route::group(['middleware' => 'admin'], function() {
-    
     Route::resource('user','AdminController');
+    
     Route::resource('product', 'ProductController',['parameters' => [
         'product' => 'admin_product'
     ]])->except(['index','create']);

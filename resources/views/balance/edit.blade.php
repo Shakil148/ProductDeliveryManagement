@@ -55,7 +55,7 @@
           <div class="form-group">    
               <label for="status">Status:</label>
                 <select id='status' name='status' class="form-control">
-                <option value=''>-- Select Method --</option>
+                <option value=''>-- Select Status --</option>
                     <option value='Paid'>Paid</option>
                     <option value='Unpaid'>Unpaid</option>
                     <option value='Refund'>Refund</option>

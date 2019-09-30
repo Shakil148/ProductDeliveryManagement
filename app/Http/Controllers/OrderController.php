@@ -56,6 +56,12 @@ class OrderController extends Controller
     {
         $lastorderId = DealerInvoice::orderBy('id', 'desc')->first()->invoiceNo;
 
+        // if ( ! $lastOrderId )
+        // // We get here if there is no order at all
+        // // If there is no number set it to 0, which will be 1 at the end.
+
+        // $lastIncreament = 001;
+        // else 
         // Get last 3 digits of last order id
         $lastIncreament = substr($lastorderId, -5);
 
