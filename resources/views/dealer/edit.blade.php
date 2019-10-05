@@ -24,6 +24,10 @@
             </div>
 
             <div class="form-group">
+                <label for="price">Code:</label>
+                <input type="text"  class="form-control" name="code" value="{{ $dealer->code }}" />
+            </div>
+            <div class="form-group">
                 <label for="price">Contact:</label>
                 <input type="number" min="0" class="form-control" name="contact" value="{{ $dealer->contact }}" />
             </div>

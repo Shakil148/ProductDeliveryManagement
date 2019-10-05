@@ -17,7 +17,12 @@
         </ul>
       </div><br />
               
-            @endif
+    @endif
+    @if(Session::has('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
 
             
       <form method="post" action="{{ route('mainwarehouse.store') }}">

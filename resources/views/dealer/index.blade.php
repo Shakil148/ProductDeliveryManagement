@@ -15,6 +15,7 @@
         <tr>
           <td>#</td>
           <td>Name</td>
+          <td>Code</td>
           <td>Contact</td>
           <td>Address</td>
           <td>Status</td>
@@ -28,6 +29,7 @@
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
             <td>{{$dealerlist->name}}</td>
+            <td>{{$dealerlist->code}}</td>
             <td>{{$dealerlist->contact}}</td>
             <td>{{$dealerlist->address}}</td>
             <td>{{$dealerlist->status}}</td>
@@ -44,10 +46,10 @@
                 </form>
             </td>
             <td>
-                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pay"></i></a>
+                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-dark"><i class="fab fa-amazon-pa">Pay</i></a>
             </td>
             <td>
-                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-moving"></i></a>
+                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">Invoice</i></a>
             </td>
         </tr>
         @endforeach

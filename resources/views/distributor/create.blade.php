@@ -14,6 +14,11 @@
         </ul>
       </div><br />
     @endif
+    @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+    @endif
       <form method="post" action="{{ route('distributor.store') }}">
           @csrf
           <div class="form-group">    

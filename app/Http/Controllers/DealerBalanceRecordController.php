@@ -115,6 +115,9 @@ class DealerBalanceRecordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dealerBalanceRecord = DealerBalanceRecord::find($id);
+        $dealerBalanceRecord->delete();
+
+        return redirect()->back()->with('success','Payment Delete successfully');
     }
 }

@@ -39,14 +39,14 @@
                 <td>{{$paymentlist->comment}}</td>
                 <td>{{$paymentlist->userName}}</td>
                 <td>
+                    <a target="_blank" href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a>
+                </td>
+                <td>
                     <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 </td>
                 <td>
-                    <a href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a>
-                </td>
-                <td>
                     <form onclick="return confirm('Are you sure?')" 
-                    action="#" method="post">
+                    action="{{ route('balance.destroy', $paymentlist->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>

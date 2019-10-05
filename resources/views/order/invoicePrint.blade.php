@@ -13,7 +13,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row ">
-                        <div class="col-md-10 text-center">
+                    <p class="font-weight-bold text-success ">Company Copy</p>
+                        <div class="col-md-7 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -21,16 +22,23 @@
                             <p><span class="text-muted">Contact: </span> 12312123</p>
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
-                        <div class="col-md-2 text-right d-inline">
+                        <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Due to: {{$invoicePrintList->created_at}}</p>
                         </div>
-                        <div class="col-md-6">
-                            <p class="font-weight-bold">Dealer Information</p>
-                            <p class="text-danger">Name: {{$invoicePrintList->dealer->name}}</p>
+                        <div class="col-md-9">
+                        <p class="font-weight-bold">Dealer Information</p>
+                            <p class="text-danger text-bold">Name: {{$invoicePrintList->dealer->name}}</p>
+                            <p class="text-success text-bold">Code: {{$invoicePrintList->dealer->code}}</p>
                             <p>Address: {{$invoicePrintList->dealer->address}}</p>
                             <p>Contact: {{$invoicePrintList->dealer->contact}}</p>
+                        </div>
+                        <div class="col-md-0">
+                            <p class="font-weight-bold">Distribution Information</p>
+                            <p>Truck No: {{$invoicePrintList->truckNo}}</p>
+                            <p>Driver Name: {{$invoicePrintList->driverName}}</p>
+                            <p>Mobile: {{$invoicePrintList->driverMobile}}</p>
                         </div>
                     </div>
                    
@@ -42,8 +50,8 @@
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
@@ -54,8 +62,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->freeUnit}}</td>
+                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->total}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
@@ -80,7 +88,7 @@
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right mb-3"><b>Signature By<b></div>
+    <div class="text-dark mt-5 mb-0 text-right mb-3"><b> Authority Signature</b></div>
 
 </div>
         
@@ -103,7 +111,8 @@ function myFunction() {
             <div class="card">
                 <div class="card-body">
                     <div class="row ">
-                        <div class="col-md-10 text-center">
+                    <p class="font-weight-bold text-success ">Distribution Copy</p>
+                        <div class="col-md-7 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -111,16 +120,23 @@ function myFunction() {
                             <p><span class="text-muted">Contact: </span> 12312123</p>
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
-                        <div class="col-md-2 text-right d-inline">
+                        <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Due to: {{$invoicePrintList->created_at}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <p class="font-weight-bold">Dealer Information</p>
-                            <p class="text-danger">Name: {{$invoicePrintList->dealer->name}}</p>
+                            <p class="text-danger text-bold">Name: {{$invoicePrintList->dealer->name}}</p>
+                            <p class="text-success text-bold">Code: {{$invoicePrintList->dealer->code}}</p>
                             <p>Address: {{$invoicePrintList->dealer->address}}</p>
                             <p>Contact: {{$invoicePrintList->dealer->contact}}</p>
+                        </div>
+                        <div class="col-md-0">
+                            <p class="font-weight-bold">Distribution Information</p>
+                            <p>Truck No: {{$invoicePrintList->truckNo}}</p>
+                            <p>Driver Name: {{$invoicePrintList->driverName}}</p>
+                            <p>Mobile: {{$invoicePrintList->driverMobile}}</p>
                         </div>
                     </div>
                    
@@ -132,8 +148,8 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
@@ -144,8 +160,8 @@ function myFunction() {
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->freeUnit}}</td>
+                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->total}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
@@ -170,7 +186,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right mb-3"><b>Signature By<b></div>
+    <div class="text-dark mt-5  text-right mb-3"><b> Distribution Signature</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b>Customer Signature</b></div>
 
 </div>
         
@@ -193,7 +209,8 @@ function myFunction() {
             <div class="card">
                 <div class="card-body">
                     <div class="row ">
-                        <div class="col-md-10 text-center">
+                    <p class="font-weight-bold text-success ">Customer Copy</p>
+                        <div class="col-md-7 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -201,16 +218,23 @@ function myFunction() {
                             <p><span class="text-muted">Contact: </span> 12312123</p>
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
-                        <div class="col-md-2 text-right d-inline">
+                        <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Due to: {{$invoicePrintList->created_at}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <p class="font-weight-bold">Dealer Information</p>
-                            <p class="text-danger">Name: {{$invoicePrintList->dealer->name}}</p>
+                            <p class="text-danger text-bold">Name: {{$invoicePrintList->dealer->name}}</p>
+                            <p class="text-success text-bold">Code: {{$invoicePrintList->dealer->code}}</p>
                             <p>Address: {{$invoicePrintList->dealer->address}}</p>
                             <p>Contact: {{$invoicePrintList->dealer->contact}}</p>
+                        </div>
+                        <div class="col-md-0">
+                            <p class="font-weight-bold">Distribution Information</p>
+                            <p>Truck No: {{$invoicePrintList->truckNo}}</p>
+                            <p>Driver Name: {{$invoicePrintList->driverName}}</p>
+                            <p>Mobile: {{$invoicePrintList->driverMobile}}</p>
                         </div>
                     </div>
                    
@@ -222,8 +246,8 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
@@ -234,8 +258,8 @@ function myFunction() {
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->freeUnit}}</td>
+                                        <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->total}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
@@ -260,7 +284,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right "><b>Signature By<b></div>
+    <div class="text-bold mt-5 mb-0 text-right "><b>Customer Signature</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <b> Distribution Signature</b></div>
 
 </div>
         

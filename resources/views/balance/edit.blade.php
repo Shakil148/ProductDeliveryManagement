@@ -17,6 +17,11 @@
         </div>
         <br /> 
         @endif
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
         <form class = "mb-5" method="post" action="{{ route('balance.update', $dealer->id) }}">
             @method('PATCH') 
             @csrf
@@ -62,10 +67,10 @@
                 </select>
             </div>
           <div class="form-group">
-              <label for="comment">Comment:</label>
-              <input type="textarea" class="form-control" name="comment"/>
-          </div>
-            <button type="submit" class="btn btn-primary">Add Payment</button>
+        <label for="comment">Comment:</label>
+        <textarea class="form-control mb-3" rows="3" id="comment" name="comment"></textarea>
+      </div>
+            <button onclick="return confirm('Will you Sure To Submit Payment?')" type="submit" class="btn btn-primary">Add Payment</button>
         </form>
     </div>
 </div>

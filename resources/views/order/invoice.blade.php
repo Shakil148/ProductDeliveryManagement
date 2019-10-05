@@ -5,6 +5,7 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="container mt-1">
   <div class="row clearfix">
@@ -20,33 +21,33 @@
         </ul>
       </div><br />
     @endif
+    @if(Session::has('success'))
+      <div class="alert alert-success">
+          {{Session::get('success')}}
+      </div>
+    @endif
     <form method="post" class="" action="{{ route('dealer.invoice', $dealer->id) }}">
           @csrf
           <div class="form-group col-md-12 text-center mb-2">    
               <h5 for="dealerId">Dealer Name: <b class="red">{{$dealer->name}}</b></h5>
-
-
-
-          <!-- <div class="pull-right">
-          <label class="pull-right" for="date">Date:</label>
-            <div id="datetimepicker1" class="input-append date">
-              <input type="date_format" name="date"  class="form-control pull-right" data-format="dd/MM/yyyy hh:mm:ss" type="text" />
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
+        </div>
+        
+            <div class="col-md-9">
+              <label for="invoiceNo">Invoice No:</label>
+              <input type="text" value="{{$newOrderId}}" class="col-md-2" name="invoiceNo" readonly/>
             </div>
-          </div> -->
+              
+            <div class="text-right mb-5">
+              <label>Date:</label>
+              <input type="date" name="date"  class="col-md-2" data-format="dd/MM/yyyy" type="text" />
+            </div>
 
-        </div>
-        <div class="form-group mb-2">
-              <label for="address">Invoice No:</label>
-              <input type="text" value="{{$newOrderId}}" class="col-md-3" name="invoiceNo" readonly/>
-        </div>
-        <div class="form-group mb-2">
+        
+
+        <!-- <div class="form-group mb-2">
             <label for="address">Order No:</label>
             <input type="text" class="col-md-3" name="orderNo"/>
-        </div>
+        </div> -->
       <table class="table table-bordered table-hover mb-2" id="tab_logic">
         <thead >
           <tr>
@@ -127,11 +128,19 @@
           </tr> -->
         </tbody>
       </table>
-      <div class="form-group">
-            <label for="address">Comment:</label>
-            <input type="textarea" id="exampleFormControlTextarea2" rows="3" class="col-md-4" name="comment"/>
+      <div class="form-group ">
+            <label for="truckNo">Truck No:</label>
+            <input type="text"  class="col-md-2" name="truckNo"/>
+            <label for="driverName">Driver Name:</label>
+            <input type="text"  class="col-md-3" name="driverName"/>
+            <label for="driverMobile">Driver Mobile:</label>
+            <input type="text"  class="col-md-3" name="driverMobile"/>
       </div>
-      <button type="submit" class="btn btn-success mb-5">Add Invoice</button>
+      <div class="col-md-3">
+        <label for="comment">Comment:</label>
+        <textarea class="form-control mb-3" rows="3" id="comment" name="comment"></textarea>
+      </div>
+      <button onclick="return confirm('Will you Sure To Submit Invoice?')"type="submit" class="btn btn-success mb-5">Add Invoice</button>
     </form>
     </div>
   </div>
@@ -173,6 +182,13 @@
 </div>
 
 <!-- // Invoice javascript  -->
+
+<script>
+    $( function() {
+        $('.date').datepicker(); 
+        format: 'dd/mm/yy'       
+    });
+</script>
 <script>
 function product(){
 $('.product-type').click(function() {
@@ -239,5 +255,7 @@ function calc_total()
 	$('#total_amount').val((tax_sum+total).toFixed(2));
   $('#sub_grand_total').val(totalUnit.toFixed(2));
 }
+
 </script>
+
 @endsection

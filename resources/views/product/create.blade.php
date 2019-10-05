@@ -17,6 +17,11 @@
         </ul>
       </div><br />
     @endif
+    @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+    @endif
       <form method="post" action="{{ route('product.store') }}"enctype="multipart/form-data">
           @csrf
           <div class="form-group">    
@@ -47,6 +52,7 @@
   </div>
 </div>
 </div>
+
 @endsection
 <script>
     $( function() {

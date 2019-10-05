@@ -14,10 +14,14 @@
           <td>#</td>
           <td>Dealer Name</td>
           <td>Invoice No</td>
+          <td>Date</td>
           <td>Grand Unit</td>
           <td>Grand Price</td>
+          <td>Truck No</td>
+          <td>Driver Name</td>
+          <td>Driver Mobile</td>
           <td>Comment</td>
-          <td>Invoice By</td>
+          <td>Action By</td>
           <td>Details</td>
           <td colspan = 3 class="text-center">Actions</td>
         </tr>
@@ -29,15 +33,19 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$invoiceList->dealer->name}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
+            <td>{{$invoiceList->date}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
             <td>{{$invoiceList->totalPrice}}</td>
+            <td>{{$invoiceList->truckNo}}</td>
+            <td>{{$invoiceList->driverName}}</td>
+            <td>{{$invoiceList->driverMobile}}</td>
             <td>{{$invoiceList->comment}}</td>
             <td>{{$invoiceList->userName}}</td>
             <td class="text-center"> 
                 <a href="/invoicedetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
             </td>
             <td class="text-center"> 
-                <a href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
+                <a  target="_blank" href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
             </td>
 
             <td>
@@ -45,11 +53,11 @@
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 
-                action="#" method="post">
+                action="{{ route('order.destroy', $invoiceList->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                </form class ="mb-2">
+                </form>
             </td>
         </tr>
         @endforeach

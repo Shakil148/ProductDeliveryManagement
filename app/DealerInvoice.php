@@ -11,12 +11,16 @@ class DealerInvoice extends Model
     protected $fillable = [
         'dealerId', 
         'invoiceNo', 
+        'date', 
         'orderId', 
         'totalPrice',
         'remainUnit',
         'remainBalance',
         'grandTotalUnit',
         'userName',
+        'truckNo',
+        'driverName',
+        'driverMobile',
         'comment',
     ];
     public function dealer()

@@ -14,6 +14,11 @@
         </div>
         <br /> 
         @endif
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
         <form class = "mb-5" method="post" action="{{ route('distributor.update', $distributor->id) }}">
             @method('PATCH') 
             @csrf

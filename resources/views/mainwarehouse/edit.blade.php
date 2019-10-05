@@ -17,6 +17,11 @@
         </div>
         <br /> 
         @endif
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
         <form class = "mb-5" method="post" action="{{ route('mainwarehouse.update', $mainwarehouse->id) }}">
             @method('PATCH') 
             @csrf

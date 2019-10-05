@@ -12,6 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+                    <p class="font-weight-bold text-success ">Company Copy</p>
                         <div class="col-md-11 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
@@ -25,7 +26,8 @@
                         </div>
                         <div class="col-md-6 d-inline">
                             <p class="font-weight-bold">Payment Information</p>
-                            <p>Name:{{$paymentPrintList->dealer->name}}</p>
+                            <p class="text-danger text-bold">Dealer Name: {{$paymentPrintList->dealer->name}}</p>
+                            <p class="text-success text-bold">code: {{$paymentPrintList->dealer->code}}</p>
                             <p>Address:{{$paymentPrintList->dealer->address}}</p>
                             <p>Contact:{{$paymentPrintList->dealer->contact}}</p>
                         </div>
@@ -64,7 +66,7 @@
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right mb-4"><b>Signature By<b></div>
+    <div class="text-dark mt-5 mb-0 text-right mb-4"><b>Authorize Signature</b></div>
 
 </div>
         
@@ -86,6 +88,7 @@ function myFunction() {
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+                    <p class="font-weight-bold text-success ">Distribution Copy</p>
                         <div class="col-md-11 text-center ">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
@@ -99,7 +102,7 @@ function myFunction() {
                         </div>
                         <div class="col-md-6 d-inline">
                             <p class="font-weight-bold">Payment Information</p>
-                            <p>Name:{{$paymentPrintList->dealer->name}}</p>
+                            <p class="text-danger text-bold">Dealer Name: {{$paymentPrintList->dealer->name}}</p>
                             <p>Address:{{$paymentPrintList->dealer->address}}</p>
                             <p>Contact:{{$paymentPrintList->dealer->contact}}</p>
                         </div>
@@ -138,7 +141,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right mb-3"><b>Signature By<b></div>
+    <div class="text-dark mt-5 mb-0 text-right mb-3"><b>Authorize Signature</b></div>
 
 </div>
         
@@ -160,6 +163,7 @@ function myFunction() {
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+                    <p class="font-weight-bold text-success ">Customer Copy</p>
                         <div class="col-md-11 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
@@ -173,7 +177,7 @@ function myFunction() {
                         </div>
                         <div class="col-md-6 d-inline">
                             <p class="font-weight-bold">Payment Information</p>
-                            <p>Name:{{$paymentPrintList->dealer->name}}</p>
+                            <p class="text-danger text-bold">Dealer Name: {{$paymentPrintList->dealer->name}}</p>
                             <p>Address:{{$paymentPrintList->dealer->address}}</p>
                             <p>Contact:{{$paymentPrintList->dealer->contact}}</p>
                         </div>
@@ -212,7 +216,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right "><b>Signature By<b></div>
+    <div class="text-dark mt-5 mb-0 text-right "><b>Authorize Signature </b></div>
 
 </div>
         

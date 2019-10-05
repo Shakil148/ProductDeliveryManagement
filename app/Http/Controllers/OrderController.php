@@ -66,7 +66,7 @@ class OrderController extends Controller
         $lastIncreament = substr($lastorderId, -5);
 
         // Make a new order id with appending last increment + 1
-        $newOrderId = 'SF' . date('Ymd') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+        $newOrderId = 'SF' . date('md') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
 
         $dealer = Dealer::find($id);
         $product = Product::with('dealerInvoiceDetail')->get();
@@ -102,15 +102,21 @@ class OrderController extends Controller
             // 'unit'=>'required',
             // 'image'=>'required',
             'invoiceNo' => ['required','unique:dealer_invoices'],
+            'product' => 'required',
+            'date' => 'required',
         ]);
 
         $dealer = Dealer::find($id);
         $dealerInvoice = new DealerInvoice;
         $dealerInvoice->dealerId =$id;
         $dealerInvoice->invoiceNo = $request->get('invoiceNo');
+        $dealerInvoice->date = $request->get('date');
         $dealerInvoice->totalPrice = $request->get('totalPrice');
         $dealerInvoice->grandTotalUnit = $request->get('grandTotalUnit');
         $dealerInvoice->comment = $request->get('comment');
+        $dealerInvoice->truckNo = $request->get('truckNo');
+        $dealerInvoice->driverName = $request->get('driverName');
+        $dealerInvoice->driverMobile = $request->get('driverMobile');
         $dealerInvoice->userName = Auth::user()->name;
         $dealerInvoice->save();
         $invoice =$dealerInvoice->id;
@@ -146,7 +152,7 @@ class OrderController extends Controller
         DealerInvoiceDetail::insert($data2);
       }
         }
-        return redirect()->back()->with('success','Invoice insert successfully');
+        return redirect()->back()->with('success','Invoice Created successfully');
     }
     
         // for($i = 0; $i < 100; ++$i){
@@ -224,6 +230,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dealerInvoice = DealerInvoice::find($id);
+        $dealerInvoice->delete();
+
+        return redirect()->back()->with('success','Invoice Delete successfully');
     }
 }

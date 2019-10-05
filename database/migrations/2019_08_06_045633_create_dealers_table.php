@@ -15,7 +15,8 @@ class CreateDealersTable extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->nullable();
+            $table->string('code')->unique()->nullable();
             $table->string('contact')->nullable();
             $table->text('address')->nullable();
             $table->string('status')->nullable();

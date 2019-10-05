@@ -46,13 +46,15 @@ class DealerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>['required', 'unique:dealers'],
+            'name'=>'required', 
+            'code'=>['required', 'unique:dealers'],
             'contact'=>'required',
             'address'=>'required',
             'status'=>'required',
         ]);
         $dealer = new Dealer;
         $dealer->name = $request->get('name');
+        $dealer->code = $request->get('code');
         $dealer->contact = $request->get('contact');
         $dealer->address = $request->get('address');
         $dealer->status = $request->get('status');
@@ -102,14 +104,15 @@ class DealerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required', 
+            'code'=>['required', 'unique:dealers'],
             'contact'=>'required',
             'address'=>'required',
             'status'=>'required',
-
         ]);
         $dealer = Dealer::find($id);
         $dealer->name =  $request->get('name');
+        $dealer->code =  $request->get('code');
         $dealer->contact = $request->get('contact');
         $dealer->address = $request->get('address');
         $dealer->status = $request->get('status');

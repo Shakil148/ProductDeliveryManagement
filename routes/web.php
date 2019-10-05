@@ -120,9 +120,35 @@ Route::group(['middleware' => 'admin'], function() {
         'product' => 'admin_product'
     ]])->except(['index','create']);
     Route::resource('balance', 'DealerBalanceRecordController')->except(['index','edit','update']);
-    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['index','create']);
+     Route::get('/localwarehouseorder',[
+        'uses' => 'WarehouseOrderController@order',
+        'as' =>'warehouses.order']);
+    Route::get('/addtocart/{id}',[
+        'uses' =>  'WarehouseOrderController@getAddToCart',
+        'as' =>'warehouses.addtocart']);
+    Route::get('/reduce/{id}',[
+        'uses' => 'WarehouseOrderController@getReducebyOne',
+        'as' => 'warehouses.reducebyone'
+    ]);
+    Route::get('/remove/{id}',[
+        'uses' => 'WarehouseOrderController@getRemoveItem',
+        'as' => 'warehouses.removeitem'
+    ]);
+    Route::get('/add/{id}',[
+        'uses' => 'WarehouseOrderController@getAddByTen',
+        'as' => 'warehouses.addbyten'
+    ]);
+    Route::get('/shoppingcart', [
+        'uses' => 'WarehouseOrderController@getCart',
+        'as' => 'warehouses.shoppingcart']);
+    Route::get('/checkout',[
+        'uses' => 'WarehouseOrderController@getCheckout',
+        'as' => 'warehouses.checkout']);
+    Route::post('/checkout', 'WarehouseOrderController@postCheckout');
+    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['index','create']);   
     Route::resource('dealer', 'DealerController')->except(['index','create']);
     Route::resource('distributor', 'DistributorController')->except(['index','create']);
     Route::resource('order', 'OrderController');
 
   });
+
