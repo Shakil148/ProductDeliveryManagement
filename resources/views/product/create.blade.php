@@ -26,21 +26,21 @@
           @csrf
           <div class="form-group">    
               <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name"/>
+              <input type="text" class="form-control" name="name" value="{{ old('name')}}" />
           </div>
 
           <div class="form-group">
               <label for="price">Per Price:</label>
-              <input type="text" min="0" class="form-control" name="price"/>
+              <input type="text" min="0" class="form-control" name="price" value="{{ old('price')}}"/>
           </div>
           <div class="form-group">
               <label for="unit">Unit Price:</label>
-              <input type="text" min="0" class="form-control" name="unit"/>
+              <input type="text" min="0" class="form-control" name="unit" value="{{ old('unit')}}"/>
           </div>
           <div class="form-group">
           <label for="date">Date:</label>
             <div id="datetimepicker1" class="input-append date">
-              <input type="date" name="date"  class="form-control" data-format="dd/MM/yyyy" type="text" />
+              <input type="date" name="date"  class="form-control" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
           </div>
           <div class="form-group">

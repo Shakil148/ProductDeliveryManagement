@@ -75,6 +75,9 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'OrderController@invoiceDetail',
         'as' => 'invoice.detail']);
     Route::resource('order', 'OrderController');
+    Route::get('/distributorprint/{id}',[
+        'uses' => 'DistributorController@distributorPrint',
+        'as' => 'distributor.print']);
     Route::resource('distributor', 'DistributorController');
     // Route::post('/delearspayment/{id}',[
     //     'uses' => 'DealerController@balance',

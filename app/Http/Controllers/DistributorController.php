@@ -38,17 +38,31 @@ class DistributorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'invoiceNo'=>['required', 'unique:distributors'],
+            'date'=>'required',
+            'driverName'=>'required',
             'contact'=>'required',
             'carNo'=>'required',
         ]);
         $distributor = new Distributor([
-            'name' => $request->get('name'),
+            'invoiceNo' => $request->get('invoiceNo'),
+            'date' => $request->get('date'),
+            'driverName' => $request->get('driverName'),
+            'helperName' => $request->get('helperName'),
             'contact' => $request->get('contact'),
             'carNo' => $request->get('carNo'),
+            'locationStart' => $request->get('locationStart'),
+            'locationEnd' => $request->get('locationEnd'),
+            'kplCost' => $request->get('kplCost'),
+            'policeCost' => $request->get('policeCost'),
+            'foodAllowanceCost' => $request->get('foodAllowanceCost'),
+            'maintainingCost' => $request->get('maintainingCost'),
+            'tollCost' => $request->get('tollCost'),
+            'othersCost' => $request->get('othersCost'),
+            'totalCost' => $request->get('totalCost'),
         ]);
-        $distributor->save();
-        return redirect('/distributor')->with('success', 'Distributor Created!');
+        $distributor->save();        
+        return redirect('/distributor')->with('success','Distribution Cost Created!');
     }
 
     /**
@@ -74,6 +88,12 @@ class DistributorController extends Controller
         return view('distributor.edit', compact('distributor'));
     }
 
+    public function distributorPrint($id)
+    {
+        $distributor = Distributor::find($id);
+        return view('distributor.distributorPrint', compact('distributor')); 
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -84,15 +104,29 @@ class DistributorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'invoiceNo'=>['required'],
+            'date'=>'required',
+            'driverName'=>'required',
             'contact'=>'required',
             'carNo'=>'required',
 
         ]);
         $distributor = Distributor::find($id);
-        $distributor->name =  $request->get('name');
+        $distributor->invoiceNo =  $request->get('invoiceNo');
+        $distributor->date = $request->get('date');
+        $distributor->driverName = $request->get('driverName');
+        $distributor->helperName = $request->get('helperName');
         $distributor->contact = $request->get('contact');
         $distributor->carNo = $request->get('carNo');
+        $distributor->locationStart = $request->get('locationStart');
+        $distributor->locationEnd = $request->get('locationEnd');
+        $distributor->kplCost = $request->get('kplCost');
+        $distributor->policeCost = $request->get('policeCost');
+        $distributor->foodAllowanceCost = $request->get('foodAllowanceCost');
+        $distributor->maintainingCost = $request->get('maintainingCost');
+        $distributor->tollCost = $request->get('tollCost');
+        $distributor->othersCost = $request->get('othersCost');
+        $distributor->totalCost = $request->get('totalCost');
         $distributor->save();
 
 

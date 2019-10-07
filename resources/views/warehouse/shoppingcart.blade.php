@@ -26,10 +26,10 @@
             <td contenteditable="true">{{$product['qty']}}</td>
             <td>{{$product['price']}}</td>
             <td>
-                <a href="{{route('warehouses.addbyten',['id'=>$product['item']['id']])}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <a href="{{route('warehouses.addbyten',['id'=>$product['item']['id']])}}" class="btn btn-success"><i class="fa fa-plus"></i></a>
             </td>
             <td>
-                  <a href="{{route('warehouses.reducebyone',['id'=>$product['item']['id']])}}" class="btn btn-danger" ><i class="fa fa-minus"></i></a>
+                  <a href="{{route('warehouses.reducebyone',['id'=>$product['item']['id']])}}" class="btn btn-warning" ><i class="fa fa-minus"></i></a>
             </td>
             <td>
                   <a href="{{route('warehouses.removeitem',['id'=>$product['item']['id']])}}" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
@@ -44,13 +44,13 @@
 </div>
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
-                 <strong>Total: {{ $totalPrice }}</strong>
+                 <strong>&nbsp&nbsp&nbsp&nbsp Total: {{ $totalPrice }}</strong>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
-                 <a href="{{route('warehouses.checkout')}}" type ="button" class="btn btn-success">Confirm Order</a>
+                 <a href="{{route('warehouses.checkout')}}" type ="button" class="btn btn-primary">Confirm Order</a>
             </div>
         </div>
     @else

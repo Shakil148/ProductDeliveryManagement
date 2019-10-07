@@ -39,7 +39,7 @@
               
             <div class="text-right mb-5">
               <label>Date:</label>
-              <input type="date" name="date"  class="col-md-2" data-format="dd/MM/yyyy" type="text" />
+              <input type="date" name="date"  class="col-md-2" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
 
         
@@ -74,13 +74,13 @@
                   <option disabled selected>-- Select Product --</option>
                   <!-- Read Products -->
                   @foreach($product as $productlist)
-                    <option data-price='{{ $productlist->unit }}'>{{ $productlist->name }}</option>
+                    <option data-price='{{ $productlist->unit }}' data-selected-value="{{ old('$productlist->name') }}">{{ $productlist->name }}</option>
                   @endforeach
                 </select>
             </div>
             </td>
-            <td><input type="number" name='invoiceUnit[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
-            <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0"/></td>
+            <td><input type="number" name='invoiceUnit[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0" value="{{ old('invoiceUnit[]')}}"/></td>
+            <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0" value="{{ old('freeUnit[]')}}"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
             <td>
             <div class="form-group">

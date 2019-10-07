@@ -9,19 +9,23 @@ class Distributor extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 
-        'contact', 
+        'invoiceNo', 
+        'date', 
+        'driverName',
+        'helperName',
+        'contact',
         'carNo',
+        'locationStart',
+        'locationEnd',
+        'kplCost',
+        'policeCost',
+        'foodAllowanceCost',
+        'maintainingCost',
+        'tollCost',
+        'othersCost',
+        'totalCost',
     ];
 
-    public function warehouseInvoice()
-    {
-        return $this->belongsTo('SGFL\WarehouseOrder');
-    }
-    public function order()
-    {
-        return $this->belongsTo('SGFL\Order');
-    }
 
 
 }

@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{URL::to('distributor')}}" class="nav-link ">
               <i class="nav-icon fas fa-people-carry teal"></i>
               <p>
-                Distributor
+                Distribution
               </p>
             </a>
           </li>
