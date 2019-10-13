@@ -6,7 +6,7 @@
 
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2 bg-secondary">Store New Product</h1>
+    <h1 class="display-5 text-center mt-2 bg-secondary">Store New Product Form</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -67,7 +67,7 @@
 @endsection
 <script>
     $( function() {
-        $('.date').datetimepicker(); 
+        $('.date').datepicker(); 
         format: 'dd/mm/yy'       
     });
 </script>

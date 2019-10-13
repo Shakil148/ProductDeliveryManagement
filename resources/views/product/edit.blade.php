@@ -4,8 +4,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="row">
-    <div class="col-sm-6 offset-sm-2">
-        <h1 class="display-5 text-center bg-secondary">Update a Product</h1>
+    <div class="col-sm-6 offset-sm-2 mt-2">
+        <h1 class="display-5 text-center bg-secondary">Update Product Form</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -43,11 +43,11 @@
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input data-format="dd/MM/yyyy hh:mm:ss" name="date" class="form-control" type="text" value="{{ $product->date }}" />
+                <input type="date" name="date" class="form-control" type="text" value="{{ $product->date }}" />
             </div>
             <div class="form-group">
                 <label for="image">image:</label>
-                <input type="file" class="form-control" name="image" value="{{ $product->image }}" />
+                <input type="file" class="form-control" name="image" value={{ $product->image }} />
             </div>
             
             <button type="submit" class="btn btn-primary">Update</button>

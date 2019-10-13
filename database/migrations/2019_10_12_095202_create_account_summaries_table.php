@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDealerBalanceRecordsTable extends Migration
+class CreateAccountSummariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,16 @@ class CreateDealerBalanceRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dealer_balance_records', function (Blueprint $table) {
+        Schema::create('account_summaries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers')->onDelete('cascade');
+            $table->text('date')->nullable();
+            $table->text('invoiceNo')->nullable();
             $table->text('paymentNo')->nullable();
-            $table->text('type')->nullable();
-            $table->string('accountNo')->nullable();
-            $table->text('bankName')->nullable();
-            $table->integer('amount')->nullable();
-            $table->datetime('date')->nullable();
-            $table->text('status')->nullable();
-            $table->text('comment')->nullable();
-            $table->text('userName')->nullable();
+            $table->text('paidAmount')->nullable();
+            $table->text('doAmount')->nullable();
+            $table->text('balance')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +34,6 @@ class CreateDealerBalanceRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dealer_balance_records');
+        Schema::dropIfExists('account_summaries');
     }
 }

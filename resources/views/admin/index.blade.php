@@ -20,7 +20,8 @@
           <td>Designation</td>
           <td>Role</td>
           <td>Image</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     

@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-sm-6 offset-sm-2">
-        <h1 class="display-5 text-center bg-secondary">Dealers Payment</h1>
+        <h1 class="display-5 text-center bg-secondary">Dealers Payment Form</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -26,7 +26,14 @@
             @method('PATCH') 
             @csrf
             <div class="form-group">    
-              <label for="dealerId">Dealer Name: <b class="red"> {{ $dealer->name }}</b></label>
+              <label for="dealerId" class="text-center">Dealer Name: <b class="red"> {{ $dealer->name }}</b></label>
+            </div>
+            <div class="form-group">
+              <label for="paymentNo">Payment No:</label>
+              <input type="text" value="{{$newPaymentId}}" class="col-md-3 text-center" name="paymentNo" readonly/>
+            </div>
+            <div class="form-group">
+              <input type="hidden" value="{{$balance}}" class="col-md-3" name="balance" readonly/>
             </div>
 
             <div class="form-group">    

@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('user','AdminController');
     //Route::resource('admin','ProductController');
     Route::get('/viewer', 'ViewerController@viewer');
+    Route::get('/tsm', 'TsmController@tsm');
     Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
     Route::get('/changeStatus', 'ProductController@changeStatus');
@@ -82,6 +83,12 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::post('/delearspayment/{id}',[
     //     'uses' => 'DealerController@balance',
     //     'as' => 'dealer.balance']);
+    Route::get('/accountsummary/{id}',[ 
+        'uses' => 'DealerController@accountSummary',
+        'as' => 'dealer.summary']);
+    Route::get('/accountsummaryprint/{id}',[ 
+        'uses' => 'DealerController@accountSummaryPrint',
+        'as' => 'accountSummary.print']);
     Route::resource('dealer', 'DealerController');
     // Route::get('/paymentcreate/{id}',[
     //     'uses' => 'PaymentController@paymentCreate',
@@ -96,6 +103,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dealerbalanceprint/{id}',[
         'uses' => 'DealerBalanceRecordController@balancePrint',
         'as' => 'balance.print']);
+    Route::get('/search', 'DealerBalanceRecordController@search');   
     Route::resource('balance', 'DealerBalanceRecordController');
   });
 

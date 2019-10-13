@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-5 text-center bg-dark mt-2">Update Depo Cost Form</h1>
+        <h1 class="display-5 text-center bg-dark mt-2">Update Distribution Cost Form</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">

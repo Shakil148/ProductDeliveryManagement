@@ -14,7 +14,7 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        $distributor = Distributor::orderBy('created_at', 'desc')->paginate(8);
+        $distributor = Distributor::orderBy('created_at', 'desc')->get();
 
         return view('distributor.index', compact('distributor'));
     }

@@ -113,7 +113,7 @@
             <td><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
             <td><input type="text" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
-            <td><input type="number" class="form-group" name='remainBalance' id="total_amount" placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
+            <td><input type="number" class="form-group" name='remainBalance' id="total_amount"  placeholder="{{$dealer->amount}}"value="{{$dealer->amount}}" class="form-control" readonly/></td>
           </tr>
           <!-- <tr>
             <th class="text-center">Tax</th>
@@ -130,15 +130,15 @@
       </table>
       <div class="form-group ">
             <label for="truckNo">Truck No:</label>
-            <input type="text"  class="col-md-2" name="truckNo"/>
+            <input type="text" value="{{ old('truckNo')}}" class="col-md-2" name="truckNo"/>
             <label for="driverName">Driver Name:</label>
-            <input type="text"  class="col-md-3" name="driverName"/>
+            <input type="text" value="{{ old('driverName')}}" class="col-md-3" name="driverName"/>
             <label for="driverMobile">Driver Mobile:</label>
-            <input type="text"  class="col-md-3" name="driverMobile"/>
+            <input type="text" value="{{ old('driverMobile')}}" class="col-md-3" name="driverMobile"/>
       </div>
       <div class="col-md-3">
         <label for="comment">Comment:</label>
-        <textarea class="form-control mb-3" rows="3" id="comment" name="comment"></textarea>
+        <textarea class="form-control mb-3" value="{{ old('comment')}}" rows="3" id="comment" name="comment"></textarea>
       </div>
       <button onclick="return confirm('Will you Sure To Submit Invoice?')"type="submit" class="btn btn-success mb-5">Add Invoice</button>
     </form>
@@ -233,7 +233,7 @@ function calc()
 			var freeUnit = $(this).find('.freeUnit').val();
 			$(this).find('.totalUnit').val(+qty + +freeUnit);
 			var price = $(this).find('.price').val();
-			$(this).find('.total').val(qty*price);
+			$(this).find('.total').val((qty*price).toFixed(2));
 			
 			calc_total();
 		}

@@ -23,7 +23,7 @@
                         <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
-                            <p class="text-muted"> Date: {{$distributor->date}}</p>
+                            <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
                         <div class="col-md-9">
                         <p class="font-weight-bold">Car Information</p>
@@ -110,7 +110,7 @@ function myFunction() {
                         <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
-                            <p class="text-muted"> Date: {{$distributor->date}}</p>
+                            <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
                         <div class="col-md-9">
                         <p class="font-weight-bold">Car Information</p>
@@ -197,7 +197,7 @@ function myFunction() {
                         <div class="col-md-0 text-right d-inline">
                             <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
-                            <p class="text-muted"> Date: {{$distributor->date}}</p>
+                            <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
                         <div class="col-md-9">
                         <p class="font-weight-bold">Car Information</p>

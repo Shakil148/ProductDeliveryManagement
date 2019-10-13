@@ -6,13 +6,22 @@
         <div class="col-md-16">
             <div class="card">
             <h3 class="display-5 text-center mt-2 bg-secondary">Invoice List</h3>
-
+    <!-- <form action="/search" method="get" class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+      </div>
+    </form> -->
  <div class="table-hover table-striped table-bordered ">
 <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead class="bg-dark">
         <tr>
           <td>#</td>
           <td>Dealer Name</td>
+          <td>Code</td>
           <td>Invoice No</td>
           <td>Date</td>
           <td>Grand Unit</td>
@@ -23,9 +32,7 @@
           <td>Comment</td>
           <td>Action By</td>
           <td>Details</td>
-          <td>Print</td>
-          <td>Edit</td>
-          <td>Delete</td>
+          <td>Actions</td>
         </tr>
     </thead>
     
@@ -34,6 +41,7 @@
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
             <td>{{$invoiceList->dealer->name}}</td>
+            <td>{{$invoiceList->dealer->code}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
             <td>{{date('d-m-y',strtotime($invoiceList->date))}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
@@ -48,18 +56,6 @@
             </td>
             <td class="text-center"> 
                 <a  target="_blank" href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
-            </td>
-
-            <td>
-                <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-            </td>
-            <td>
-                <form onclick="return confirm('Are you sure?')" 
-                action="{{ route('order.destroy', $invoiceList->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                </form>
             </td>
         </tr>
         @endforeach

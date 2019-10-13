@@ -21,7 +21,8 @@
           <td>Status</td>
           <td>Image</td>
           <td>Action By</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     
@@ -32,7 +33,7 @@
             <td>{{$productlist->name}}</td>
             <td>{{$productlist->price}}</td>
             <td>{{$productlist->unit}}</td>
-            <td>{{$productlist->date}}</td>
+            <td>{{date('d-m-y',strtotime($productlist->date))}}</td>
             <td>
                 <input data-id="{{$productlist->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $productlist->status ? 'checked' : '' }}>
             </td>
@@ -53,7 +54,6 @@
         @endforeach
     </tbody>
   </table>
-    {{$product->links()}}
   </div>
 
 
@@ -61,4 +61,22 @@
         </div>
     </div>
 </div>
+<script>
+  $(function() {
+    $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'id': id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
 @endsection

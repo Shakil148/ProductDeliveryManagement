@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2 bg-secondary">Create New Product</h1>
+    <h1 class="display-5 text-center mt-2 bg-secondary">New Product Form</h1>
   <div>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -40,23 +40,24 @@
           <div class="form-group">
           <label for="date">Date:</label>
             <div id="datetimepicker1" class="input-append date">
-              <input type="date" name="date"  class="form-control" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
+              <input type="date" name="date"  class="form-control" data-format="mm/dd/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
           </div>
           <div class="form-group">
               <label for="image">Image:</label>
               <input type="file" class="form-control" name="image"/>
           </div>                       
-          <button type="submit" class="btn btn-primary mb-5">Add Product</button>
+          <button type="submit" class="btn btn-primary mb-5">Create Product</button>
       </form>
   </div>
 </div>
 </div>
 
-@endsection
 <script>
     $( function() {
         $('.date').datepicker(); 
         format: 'dd/mm/yy'       
     });
 </script>
+@endsection
+

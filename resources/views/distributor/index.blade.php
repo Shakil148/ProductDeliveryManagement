@@ -10,7 +10,7 @@
     <a style="margin: 19px;" href="{{ route('distributor.create')}}" class="btn btn-primary"> New Depo Cost</a>
     </div>
  <div class="table-hover table-striped table-bordered ">
-  <table class="table table-responsive fixed-table-body">
+ <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead class="bg-dark">
         <tr>
           <td>#</td>
@@ -29,7 +29,9 @@
           <td>Toll Cost</td>
           <td>Others Cost</td>
           <td>Total Cost</td>
-          <td colspan = 3 class="text-center">Actions</td>
+          <td>Print</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     
@@ -38,7 +40,7 @@
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
             <td>{{$distributorlist->invoiceNo}}</td>
-            <td>{{$distributorlist->date}}</td>
+            <td>{{date('d-m-y',strtotime($distributorlist->date))}}</td>
             <td>{{$distributorlist->driverName}}</td>
             <td>{{$distributorlist->helperName}}</td>
             <td>{{$distributorlist->contact}}</td>
@@ -71,7 +73,6 @@
         @endforeach
     </tbody>
   </table>
-    {{$distributor->links()}}
   </div>
 
 

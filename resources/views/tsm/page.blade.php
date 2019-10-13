@@ -6,7 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 
-            <h2 class="text-center">You are Logged in as <b class="red">TSM<b></h2>
+            <h2 class="text-center">Hello <b class="green">{{ Auth::user()->name }}</b></h2>
+            <h2 class="text-center">You are Logged in as <b class="red">TSM</b></h2>
 
             </div>
         </div>

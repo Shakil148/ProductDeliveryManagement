@@ -9,9 +9,10 @@
     <!-- SEARCH FORM -->
     <!-- <form action="/search" method="get" class="form-inline ml-3">
       <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
-            <i class="fa fa-check"></i>
+            <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
@@ -31,9 +32,7 @@
             <td>Status</td>
             <td>Comments</td>
             <td>Action By</td>
-            <td>Print</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td>Actions</td>
             </tr>
         </thead>
         
@@ -51,24 +50,12 @@
                 <td>{{$paymentlist->status}}</td>
                 <td>{{$paymentlist->comment}}</td>
                 <td>{{$paymentlist->userName}}</td>
-                <td>
-                    <a target="_blank" href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a>
-                </td>
-                <td>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                </td>
-                <td>
-                    <form onclick="return confirm('Are you sure?')" 
-                    action="{{ route('balance.destroy', $paymentlist->id)}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
-                    </form class ="mb-2">
-                </td>
+                <td><a target="_blank" href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a></td>    
             </tr>
             @endforeach
         </tbody>
     </table>
+        {{$dealerbalancerecord->links()}}
 
     </div>
 

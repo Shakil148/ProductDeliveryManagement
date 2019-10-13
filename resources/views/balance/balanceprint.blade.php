@@ -42,7 +42,7 @@
                                         <th class="border-0 text-uppercase small font-weight-bold">Account No</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Bank Name</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Amount</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Date & Time</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Date</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Status</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Comment</th>
                                     </tr>
@@ -53,7 +53,7 @@
                                         <td>{{$paymentPrintList->accountNo}}</td>
                                         <td>{{$paymentPrintList->bankName}}</td>
                                         <td>{{$paymentPrintList->amount}}</td>
-                                        <td>{{$paymentPrintList->date}}</td>
+                                        <td>{{date('d-m-y',strtotime($paymentPrintList->date))}}</td>
                                         <td>{{$paymentPrintList->status}}</td>
                                         <td>{{$paymentPrintList->comment}}</td>
                                     </tr>
@@ -117,7 +117,7 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">Account No</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Bank Name</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Amount</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Date & Time</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Date</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Status</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Comment</th>
                                     </tr>
@@ -128,7 +128,7 @@ function myFunction() {
                                         <td>{{$paymentPrintList->accountNo}}</td>
                                         <td>{{$paymentPrintList->bankName}}</td>
                                         <td>{{$paymentPrintList->amount}}</td>
-                                        <td>{{$paymentPrintList->date}}</td>
+                                        <td>{{date('d-m-y',strtotime($paymentPrintList->date))}}</td>                                        
                                         <td>{{$paymentPrintList->status}}</td>
                                         <td>{{$paymentPrintList->comment}}</td>
                                     </tr>
@@ -141,7 +141,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right mb-3"><b>Authorize Signature</b></div>
+    <div class="text-dark mt-5 mb-0 text-right "><b>Authorize Signature </b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <b>Account Signature </b></div>
 
 </div>
         
@@ -192,7 +192,7 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">Account No</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Bank Name</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Amount</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Date & Time</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Date</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Status</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Comment</th>
                                     </tr>
@@ -203,7 +203,7 @@ function myFunction() {
                                         <td>{{$paymentPrintList->accountNo}}</td>
                                         <td>{{$paymentPrintList->bankName}}</td>
                                         <td>{{$paymentPrintList->amount}}</td>
-                                        <td>{{$paymentPrintList->date}}</td>
+                                        <td>{{date('d-m-y',strtotime($paymentPrintList->date))}}</td>                                        
                                         <td>{{$paymentPrintList->status}}</td>
                                         <td>{{$paymentPrintList->comment}}</td>
                                     </tr>
@@ -216,7 +216,7 @@ function myFunction() {
         </div>
     </div>
     
-    <div class="text-dark mt-5 mb-0 text-right "><b>Authorize Signature </b></div>
+    <div class="text-dark mt-5 mb-0 text-right "><b>Authorize Signature </b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <b>Account Signature </b></div>
 
 </div>
         

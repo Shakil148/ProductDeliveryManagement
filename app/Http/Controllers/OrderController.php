@@ -8,6 +8,7 @@ use SGFL\Product;
 use SGFL\Dealer;
 use SGFL\DealerInvoice;
 use SGFL\DealerInvoiceDetail;
+use SGFL\AccountSummary;
 class OrderController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class OrderController extends Controller
     {
         $dealerInvoice = DealerInvoice::with('dealer')
         ->orderBy('created_at', 'desc')
-        ->paginate(10);
+        ->get();
         return view('order.invoicelist', compact('dealerInvoice'));
     }
     public function orderInvoicePrint($id)
@@ -63,10 +64,10 @@ class OrderController extends Controller
         // $lastIncreament = 001;
         // else 
         // Get last 3 digits of last order id
-        $lastIncreament = substr($lastorderId, -5);
+        $lastIncreament = substr($lastorderId, -4);
 
         // Make a new order id with appending last increment + 1
-        $newOrderId = 'SF' . date('md') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+        $newOrderId = 'INV' . date('md') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
 
         $dealer = Dealer::find($id);
         $product = Product::with('dealerInvoiceDetail')->get();
@@ -84,6 +85,12 @@ class OrderController extends Controller
         //
     }
 
+    public function search(Request $request){
+        $dealerInvoice = DealerInvoice::with('dealer')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('dashboard.dealerInvoice', compact('dealerInvoice'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -107,11 +114,13 @@ class OrderController extends Controller
         ]);
 
         $dealer = Dealer::find($id);
+       
         $dealerInvoice = new DealerInvoice;
         $dealerInvoice->dealerId =$id;
         $dealerInvoice->invoiceNo = $request->get('invoiceNo');
         $dealerInvoice->date = $request->get('date');
         $dealerInvoice->totalPrice = $request->get('totalPrice');
+        $dealerInvoice->remainBalance = $request->get('remainBalance');
         $dealerInvoice->grandTotalUnit = $request->get('grandTotalUnit');
         $dealerInvoice->comment = $request->get('comment');
         $dealerInvoice->truckNo = $request->get('truckNo');
@@ -131,6 +140,15 @@ class OrderController extends Controller
         // )->id;
         $dealer->amount -= $request->get('totalPrice');
         $dealer->save();
+
+        $accountSummary = new AccountSummary;
+        $accountSummary->dealerId =$id;
+        $accountSummary->date = $request->get('date');
+        $accountSummary->invoiceNo = $request->get('invoiceNo');
+        $accountSummary->doAmount = $request->get('totalPrice');
+        $accountSummary->balance = round($dealer->amount, 2);
+        $accountSummary->save();
+
         if(count($request->product) > 0)
         {
         foreach($request->product as $i=>$v){
@@ -152,6 +170,8 @@ class OrderController extends Controller
         DealerInvoiceDetail::insert($data2);
       }
         }
+        
+
         return redirect()->back()->with('success','Invoice Created successfully');
     }
     

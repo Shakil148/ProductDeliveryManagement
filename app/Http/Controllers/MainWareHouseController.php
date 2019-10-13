@@ -18,12 +18,12 @@ class MainWarehouseController extends Controller
     {
 
         //$test = DB::table('main_warehouses')->where('productId', Product::id())->get();
-        $mainwarehouse = \DB::table('main_warehouses')
-            ->join('products', 'main_warehouses.productId', '=', 'products.id')
-            ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
-            ->orderBy('created_at', 'desc')
-            ->paginate(8);
-
+        // $mainwarehouse = \DB::table('main_warehouses')
+        //     ->join('products', 'main_warehouses.productId', '=', 'products.id')
+        //     ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(8);
+        $mainwarehouse = MainWarehouse::with('product')->get();
         return view('mainwarehouse.index',compact('mainwarehouse'));
         //$product = Product::find($id);
         //$test = MianWarehouse::whereproductId($id)->get(); // or ->paginate(20);
@@ -98,11 +98,20 @@ class MainWarehouseController extends Controller
     public function edit($id)
     {
         $mainwarehouse = MainWarehouse::find($id);
-        $mainwarehouse_new = \DB::table('main_warehouses')
-        ->join('products', 'main_warehouses.productId', '=', 'products.id')
-        ->select('main_warehouses.*', 'products.name')
-        ->get();
-        return view('mainwarehouse.edit', compact('mainwarehouse','mainwarehouse_new'));
+        // $mainwarehouse_new = \DB::table('main_warehouses')
+        // ->join('products', 'main_warehouses.productId', '=', 'products.id')
+        // ->select('main_warehouses.*', 'products.name')
+        // ->get();
+
+        // $mainwarehouse = MainWarehouse::with('product')
+        // ->where('id', '=', $id)
+        // ->get();
+        //dd($mainwarehouse);
+        // $product = Product::first()->id;
+        // $mainwarehouse = MainWarehouse::find($id);
+
+        return view('mainwarehouse.edit', compact('mainwarehouse'))
+        ->with('product', Product::all());
     }
 
     /**

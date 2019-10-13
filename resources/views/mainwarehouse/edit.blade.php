@@ -4,8 +4,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="row">
-    <div class="col-sm-6 offset-sm-2">
-        <h1 class="display-5 text-center bg-secondary">Update Main Warehouse</h1>
+    <div class="col-sm-6 offset-sm-2 mt-2">
+        <h1 class="display-5 text-center bg-secondary">Update Main Warehouse Form</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -29,8 +29,8 @@
             <div class="form-group">    
               <label for="productId">Product Name:</label>
                 <select id='productId' name='productId' class="form-control">
-                @foreach($mainwarehouse_new as $mainwarehouselist)
-                <option value="{{ $mainwarehouse->productId}}" @if($mainwarehouselist->id == $mainwarehouse->productId ) selected='selected' @endif >{{$mainwarehouselist->name}}</option>
+                @foreach($product as $productlist)
+                    <option value='{{ $productlist->id }}'@if($productlist->id == $mainwarehouse->productId) selected='selected'disabled @endif>{{ $productlist->name }}</option>
                 @endforeach
                 </select>
             </div>
@@ -38,11 +38,7 @@
             <div class="form-group">
             <div id="datetimepicker1" class="input-append date">
                 <label for="date">Date:</label>
-                <input type="date_format" name ="date" class="form-control" value="{{ $mainwarehouse->created_at }}" />
-                <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-                </span>
+                <input type="date" name="date" class="form-control" type="text" value="{{ $mainwarehouse->date }}" />
             </div>
 
             <div class="form-group">
@@ -55,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <label for="unit">Discount:</label>
+                <label for="discount">Discount:</label>
                 <input type="text" class="form-control" name="discount" value="{{ $mainwarehouse->discount }}" />
             </div>
             

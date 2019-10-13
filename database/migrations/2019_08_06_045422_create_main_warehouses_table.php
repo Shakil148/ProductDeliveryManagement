@@ -15,7 +15,7 @@ class CreateMainWarehousesTable extends Migration
     {
         Schema::create('main_warehouses', function (Blueprint $table) {
             $table->increments('id');
-            $table->datetime('date')->nullable();
+            $table->date('date')->nullable();
             $table->text('address')->nullable();
             $table->Integer('amount')->nullable();
             $table->string('discount')->nullable();

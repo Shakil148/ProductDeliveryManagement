@@ -24,7 +24,8 @@
           <td>Discount</td>
           <td>Image</td>
           <td>Action By</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     
@@ -32,14 +33,14 @@
         @foreach($mainwarehouse as $mainwarehouselist)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            <td>{{$mainwarehouselist->name}}</td>
-            <td>{{$mainwarehouselist->price}}</td>
-            <td>{{$mainwarehouselist->unit}}</td>
+            <td>{{$mainwarehouselist->product->name}}</td>
+            <td>{{$mainwarehouselist->product->price}}</td>
+            <td>{{$mainwarehouselist->product->unit}}</td>
             <td>{{$mainwarehouselist->date}}</td>
             <td>{{$mainwarehouselist->address}}</td>
             <td>{{$mainwarehouselist->amount}}</td>
             <td>{{$mainwarehouselist->discount}}</td>
-            <td> <img src="{{ asset('images/' . $mainwarehouselist->image) }}" width="50" height="50" alt="{{ $mainwarehouselist->name }} photo" class="rounded"></td>
+            <td> <img src="{{ asset('images/' . $mainwarehouselist->product->image) }}" width="50" height="50" alt="{{ $mainwarehouselist->name }} photo" class="rounded"></td>
             <td>{{$mainwarehouselist->userName}}</td>
             <td>
                 <a href="{{ route('mainwarehouse.edit',$mainwarehouselist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
@@ -56,7 +57,6 @@
         @endforeach
     </tbody>
   </table>
-    {{$mainwarehouse->links()}}
   </div>
 
 
@@ -64,22 +64,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection
-<script>
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var id = $(this).data('id'); 
-         
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '/changeStatus',
-            data: {'status': status, 'id': id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
-</script>

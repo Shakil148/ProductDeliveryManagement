@@ -19,8 +19,12 @@
           <td>Contact</td>
           <td>Address</td>
           <td>Status</td>
-          <td>balance</td>
-          <td colspan = 4 class="text-center">Actions</td>
+          <td>Balance</td>
+          <td>Statements</td>
+          <td>Payment</td>
+          <td>Invoice</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     
@@ -34,6 +38,15 @@
             <td>{{$dealerlist->address}}</td>
             <td>{{$dealerlist->status}}</td>
             <td>{{$dealerlist->amount}}</td>
+            <td class="text-center">
+                <a href="{{ route('dealer.summary',$dealerlist->id)}}" class="btn btn-body"><i class="fa fa-retweet green"></i></a>
+            </td>
+            <td class="text-center">
+                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pa">Pay</i></a>
+            </td>
+            <td>
+                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">Invoice</i></a>
+            </td>
             <td>
                 <a href="{{ route('dealer.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -44,12 +57,6 @@
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form>
-            </td>
-            <td>
-                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-dark"><i class="fab fa-amazon-pa">Pay</i></a>
-            </td>
-            <td>
-                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">Invoice</i></a>
             </td>
         </tr>
         @endforeach

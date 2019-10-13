@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use SGFL\Dealer;
 use SGFL\Payment;
 use SGFL\DealerBalance;
+use SGFL\DealerInvoice;
+use SGFL\AccountSummary;
 
 class DealerController extends Controller
 {
@@ -19,11 +21,11 @@ class DealerController extends Controller
     {
         
         $dealer = Dealer::orderBy('created_at', 'desc')->paginate(8);        
-        $dealersPayment=Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
-       ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
-       ->groupBy('dealers.id')
-       ->get();
-        return view('dealer.index', compact('dealer','dealersPayment'));
+    //     $dealersPayment = Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
+    //    ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
+    //    ->groupBy('dealers.id')
+    //    ->get();
+        return view('dealer.index', compact('dealer'));
     }
     
 
@@ -46,7 +48,7 @@ class DealerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required', 
+            'name'=>['required', 'unique:dealers'], 
             'code'=>['required', 'unique:dealers'],
             'contact'=>'required',
             'address'=>'required',
@@ -94,6 +96,23 @@ class DealerController extends Controller
         return view('dealer.edit', compact('dealer'));
     }
 
+    public function accountSummary($id){
+        // $accountSummary = AccountSummary::find($id);
+        // return view('dealer.accountSummary', compact('accountSummary'));
+        $accountSummary = Dealer::with('accountSummary')
+        ->where('id','=',$id)->get();
+        return view('dealer.accountSummary',compact('accountSummary'));
+
+    }
+    public function accountSummaryPrint($id){
+        // $accountSummary = AccountSummary::find($id);
+        // return view('dealer.accountSummary', compact('accountSummary'));
+        $accountSummary = Dealer::with('accountSummary')
+        ->where('id','=',$id)->get();
+        return view('dealer.accountSummaryPrint',compact('accountSummary'));
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -104,7 +123,7 @@ class DealerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required', 
+            'name'=>['required', 'unique:dealers'], 
             'code'=>['required', 'unique:dealers'],
             'contact'=>'required',
             'address'=>'required',

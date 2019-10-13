@@ -37,4 +37,8 @@ class Dealer extends Model
     {
         return $this->hasOne('SGFL\DealerInvoice','dealerId','id');
     }
+    public function accountSummary()
+    {
+        return $this->hasMany('SGFL\AccountSummary','dealerId','id');
+    }
 }

@@ -6,7 +6,7 @@
         <div class="col-md-16">
             <div class="card">
             <h3 class="display-5 text-center mt-2 bg-secondary">All Invoiced Products </h3>
-   
+ 
  <div class="table-hover table-striped table-bordered ">
 <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead class="bg-dark">
@@ -18,7 +18,8 @@
           <td>Free Unit</td>
           <td>Total Unit</td>
           <td>Total Price</td>
-          <td colspan = 2 class="text-center">Actions</td>
+          <td>Edit</td>
+          <td>Delete</td>
         </tr>
     </thead>
     

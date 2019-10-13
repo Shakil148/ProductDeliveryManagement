@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
-    <h1 class="display-5 text-center mt-2 bg-secondary">Create New User</h1>
+    <h1 class="display-5 text-center mt-2 bg-secondary">New User Form</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -69,7 +69,7 @@
               <label for="image">Image:</label>
               <input type="file" class="form-control" name="image"/>
           </div>                       
-          <button type="submit" class="btn btn-primary mb-5">Add User</button>
+          <button type="submit" class="btn btn-primary mb-5">Create User</button>
       </form>
   </div>
 </div>
