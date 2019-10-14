@@ -105,6 +105,11 @@ class DealerBalanceRecordController extends Controller
         return view('balance.edit', compact('dealer','newPaymentId','balance'));
     }
 
+    public function balanceEdit($id){
+        $balanceRecord = DealerBalanceRecord::find($id);
+        return view('balance.balanceEdit', compact('balanceRecord'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -115,7 +120,9 @@ class DealerBalanceRecordController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'paymentNo' => ['required','unique:dealer_balance_records'],
             'type'=>'required',
+            'date'=>'required',
             'amount'=>'required',
             'status'=>'required',
         ]);
@@ -147,6 +154,26 @@ class DealerBalanceRecordController extends Controller
         
         
         return redirect()->back()->with('success','Payment insert successfully');
+    }
+    public function balanceUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'type'=>'required',
+            'status'=>'required',
+        ]);
+
+        $dealerbalancerecord = DealerBalanceRecord::find($id);
+        $dealerbalancerecord->type = $request->get('type');
+        $dealerbalancerecord->accountNo = $request->get('accountNo');
+        $dealerbalancerecord->bankName = $request->get('bankName');
+        $dealerbalancerecord->date = $request->get('date');
+        $dealerbalancerecord->status = $request->get('status');
+        $dealerbalancerecord->comment = $request->get('comment');
+        //$dealerbalancerecord->userName = Auth::user()->name;
+        $dealerbalancerecord->save();
+                
+        
+        return redirect()->back()->with('success','Payment updated successfully');
     }
 
     /**

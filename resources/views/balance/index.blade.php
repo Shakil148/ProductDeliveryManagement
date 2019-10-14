@@ -23,6 +23,7 @@
             <td>#</td>
             <td>Dealer Name</td>
             <td>Code</td>
+            <td>Payment No</td>
             <td>Payment Type</td>
             <td>Date</td>
             <td>Account No</td>
@@ -43,6 +44,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$paymentlist->dealer->name}}</td>
                 <td>{{$paymentlist->dealer->code}}</td>
+                <td>{{$paymentlist->paymentNo}}</td>
                 <td>{{$paymentlist->type}}</td>
                 <td>{{date('d-m-y',strtotime($paymentlist->date))}}</td>
                 <td>{{$paymentlist->accountNo}}</td>
@@ -55,7 +57,7 @@
                     <a target="_blank" href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('balance.balanceEdit', $paymentlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 </td>
                 <td>
                     <form onclick="return confirm('Are you sure?')" 

@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="form-group">    
-              <label for="status">Status:</label>
+              <label for="status">Payment Status:</label>
                 <select id='status' name='status' class="form-control">
                 <option value=''>-- Select Status --</option>
                     <option value='Paid'>Paid</option>
@@ -75,7 +75,7 @@
             </div>
           <div class="form-group">
         <label for="comment">Comment:</label>
-        <textarea class="form-control mb-3" rows="3" id="comment" name="comment"></textarea>
+        <textarea class="form-control mb-3" rows="3" id="comment" name="comment">{{ old('comment')}}</textarea>
       </div>
             <button onclick="return confirm('Will you Sure To Submit Payment?')" type="submit" class="btn btn-primary">Add Payment</button>
         </form>

@@ -138,7 +138,7 @@
       </div>
       <div class="col-md-3">
         <label for="comment">Comment:</label>
-        <textarea class="form-control mb-3" value="{{ old('comment')}}" rows="3" id="comment" name="comment"></textarea>
+        <textarea class="form-control mb-3" rows="3" id="comment" name="comment">{{ old('comment')}}</textarea>
       </div>
       <button onclick="return confirm('Will you Sure To Submit Invoice?')"type="submit" class="btn btn-success mb-5">Add Invoice</button>
     </form>

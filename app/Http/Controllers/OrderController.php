@@ -73,6 +73,11 @@ class OrderController extends Controller
         $product = Product::with('dealerInvoiceDetail')->get();
         return view('order.invoice', compact('dealer','newOrderId','product'));
     }
+    public function invoiceEdit($id)
+    {
+        $dealerInvoice = DealerInvoice::find($id);
+        return view('order.invoiceEdit', compact('dealerInvoice'));
+    }
 
     
     /**
@@ -173,6 +178,24 @@ class OrderController extends Controller
         
 
         return redirect()->back()->with('success','Invoice Created successfully');
+    }
+    public function invoiceUpdate(Request $request,$id){
+        $request->validate([
+            'date' => 'required',
+        ]);
+
+        $dealerInvoice = DealerInvoice::find($id);
+        $dealerInvoice->date = $request->get('date');
+        $dealerInvoice->comment = $request->get('comment');
+        $dealerInvoice->truckNo = $request->get('truckNo');
+        $dealerInvoice->driverName = $request->get('driverName');
+        $dealerInvoice->driverMobile = $request->get('driverMobile');
+        //$dealerInvoice->userName = Auth::user()->name;
+        $dealerInvoice->save();
+        
+        
+
+        return redirect()->back()->with('success','Invoice Updated successfully');
     }
     
         // for($i = 0; $i < 100; ++$i){

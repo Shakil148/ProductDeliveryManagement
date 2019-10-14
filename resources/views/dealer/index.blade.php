@@ -42,10 +42,10 @@
                 <a href="{{ route('dealer.summary',$dealerlist->id)}}" class="btn btn-body"><i class="fa fa-retweet green"></i></a>
             </td>
             <td class="text-center">
-                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pa">Pay</i></a>
+                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pa">PAY</i></a>
             </td>
             <td>
-                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">Invoice</i></a>
+                <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">INV</i></a>
             </td>
             <td>
                 <a href="{{ route('dealer.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>

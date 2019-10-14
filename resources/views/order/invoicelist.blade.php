@@ -13,6 +13,7 @@
         <tr>
           <td>#</td>
           <td>Dealer Name</td>
+          <td>Code</td>
           <td>Invoice No</td>
           <td>Date</td>
           <td>Grand Unit</td>
@@ -34,6 +35,7 @@
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
             <td>{{$invoiceList->dealer->name}}</td>
+            <td>{{$invoiceList->dealer->code}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
             <td>{{date('d-m-y',strtotime($invoiceList->date))}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
@@ -51,7 +53,7 @@
             </td>
 
             <td>
-                <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('order.invoiceEdit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 

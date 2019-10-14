@@ -123,8 +123,8 @@ class DealerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>['required', 'unique:dealers'], 
-            'code'=>['required', 'unique:dealers'],
+            'name'=>['required'], 
+            'code'=>['required'],
             'contact'=>'required',
             'address'=>'required',
             'status'=>'required',

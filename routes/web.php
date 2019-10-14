@@ -130,6 +130,12 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('product', 'ProductController',['parameters' => [
         'product' => 'admin_product'
     ]])->except(['index','create']);
+    Route::get('/dealerbalanceedit/{id}',[
+        'uses' => 'DealerBalanceRecordController@balanceEdit',
+        'as' => 'balance.balanceEdit']);
+    Route::patch('/dealerbalanceupdate/{id}',[
+        'uses' => 'DealerBalanceRecordController@balanceUpdate',
+        'as' => 'balance.balanceUpdate']);
     Route::resource('balance', 'DealerBalanceRecordController')->except(['index','edit','update']);
      Route::get('/localwarehouseorder',[
         'uses' => 'WarehouseOrderController@order',
@@ -159,6 +165,12 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('mainwarehouse', 'MainWarehouseController')->except(['index','create']);   
     Route::resource('dealer', 'DealerController')->except(['index','create']);
     Route::resource('distributor', 'DistributorController')->except(['index','create']);
+    Route::get('/dealerinvoiceedit/{id}',[
+        'uses' => 'OrderController@invoiceEdit',
+        'as' => 'order.invoiceEdit']);
+    Route::post('/dealerinvoiceupdate/{id}',[
+        'uses' => 'OrderController@invoiceUpdate',
+        'as' => 'order.invoiceUpdate']);
     Route::resource('order', 'OrderController');
 
   });
