@@ -29,7 +29,7 @@
           </div>
           <div class="form-group">
           <label for="date">Date:</label>
-            <div id="datetimepicker1" class="input-append date">
+            <div class="input-append date">
               <input type="date" name="date"  class="form-control" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
           </div>

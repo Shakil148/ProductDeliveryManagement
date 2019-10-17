@@ -262,12 +262,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 // Basic example of pagination
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable({
-    "paging": true // false to disable pagination (or any other option)
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
 
 //datetime picker
   $(function() {

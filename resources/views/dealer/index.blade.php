@@ -61,7 +61,6 @@
         </tr>
         @endforeach
     </tbody>
-    {{$dealer->links()}}
   </table>
   </div>
 
@@ -70,4 +69,10 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#dtBasicExample').DataTable( {
+    } );
+} );
+</script>
 @endsection

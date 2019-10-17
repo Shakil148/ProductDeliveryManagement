@@ -41,7 +41,7 @@
                 <input type="number" min="0" class="form-control" name="unit" value="{{ $product->unit }}" />
             </div>
             <div class="form-group">
-            <div id="datetimepicker1" class="input-append date">
+            <div  class="input-append date">
                 <label for="date">Date:</label>
                 <input type="date" name="date" class="form-control" type="text" value="{{ $product->date }}" />
             </div>

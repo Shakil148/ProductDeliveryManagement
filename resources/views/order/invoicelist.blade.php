@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<script src="https://cdn.datatables.net/plug-ins/1.10.20/api/sum().js"></script>
 <div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-16">
@@ -15,9 +16,9 @@
           <td>Dealer Name</td>
           <td>Code</td>
           <td>Invoice No</td>
-          <td>Date</td>
+          <td>InvDate</td>
           <td>Grand Unit</td>
-          <td>Grand Price</td>
+          <td class="text-center">Grand Price</td>
           <td>Truck No</td>
           <td>Driver Name</td>
           <td>Driver Mobile</td>
@@ -37,9 +38,9 @@
             <td>{{$invoiceList->dealer->name}}</td>
             <td>{{$invoiceList->dealer->code}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
-            <td>{{date('d-m-y',strtotime($invoiceList->date))}}</td>
+            <td>{{date('d-m-y', strtotime($invoiceList->date))}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
-            <td>{{$invoiceList->totalPrice}}</td>
+            <td class="text-center">{{$invoiceList->totalPrice}}</td>
             <td>{{$invoiceList->truckNo}}</td>
             <td>{{$invoiceList->driverName}}</td>
             <td>{{$invoiceList->driverMobile}}</td>
@@ -67,6 +68,26 @@
         @endforeach
 
     </tbody>
+    <tfoot>
+        <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+        </tr>
+    </tfoot>
   </table>
   </div>
 
@@ -75,4 +96,34 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+
+// SUM PLUGIN
+jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+    return this.flatten().reduce( function ( a, b ) {
+        if ( typeof a === 'string' ) {
+            a = a.replace(/[^\d.-]/g, '') * 1;
+        }
+        if ( typeof b === 'string' ) {
+            b = b.replace(/[^\d.-]/g, '') * 1;
+        }
+
+        return a + b;
+    }, 0 );
+} );
+
+$('#dtBasicExample').DataTable({
+    "footerCallback": function () {
+        var api = this.api(),
+            columns = [5, 6]; // Add columns here
+
+        for (var i = 0; i < columns.length; i++) {
+            $('tfoot th').eq(columns[i]).html('Page: ' + api.column(columns[i], { filter: 'applied', page: 'current' }).data().sum() + '<br>');
+            $('tfoot th').eq(columns[i]).append('All: ' + api.column(columns[i], {filter: 'applied'}).data().sum() );
+        }
+    }
+});
+})
+</script>
 @endsection

@@ -25,15 +25,19 @@
 
             <div class="form-group">
                 <label for="price">Code:</label>
-                <input type="text"  class="form-control" name="code" value="{{ $dealer->code }}" />
+                <input type="text"  class="form-control" name="code" value="{{ $dealer->code }}" readonly/>
             </div>
             <div class="form-group">
                 <label for="price">Contact:</label>
                 <input type="number" min="0" class="form-control" name="contact" value="{{ $dealer->contact }}" />
             </div>
+            <div class="form-group">
+                <label for="balance">Balance:</label>
+                <input type="number" class="form-control" name="amount" value="{{ $dealer->amount }}" />
+            </div>
 
             <div class="form-group">
-                <label for="unit">Address:</label>
+                <label for="address">Address:</label>
                 <input type="text" class="form-control" name="address" value="{{ $dealer->address }}" />
             </div>
             <div class="form-group">    

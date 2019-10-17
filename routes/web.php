@@ -89,6 +89,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/accountsummaryprint/{id}',[ 
         'uses' => 'DealerController@accountSummaryPrint',
         'as' => 'accountSummary.print']);
+    Route::delete('/accountsummarydestroy/{id}',[ 
+        'uses' => 'DealerController@summaryDestroy',
+        'as' => 'accountSummary.destroy']);
     Route::resource('dealer', 'DealerController');
     // Route::get('/paymentcreate/{id}',[
     //     'uses' => 'PaymentController@paymentCreate',

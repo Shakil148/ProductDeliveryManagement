@@ -51,9 +51,9 @@
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Price</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
                                 </thead> 
                                 <tbody>
@@ -63,9 +63,9 @@
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
                                         <td>{{$invoiceList->freeUnit}}</td>
+                                        <td>{{$invoiceList->totalUnit}}</td>
                                         <td>{{$invoiceList->price}}</td>
                                         <td>{{$invoiceList->total}}</td>
-                                        <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

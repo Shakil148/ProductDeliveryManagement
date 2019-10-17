@@ -23,7 +23,7 @@
 
           <div class="form-group">
               <label for="code">Code:</label>
-              <input type="text" class="form-control" name="code"/>
+              <input type="text" value = {{$newId}} class="form-control" name="code" readonly/>
           </div>
 
           <div class="form-group">

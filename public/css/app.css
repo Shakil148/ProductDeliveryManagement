@@ -171,6 +171,7 @@ a {
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  font-size: 20px;
 }
 
 a:hover {
@@ -223,6 +224,9 @@ svg:not(:root) {
 table {
   border-collapse: collapse;
 }
+td {
+  font-size: 20px;
+}
 
 caption {
   padding-top: 0.75rem;
@@ -263,7 +267,7 @@ textarea {
 
 button,
 input {
-  overflow: visible;
+  overflow: visible;  
 }
 
 button,
@@ -484,7 +488,7 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
+  max-width: 200%;
   height: auto;
 }
 
@@ -3683,8 +3687,9 @@ input[type="button"].btn-block {
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   list-style: none;
+  font-size: 22px;
 }
 
 .nav-link {
@@ -10265,6 +10270,7 @@ body,
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar > .nav-item > .nav-link > span {
     display: inline-block !important;
+    font-size: 20px;
   }
   .sidebar-mini.sidebar-collapse .visible-sidebar-mini {
     display: block !important;

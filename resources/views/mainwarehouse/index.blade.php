@@ -65,5 +65,10 @@
     </div>
 </div>
 
-
+<script>
+$(document).ready(function() {
+    $('#dtBasicExample').DataTable( {
+    } );
+} );
+</script>
 @endsection

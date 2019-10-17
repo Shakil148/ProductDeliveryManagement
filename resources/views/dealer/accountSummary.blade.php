@@ -10,6 +10,11 @@
         <div class="col-md-16">
             <div class="card">
             <h3 class="display-5 text-center mt-2 bg-secondary">Dealers Account Summary</h3>
+            @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+            @endif
             <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
             <i class="fa fa-calendar"></i>&nbsp;
             <span></span> <i class="fa fa-caret-down"></i>
@@ -33,7 +38,7 @@
       </div>
     </form> -->
     
-    <table class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
+    <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
         <thead class="bg-dark">
             <tr>
             <td>Date</td>
@@ -41,6 +46,7 @@
             <td>Paid Amount</td>
             <td>DO Amount</td>
             <td>Balance</td>
+            <td>Delete</td>
 
             </tr>
         </thead>
@@ -53,9 +59,23 @@
                 <td>{{$paymentlist->paidAmount}}</td>
                 <td>{{$paymentlist->doAmount}}</td>
                 <td step = "0">{{$paymentlist->balance}}</td>
+                <td>
+                <form onclick="return confirm('Are you sure?')" 
+                action="{{ route('accountSummary.destroy', $paymentlist->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                </form>
+            </td>
             </tr>
             @endforeach
         </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="3" style="text-align:right">Total:</th>
+            <th></th>
+        </tr>
+    </tfoot>
     </table>
 
     </div>

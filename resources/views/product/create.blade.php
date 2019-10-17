@@ -39,7 +39,7 @@
           </div>
           <div class="form-group">
           <label for="date">Date:</label>
-            <div id="datetimepicker1" class="input-append date">
+            <div class="input-append date">
               <input type="date" name="date"  class="form-control" data-format="mm/dd/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
           </div>
@@ -53,11 +53,11 @@
 </div>
 </div>
 
+@endsection
 <script>
     $( function() {
         $('.date').datepicker(); 
         format: 'dd/mm/yy'       
     });
 </script>
-@endsection
 

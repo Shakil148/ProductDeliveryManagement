@@ -79,4 +79,10 @@
     })
   })
 </script>
+<script>
+$(document).ready(function() {
+    $('#dtBasicExample').DataTable( {
+    } );
+} );
+</script>
 @endsection

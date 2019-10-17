@@ -114,18 +114,21 @@ class OrderController extends Controller
             // 'unit'=>'required',
             // 'image'=>'required',
             'invoiceNo' => ['required','unique:dealer_invoices'],
+            'driverMobile'=>['required','min:11','max:11'],
             'product' => 'required',
             'date' => 'required',
         ]);
 
         $dealer = Dealer::find($id);
-       
+        $dealer->amount -= $request->get('totalPrice');
+        $dealer->save();
+        
         $dealerInvoice = new DealerInvoice;
         $dealerInvoice->dealerId =$id;
         $dealerInvoice->invoiceNo = $request->get('invoiceNo');
         $dealerInvoice->date = $request->get('date');
         $dealerInvoice->totalPrice = $request->get('totalPrice');
-        $dealerInvoice->remainBalance = $request->get('remainBalance');
+        $dealerInvoice->remainBalance = $dealer->amount;
         $dealerInvoice->grandTotalUnit = $request->get('grandTotalUnit');
         $dealerInvoice->comment = $request->get('comment');
         $dealerInvoice->truckNo = $request->get('truckNo');
@@ -143,8 +146,7 @@ class OrderController extends Controller
         //     'comment' => $request['comment'],
         //     ]
         // )->id;
-        $dealer->amount -= $request->get('totalPrice');
-        $dealer->save();
+
 
         $accountSummary = new AccountSummary;
         $accountSummary->dealerId =$id;
@@ -182,6 +184,7 @@ class OrderController extends Controller
     public function invoiceUpdate(Request $request,$id){
         $request->validate([
             'date' => 'required',
+            'driverMobile'=>['required','min:11','max:11'],
         ]);
 
         $dealerInvoice = DealerInvoice::find($id);

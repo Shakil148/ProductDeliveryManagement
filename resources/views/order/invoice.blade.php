@@ -38,8 +38,8 @@
             </div>
               
             <div class="text-right mb-5">
-              <label>Date:</label>
-              <input type="date" name="date"  class="col-md-2" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date"  class="col-md-2" data-format="dd/MM/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
 
         
@@ -74,12 +74,12 @@
                   <option disabled selected>-- Select Product --</option>
                   <!-- Read Products -->
                   @foreach($product as $productlist)
-                    <option data-price='{{ $productlist->unit }}' data-selected-value="{{ old('$productlist->name') }}">{{ $productlist->name }}</option>
+                    <option data-price='{{ $productlist->unit }}' >{{ $productlist->name }}{{ old('$product->name') }}</option>
                   @endforeach
                 </select>
             </div>
             </td>
-            <td><input type="number" name='invoiceUnit[]'     placeholder='Enter Qty' class="form-control qty" step="0" min="0" value="{{ old('invoiceUnit[]')}}"/></td>
+            <td><input type="number" name='invoiceUnit[]'placeholder='Enter Qty' class="form-control qty" value="{{ old('invoiceUnit[]')}}" step="0" min="0" /></td>
             <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0" value="{{ old('freeUnit[]')}}"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
             <td>
@@ -113,7 +113,7 @@
             <td><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
             <td><input type="text" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
             <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
-            <td><input type="number" class="form-group" name='remainBalance' id="total_amount"  placeholder="{{$dealer->amount}}"value="{{$dealer->amount}}" class="form-control" readonly/></td>
+            <td><input type="number" class="form-group" name='remainBalance' id="total_amount"  placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
           </tr>
           <!-- <tr>
             <th class="text-center">Tax</th>
@@ -129,13 +129,23 @@
         </tbody>
       </table>
       <div class="form-group ">
+            <div class="text-left"><label for="vehicleInfo " class="text-muted  h4 p-2">Vehicle Information</label></div>
             <label for="truckNo">Truck No:</label>
-            <input type="text" value="{{ old('truckNo')}}" class="col-md-2" name="truckNo"/>
+            <input type="text" id="truckNo" value="{{ old('truckNo')}}" class="col-md-2" name="truckNo"/>
             <label for="driverName">Driver Name:</label>
-            <input type="text" value="{{ old('driverName')}}" class="col-md-3" name="driverName"/>
+            <input type="text" id="driverName" value="{{ old('driverName')}}" class="col-md-3" name="driverName"/>
             <label for="driverMobile">Driver Mobile:</label>
-            <input type="text" value="{{ old('driverMobile')}}" class="col-md-3" name="driverMobile"/>
+            <input type="text"id="driverMobile" value="{{ old('driverMobile')}}" class="col-md-3" name="driverMobile"/>
       </div>
+      <!-- <div class="form-group ">
+            <div><label for="depoInfo" class="text-muted text-center">Depo Info...</label></div>
+            <label for="depoName">Depo Name:</label>
+            <input type="text" value="{{ old('depoName')}}" class="col-md-3" name="depoName"/>
+            <label for="depoLocation">Depo Location:</label>
+            <input type="text" value="{{ old('depoLocation')}}" class="col-md-3" name="depoLocation"/>
+            <label for="depoContact">Depo Contact:</label>
+            <input type="text" value="{{ old('depoContact')}}" class="col-md-3" name="depoContact"/>
+      </div> -->
       <div class="col-md-3">
         <label for="comment">Comment:</label>
         <textarea class="form-control mb-3" rows="3" id="comment" name="comment">{{ old('comment')}}</textarea>

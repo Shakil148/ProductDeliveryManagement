@@ -20,7 +20,7 @@ class DealerController extends Controller
     public function index()
     {
         
-        $dealer = Dealer::orderBy('created_at', 'desc')->paginate(8);        
+        $dealer = Dealer::orderBy('created_at', 'desc')->get();        
     //     $dealersPayment = Dealer::leftJoin('payments', 'dealers.id', '=', 'payments.dealerId')
     //    ->select(\DB::raw('dealers.id, SUM(payments.amount) as balance'))
     //    ->groupBy('dealers.id')
@@ -35,8 +35,16 @@ class DealerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('dealer.create');
+    {        
+        $lastId = Dealer::orderBy('id', 'desc')->first()->code;
+
+
+        $lastIncreament = substr($lastId, -4);
+
+        // Make a new dealer code with appending last increment + 1
+        $newId = '' . date('') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+
+        return view('dealer.create', compact('newId'));
     }
 
     /**
@@ -50,7 +58,7 @@ class DealerController extends Controller
         $request->validate([
             'name'=>['required', 'unique:dealers'], 
             'code'=>['required', 'unique:dealers'],
-            'contact'=>'required',
+            'contact'=>['required','min:11','max:11'],
             'address'=>'required',
             'status'=>'required',
         ]);
@@ -125,7 +133,7 @@ class DealerController extends Controller
         $request->validate([
             'name'=>['required'], 
             'code'=>['required'],
-            'contact'=>'required',
+            'contact'=>['required','min:11','max:11'],
             'address'=>'required',
             'status'=>'required',
         ]);
@@ -133,6 +141,7 @@ class DealerController extends Controller
         $dealer->name =  $request->get('name');
         $dealer->code =  $request->get('code');
         $dealer->contact = $request->get('contact');
+        $dealer->amount = $request->get('amount');
         $dealer->address = $request->get('address');
         $dealer->status = $request->get('status');
         $dealer->save();
@@ -153,6 +162,13 @@ class DealerController extends Controller
         $dealer->delete();
 
         return redirect('/dealer')->with('success', 'Dealer deleted!');
+    }
+    public function summaryDestroy($id)
+    {
+        $summary = AccountSummary::find($id);
+        $summary->delete();
+
+        return redirect()->back()->with('success','Summary Deleted');
     }
 }
 
