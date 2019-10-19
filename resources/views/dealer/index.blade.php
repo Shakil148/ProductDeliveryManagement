@@ -5,9 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 bg-secondary">Dealers List</h3>
-    <div>
-    <a style="margin: 19px;" href="{{ route('dealer.create')}}" class="btn btn-primary">New Dealer</a>
+                <h3 class="display-5 text-center mt-2 bg-secondary">Dealers List</h3>
+                <div>
+        @if( ( Auth::user()->role ) != "viewer" )
+        <a style="margin: 19px;" href="{{ route('dealer.create')}}" class="btn btn-primary">New Dealer</a>
+        @endif
     </div>
  <div class="table-hover table-striped table-bordered ">
  <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
@@ -18,13 +20,19 @@
           <td>Code</td>
           <td>Contact</td>
           <td>Address</td>
-          <td>Status</td>
+          <td>Status</td>         
+          @if( ( Auth::user()->role ) == "admin" )
           <td>Balance</td>
+          @endif
           <td>Statements</td>
-          <td>Payment</td>
           <td>Invoice</td>
+          @if( ( Auth::user()->role ) != "viewer" )
+          <td>Payment</td>
+          @if( ( Auth::user()->role ) == "admin" )
           <td>Edit</td>
           <td>Delete</td>
+          @endif
+          @endif
         </tr>
     </thead>
     
@@ -37,16 +45,20 @@
             <td>{{$dealerlist->contact}}</td>
             <td>{{$dealerlist->address}}</td>
             <td>{{$dealerlist->status}}</td>
+            @if( ( Auth::user()->role ) == "admin" )
             <td>{{$dealerlist->amount}}</td>
+            @endif
             <td class="text-center">
                 <a href="{{ route('dealer.summary',$dealerlist->id)}}" class="btn btn-body"><i class="fa fa-retweet green"></i></a>
-            </td>
-            <td class="text-center">
-                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pa">PAY</i></a>
             </td>
             <td>
                 <a href="{{ route('order.invoice',$dealerlist->id)}}" class="btn btn-success"><i class="fas fa-truck-movin">INV</i></a>
             </td>
+            @if( ( Auth::user()->role ) != "viewer" )
+            <td class="text-center">
+                <a href="{{ route('balance.edit',$dealerlist->id)}}" class="btn btn-warning"><i class="fab fa-amazon-pa">PAY</i></a>
+            </td>
+            @if( ( Auth::user()->role ) == "admin" )
             <td>
                 <a href="{{ route('dealer.edit',$dealerlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -58,6 +70,8 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form>
             </td>
+            @endif
+            @endif
         </tr>
         @endforeach
     </tbody>

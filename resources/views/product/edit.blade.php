@@ -33,17 +33,24 @@
 
             <div class="form-group">
                 <label for="price">Per Price:</label>
-                <input type="number" min="0" class="form-control" name="price" value="{{ $product->price }}" />
+                <input type="text" min="0" class="form-control" name="price" value="{{ $product->price }}" />
             </div>
 
             <div class="form-group">
                 <label for="unit">Unit Price:</label>
-                <input type="number" min="0" class="form-control" name="unit" value="{{ $product->unit }}" />
+                <input type="text" min="0" class="form-control" name="unit" value="{{ $product->unit }}" />
             </div>
             <div class="form-group">
             <div  class="input-append date">
                 <label for="date">Date:</label>
                 <input type="date" name="date" class="form-control" type="text" value="{{ $product->date }}" />
+            </div>
+            <div class="form-group">    
+              <label for="status">Status:</label>
+                <select id='status' name='status' class="form-control">
+                    <option {{ $product->status == 'Active' ? 'selected':'' }}>Active</option>
+                    <option {{ $product->status == 'Inactive' ? 'selected':'' }}>Inactive</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="image">image:</label>

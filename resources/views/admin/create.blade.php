@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+@if( ( Auth::user()->role ) == "admin" )
 <div class="row">
  <div class="col-sm-6 offset-sm-2">
     <h1 class="display-5 text-center mt-2 bg-secondary">New User Form</h1>
@@ -74,6 +75,17 @@
   </div>
 </div>
 </div>
+@else
+        <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="card">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
+                 <h2>Youre is Not Admin</h2>
+            </div>
+        </div>
+      </div>
+    </div>
+@endif
 @endsection
 
                            

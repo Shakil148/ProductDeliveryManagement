@@ -1,11 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
+@if( ( Auth::user()->role ) == "admin" )
 <div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-16">
     <h3 class="display-5 text-center bg-secondary">All Users List</h3>   
     <div>
+    <div class="col-sm-12">
+
+                @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}  
+                </div>
+                @endif
+    </div>
     <a style="margin: 19px;" href="{{ route('user.create')}}" class="btn btn-primary">New User</a>
     </div> 
   <div class="table-hover table-striped table-bordered ">
@@ -58,14 +67,7 @@
   </div>
  
 </tbody>
-        <div class="col-sm-12">
-
-                @if(session()->get('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}  
-                </div>
-                @endif
-        </div>
+        
 </div>
 </div>
 </div>
@@ -75,5 +77,15 @@ $(document).ready(function() {
     } );
 } );
 </script>
-
+@else
+        <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="card">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
+                 <h2>You are  Not Admin</h2>
+            </div>
+        </div>
+      </div>
+    </div>
+@endif
 @endsection

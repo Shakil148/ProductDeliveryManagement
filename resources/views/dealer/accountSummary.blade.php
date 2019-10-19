@@ -26,6 +26,7 @@
             <h5 class="text-center red"><b>Dealer Name:{{$dealerlist->name}}</b></h5>
             <h5 class="text-center">Address:{{$dealerlist->address}}</h5>
             <h5 class="text-center">Code:{{$dealerlist->code}}</h5>
+            <h5 class="text-center">Code:{{$dealerlist->status}}</h5>
     <!-- SEARCH FORM -->
     <!-- <form action="/search" method="get" class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -46,7 +47,9 @@
             <td>Paid Amount</td>
             <td>DO Amount</td>
             <td>Balance</td>
+            @if( ( Auth::user()->role ) == "admin" )
             <td>Delete</td>
+            @endif
 
             </tr>
         </thead>
@@ -59,6 +62,7 @@
                 <td>{{$paymentlist->paidAmount}}</td>
                 <td>{{$paymentlist->doAmount}}</td>
                 <td step = "0">{{$paymentlist->balance}}</td>
+                @if( ( Auth::user()->role ) == "admin" )
                 <td>
                 <form onclick="return confirm('Are you sure?')" 
                 action="{{ route('accountSummary.destroy', $paymentlist->id)}}" method="post">
@@ -67,12 +71,13 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form>
             </td>
+            @endif
             </tr>
             @endforeach
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="3" style="text-align:right">Total:</th>
+            <th colspan="3" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>

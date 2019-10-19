@@ -1,5 +1,6 @@
 @extends('layouts.master') 
 @section('content')
+@if( ( Auth::user()->role ) != "viewer" )
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -22,6 +23,7 @@
                 {{Session::get('success')}}
             </div>
         @endif
+        @if($dealer->status != "Inactive")
         <form class = "mb-5" method="post" action="{{ route('balance.update', $dealer->id) }}">
             @method('PATCH') 
             @csrf
@@ -79,8 +81,30 @@
       </div>
             <button onclick="return confirm('Will you Sure To Submit Payment?')" type="submit" class="btn btn-primary">Add Payment</button>
         </form>
+        @else
+        <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="card">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
+                 <h2>Dealer is Not Active</h2>
+            </div>
+        </div>
+      </div>
+    </div>
+        @endif
     </div>
 </div>
+@else
+        <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="card">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
+                 <h2>You are  logged in as viewer </h2>
+            </div>
+        </div>
+      </div>
+    </div>
+@endif
 @endsection
 <script>
     $( function() {

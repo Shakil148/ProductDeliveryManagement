@@ -26,6 +26,7 @@
           {{Session::get('success')}}
       </div>
     @endif
+    @if($dealer->status != "Inactive")
     <form method="post" class="" action="{{ route('dealer.invoice', $dealer->id) }}">
           @csrf
           <div class="form-group col-md-12 text-center mb-2">    
@@ -74,7 +75,9 @@
                   <option disabled selected>-- Select Product --</option>
                   <!-- Read Products -->
                   @foreach($product as $productlist)
+                  @if($productlist->status != "Inactive")
                     <option data-price='{{ $productlist->unit }}' >{{ $productlist->name }}{{ old('$product->name') }}</option>
+                  @endif
                   @endforeach
                 </select>
             </div>
@@ -152,6 +155,17 @@
       </div>
       <button onclick="return confirm('Will you Sure To Submit Invoice?')"type="submit" class="btn btn-success mb-5">Add Invoice</button>
     </form>
+    @else
+        <div class="row justify-content-center">
+        <div class="col-md-16">
+            <div class="card">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
+                 <h2>Dealer is Not Active</h2>
+            </div>
+        </div>
+      </div>
+    </div>
+    @endif
     </div>
   </div>
 

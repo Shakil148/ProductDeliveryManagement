@@ -43,6 +43,14 @@
               <input type="date" name="date"  class="form-control" data-format="mm/dd/yyyy" type="text" value="{{ old('date')}}"/>
             </div>
           </div>
+          <div class="form-group">    
+              <label for="status">Status:</label>
+                <select id='status' name='status' class="form-control">
+                <option value=''>-- Select Status --</option>
+                    <option value='Active'>Active</option>
+                    <option value='Inactive'>Inactive</option>
+                </select>
+          </div>
           <div class="form-group">
               <label for="image">Image:</label>
               <input type="file" class="form-control" name="image"/>

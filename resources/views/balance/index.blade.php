@@ -38,8 +38,10 @@
             <td>Comments</td>
             <td>Action By</td>
             <td>Print</td>
+            @if( ( Auth::user()->role ) == "admin" )
             <td>Edit</td>
             <td>Delete</td>
+            @endif
             </tr>
         </thead>
         
@@ -61,6 +63,7 @@
                 <td>
                     <a target="_blank" href="{{ route('balance.print', $paymentlist->id)}}" class="btn btn-success"><i class="fa fa-print"></i></a>
                 </td>
+                @if( ( Auth::user()->role ) == "admin" )
                 <td>
                     <a href="{{ route('balance.balanceEdit', $paymentlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 </td>
@@ -72,6 +75,7 @@
                     <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                     </form class ="mb-2">
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>

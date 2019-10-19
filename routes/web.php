@@ -28,7 +28,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/tsm', 'TsmController@tsm');
     Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
-    Route::get('/changeStatus', 'ProductController@changeStatus');
     Route::resource('product', 'ProductController',['parameters' => [
         'product' => 'admin_product'
     ]]);
@@ -75,6 +74,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/invoicedetail/{id}',[
         'uses' => 'OrderController@invoiceDetail',
         'as' => 'invoice.detail']);
+    Route::get('/dealerinvoiceedit/{id}',[
+        'uses' => 'OrderController@invoiceEdit',
+        'as' => 'order.invoiceEdit']);
+    Route::post('/dealerinvoiceupdate/{id}',[
+        'uses' => 'OrderController@invoiceUpdate',
+        'as' => 'order.invoiceUpdate']);
     Route::resource('order', 'OrderController');
     Route::get('/distributorprint/{id}',[
         'uses' => 'DistributorController@distributorPrint',
@@ -103,6 +108,12 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::post('/create/{id}',[
     //     'uses' => 'DealerBalanceRecordController@store',
     //     'as' => 'balances.store']);
+    Route::get('/dealerbalanceedit/{id}',[
+        'uses' => 'DealerBalanceRecordController@balanceEdit',
+        'as' => 'balance.balanceEdit']);
+    Route::patch('/dealerbalanceupdate/{id}',[
+        'uses' => 'DealerBalanceRecordController@balanceUpdate',
+        'as' => 'balance.balanceUpdate']);
     Route::get('/dealerbalanceprint/{id}',[
         'uses' => 'DealerBalanceRecordController@balancePrint',
         'as' => 'balance.print']);
@@ -126,55 +137,9 @@ Route::get('/accounts', function(){
     echo "Hello Accounts";
 })->middleware('accounts');
 
-//Viewer all routes
-Route::group(['middleware' => 'admin'], function() {
-    Route::resource('user','AdminController');
-    
-    Route::resource('product', 'ProductController',['parameters' => [
-        'product' => 'admin_product'
-    ]])->except(['index','create']);
-    Route::get('/dealerbalanceedit/{id}',[
-        'uses' => 'DealerBalanceRecordController@balanceEdit',
-        'as' => 'balance.balanceEdit']);
-    Route::patch('/dealerbalanceupdate/{id}',[
-        'uses' => 'DealerBalanceRecordController@balanceUpdate',
-        'as' => 'balance.balanceUpdate']);
-    Route::resource('balance', 'DealerBalanceRecordController')->except(['index','edit','update']);
-     Route::get('/localwarehouseorder',[
-        'uses' => 'WarehouseOrderController@order',
-        'as' =>'warehouses.order']);
-    Route::get('/addtocart/{id}',[
-        'uses' =>  'WarehouseOrderController@getAddToCart',
-        'as' =>'warehouses.addtocart']);
-    Route::get('/reduce/{id}',[
-        'uses' => 'WarehouseOrderController@getReducebyOne',
-        'as' => 'warehouses.reducebyone'
-    ]);
-    Route::get('/remove/{id}',[
-        'uses' => 'WarehouseOrderController@getRemoveItem',
-        'as' => 'warehouses.removeitem'
-    ]);
-    Route::get('/add/{id}',[
-        'uses' => 'WarehouseOrderController@getAddByTen',
-        'as' => 'warehouses.addbyten'
-    ]);
-    Route::get('/shoppingcart', [
-        'uses' => 'WarehouseOrderController@getCart',
-        'as' => 'warehouses.shoppingcart']);
-    Route::get('/checkout',[
-        'uses' => 'WarehouseOrderController@getCheckout',
-        'as' => 'warehouses.checkout']);
-    Route::post('/checkout', 'WarehouseOrderController@postCheckout');
-    Route::resource('mainwarehouse', 'MainWarehouseController')->except(['index','create']);   
-    Route::resource('dealer', 'DealerController')->except(['index','create']);
-    Route::resource('distributor', 'DistributorController')->except(['index','create']);
-    Route::get('/dealerinvoiceedit/{id}',[
-        'uses' => 'OrderController@invoiceEdit',
-        'as' => 'order.invoiceEdit']);
-    Route::post('/dealerinvoiceupdate/{id}',[
-        'uses' => 'OrderController@invoiceUpdate',
-        'as' => 'order.invoiceUpdate']);
-    Route::resource('order', 'OrderController');
+//Admin all routes
+Route::group(['middleware' => 'admin'], function() {    
+
 
   });
 

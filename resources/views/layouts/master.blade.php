@@ -99,12 +99,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if( ( Auth::user()->role ) == "admin" )
               <li class="nav-item">
                 <a href="{{URL::to('user')}}"  class="nav-link">
                   <i class="fa fa-users nav-icon purple"></i>
                   <p>Users</p>
                 </a>
               </li>
+              @endif
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-truck-moving teal"></i>
@@ -130,6 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
             </ul>
           </li>
+          @if( ( Auth::user()->role ) != "viewer" )
           <li class="nav-item">
             <a href="{{URL::to('product')}}" class="nav-link ">
               <i class="nav-icon fas fa-cart-plus pink"></i>
@@ -138,6 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-warehouse ash"></i>
@@ -161,12 +165,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>Local Warehouse</p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="{{URL::to('dealer')}}"  class="nav-link">
               <i class="fas fa-user-tie nav-icon cyan"></i>
               <p>Dealer</p>
             </a>
           </li>
+          @if( ( Auth::user()->role ) != "viewer" )
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-luggage-cart red"></i>
@@ -207,6 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
               onclick="event.preventDefault();

@@ -54,6 +54,7 @@ class ProductController extends Controller
             'price'=>'required',
             'unit'=>'required',
             'image'=>'required',
+            'status'=>'required',
         ]);
 
         //$cover = $request->file('image');
@@ -66,6 +67,7 @@ class ProductController extends Controller
             'price' => $request->get('price'),
             'unit' => $request->get('unit'),
             'date' => $request->get('date'),
+            'status' => $request->get('status'),
             
         ]);
         //$product->mime = $cover->getClientMimeType();
@@ -119,6 +121,7 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'unit'=>'required',
+            'status'=>'required',
 
         ]);
         $product = Product::find($id);
@@ -126,6 +129,7 @@ class ProductController extends Controller
         $product->price = $request->get('price');
         $product->unit = $request->get('unit');
         $product->date = $request->get('date');
+        $product->status = $request->get('status');
         
         if ($request->hasfile('image')) {
             Storage::delete($product->image);

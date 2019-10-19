@@ -8,6 +8,7 @@ use SGFL\Payment;
 use SGFL\DealerBalance;
 use SGFL\DealerInvoice;
 use SGFL\AccountSummary;
+use Auth;
 
 class DealerController extends Controller
 {
@@ -36,15 +37,20 @@ class DealerController extends Controller
      */
     public function create()
     {        
-        $lastId = Dealer::orderBy('id', 'desc')->first()->code;
+        if( ( Auth::user()->role ) != "viewer" ){
+            $lastId = Dealer::orderBy('id', 'desc')->first()->code;
 
 
-        $lastIncreament = substr($lastId, -4);
+            $lastIncreament = substr($lastId, -4);
 
-        // Make a new dealer code with appending last increment + 1
-        $newId = '' . date('') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+            // Make a new dealer code with appending last increment + 1
+            $newId = '' . date('') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
 
-        return view('dealer.create', compact('newId'));
+            return view('dealer.create', compact('newId'));
+        }
+        else{
+            return view('viewer.page');
+        }
     }
 
     /**
@@ -100,8 +106,10 @@ class DealerController extends Controller
      */
     public function edit($id)
     {
+        if( ( Auth::user()->role ) != "viewer" ){
         $dealer = Dealer::find($id);
         return view('dealer.edit', compact('dealer'));
+        }
     }
 
     public function accountSummary($id){
@@ -110,6 +118,7 @@ class DealerController extends Controller
         $accountSummary = Dealer::with('accountSummary')
         ->where('id','=',$id)->get();
         return view('dealer.accountSummary',compact('accountSummary'));
+        
 
     }
     public function accountSummaryPrint($id){
@@ -118,6 +127,7 @@ class DealerController extends Controller
         $accountSummary = Dealer::with('accountSummary')
         ->where('id','=',$id)->get();
         return view('dealer.accountSummaryPrint',compact('accountSummary'));
+        
 
     }
 
@@ -165,10 +175,15 @@ class DealerController extends Controller
     }
     public function summaryDestroy($id)
     {
+        if( ( Auth::user()->role ) == "admin" ){
         $summary = AccountSummary::find($id);
         $summary->delete();
 
         return redirect()->back()->with('success','Summary Deleted');
+        }
+        else{
+            return redirect()->back()->with('success','You are not Admin');
+        }
     }
 }
 

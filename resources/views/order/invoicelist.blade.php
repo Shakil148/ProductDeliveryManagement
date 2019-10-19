@@ -7,6 +7,16 @@
         <div class="col-md-16">
             <div class="card">
             <h3 class="display-5 text-center mt-2 bg-secondary">Invoice List</h3>
+            @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+            @endif
+            @if(Session::has('failed'))
+            <div class="alert alert-danger">
+                {{Session::get('failed')}}
+            </div>
+            @endif
 
  <div class="table-hover table-striped table-bordered ">
 <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
@@ -52,7 +62,6 @@
             <td class="text-center"> 
                 <a  target="_blank" href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
             </td>
-
             <td>
                 <a href="{{ route('order.invoiceEdit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>

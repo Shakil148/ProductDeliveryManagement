@@ -21,8 +21,10 @@
           <td>Status</td>
           <td>Image</td>
           <td>Action By</td>
+          @if( ( Auth::user()->role ) == "admin" )
           <td>Edit</td>
           <td>Delete</td>
+          @endif
         </tr>
     </thead>
     
@@ -34,11 +36,10 @@
             <td>{{$productlist->price}}</td>
             <td>{{$productlist->unit}}</td>
             <td>{{date('d-m-y',strtotime($productlist->date))}}</td>
-            <td>
-                <input data-id="{{$productlist->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $productlist->status ? 'checked' : '' }}>
-            </td>
+            <td>{{$productlist->status}}</td>
             <td> <img src="{{ asset('images/' . $productlist->image) }}" width="50" height="50" alt="{{ $productlist->title }} photo" class="rounded"></td>
             <td>{{$productlist->userName}}</td>
+            @if( ( Auth::user()->role ) == "admin" )
             <td>
                 <a href="{{ route('product.edit',$productlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
@@ -50,6 +51,7 @@
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
                 </form class ="mb-2">
             </td>
+            @endif
         </tr>
         @endforeach
     </tbody>
@@ -61,24 +63,7 @@
         </div>
     </div>
 </div>
-<script>
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var id = $(this).data('id'); 
-         
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '/changeStatus',
-            data: {'status': status, 'id': id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
-</script>
+
 <script>
 $(document).ready(function() {
     $('#dtBasicExample').DataTable( {

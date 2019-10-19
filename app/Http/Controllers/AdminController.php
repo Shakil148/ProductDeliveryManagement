@@ -130,7 +130,6 @@ class AdminController extends Controller
             'contact'=>'required',
             'email'=>'required',
             'designation'=>'required',
-            'image'=>'required'
         ]);
         $user = User::find($id);
         $user->name =  $request->get('name');

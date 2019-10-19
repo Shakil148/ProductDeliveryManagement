@@ -70,13 +70,20 @@ class OrderController extends Controller
         $newOrderId = 'INV' . date('md') . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
 
         $dealer = Dealer::find($id);
+ 
         $product = Product::with('dealerInvoiceDetail')->get();
         return view('order.invoice', compact('dealer','newOrderId','product'));
+
     }
     public function invoiceEdit($id)
     {
+        if( ( Auth::user()->role ) == "admin" ){
         $dealerInvoice = DealerInvoice::find($id);
         return view('order.invoiceEdit', compact('dealerInvoice'));
+        }
+        else{
+            return redirect()->back()->with('failed','You are not Admin');
+        }
     }
 
     
@@ -182,6 +189,7 @@ class OrderController extends Controller
         return redirect()->back()->with('success','Invoice Created successfully');
     }
     public function invoiceUpdate(Request $request,$id){
+        if( ( Auth::user()->role ) == "admin" ){
         $request->validate([
             'date' => 'required',
             'driverMobile'=>['required','min:11','max:11'],
@@ -199,6 +207,10 @@ class OrderController extends Controller
         
 
         return redirect()->back()->with('success','Invoice Updated successfully');
+        }
+        else{
+            return redirect()->back()->with('success','You are not Admin');
+        }
     }
     
         // for($i = 0; $i < 100; ++$i){
@@ -276,9 +288,14 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
+        if( ( Auth::user()->role ) == "admin" ){
         $dealerInvoice = DealerInvoice::find($id);
         $dealerInvoice->delete();
 
         return redirect()->back()->with('success','Invoice Delete successfully');
+        }
+        else{
+            return redirect()->back()->with('failed','You are not Admin');
+        }
     }
 }
