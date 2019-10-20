@@ -26,13 +26,8 @@
             @method('PATCH') 
             @csrf
              <!-- Product Name Dropdown -->
-            <div class="form-group">    
-              <label for="productId">Product Name:</label>
-                <select id='productId' name='productId' class="form-control">
-                @foreach($product as $productlist)
-                    <option value='{{ $productlist->id }}'@if($productlist->id == $mainwarehouse->productId) selected='selected'disabled @endif>{{ $productlist->name }}</option>
-                @endforeach
-                </select>
+             <div class="form-group">    
+              <label for="productId" class="text-center">Product Name: <b class="red"> {{ $mainwarehouse->product->name }}</b></label>
             </div>
 
             <div class="form-group">

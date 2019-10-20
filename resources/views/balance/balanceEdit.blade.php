@@ -27,6 +27,9 @@
             @method('PATCH') 
             @csrf
             
+            <div class="form-group text-center">    
+              <label for="productId" class="text-center">Dealer Name: <b class="red"> {{ $balanceRecord->dealer->name }}</b></label>
+            </div>
 
             <div class="form-group">
               <label for="paymentNo">Payment No:</label>
@@ -49,6 +52,10 @@
           <div class="form-group">
               <label for="bankName">Bank Name:</label>
               <input type="text"  class="form-control"value="{{$balanceRecord->bankName}}" name="bankName"/>
+          </div>
+          <div class="form-group">
+              <label for="amount">Amount:</label>
+              <input type="number" min="0" class="form-control" value="{{$balanceRecord->amount}}" name="amount"/>
           </div>
           <div class="form-group">
           <label for="date">Date:</label>
@@ -77,7 +84,7 @@
         <div class="col-md-16">
             <div class="card">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
-                 <h2>Youre is Not Admin</h2>
+                 <h2>You are Not Admin</h2>
             </div>
         </div>
       </div>

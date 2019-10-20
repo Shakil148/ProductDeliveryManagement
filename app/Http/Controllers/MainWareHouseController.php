@@ -23,7 +23,9 @@ class MainWarehouseController extends Controller
         //     ->select('main_warehouses.*', 'products.name', 'products.price', 'products.unit', 'products.image')
         //     ->orderBy('created_at', 'desc')
         //     ->paginate(8);
-        $mainwarehouse = MainWarehouse::with('product')->get();
+        $mainwarehouse = MainWarehouse::with('product')
+        ->orderBy('created_at', 'desc')
+        ->get();
         return view('mainwarehouse.index',compact('mainwarehouse'));
         //$product = Product::find($id);
         //$test = MianWarehouse::whereproductId($id)->get(); // or ->paginate(20);
@@ -126,7 +128,6 @@ class MainWarehouseController extends Controller
         $request->validate([
             'address'=>'required',
             'amount'=>'required',
-            'productId'=>'required',
             'discount'=>'required',
 
         ]);

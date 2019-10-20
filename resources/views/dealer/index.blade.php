@@ -7,6 +7,16 @@
             <div class="card">
                 <h3 class="display-5 text-center mt-2 bg-secondary">Dealers List</h3>
                 <div>
+                @if(Session::has('success'))
+            <div class="alert alert-danger">
+                {{Session::get('success')}}
+            </div>
+            @endif
+                @if(Session::has('failed'))
+            <div class="alert alert-danger">
+                {{Session::get('failed')}}
+            </div>
+            @endif
         @if( ( Auth::user()->role ) != "viewer" )
         <a style="margin: 19px;" href="{{ route('dealer.create')}}" class="btn btn-primary">New Dealer</a>
         @endif

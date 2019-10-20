@@ -19,8 +19,10 @@
           <td>Unit Price</td>
           <td>Date</td>
           <td>Status</td>
+          <td>Stock</td>
           <td>Image</td>
           <td>Action By</td>
+          <td>Store</td>
           @if( ( Auth::user()->role ) == "admin" )
           <td>Edit</td>
           <td>Delete</td>
@@ -37,8 +39,12 @@
             <td>{{$productlist->unit}}</td>
             <td>{{date('d-m-y',strtotime($productlist->date))}}</td>
             <td>{{$productlist->status}}</td>
+            <td>{{$productlist->totalStock}}</td>
             <td> <img src="{{ asset('images/' . $productlist->image) }}" width="50" height="50" alt="{{ $productlist->title }} photo" class="rounded"></td>
             <td>{{$productlist->userName}}</td>
+            <td>
+                <a href="{{ route('productStore.create',$productlist->id)}}" class="btn btn-success">Store</a>
+            </td>
             @if( ( Auth::user()->role ) == "admin" )
             <td>
                 <a href="{{ route('product.edit',$productlist->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>

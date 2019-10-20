@@ -15,12 +15,13 @@ class Product extends Model
         'date',
         'status',
         'image',
+        'totalStock',
         'userName',
     ];
 
     public function mainWarehouse()
     {
-        return $this->belongsTo('SGFL\MainWarehouse','productId','id');
+        return $this->belongsTo('SGFL\MainWarehouse','id','productId');
     }
     public function dealerInvoiceDetail()
     {

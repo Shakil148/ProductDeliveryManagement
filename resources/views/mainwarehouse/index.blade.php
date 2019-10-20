@@ -7,9 +7,7 @@
         <div class="col-md-16">
             <div class="card">
             <h3 class="display-5 text-center mt-2 bg-secondary">Main Warehouse</h3>
-    <div>
-    <a style="margin: 19px;" href="{{ route('mainwarehouse.create')}}" class="btn btn-primary">Store More</a>
-    </div>
+ 
  <div class="table-hover table-striped table-bordered ">
  <table id="dtBasicExample" class="table table-responsive fixed-table-body table-sm" cellspacing="0" width="100%">
     <thead class="bg-dark">
@@ -18,9 +16,9 @@
           <td>Name</td>
           <td>Per Price</td>
           <td>Unit Price</td>
-          <td>Date</td>
+          <td>StoreDate</td>
           <td>Address</td>
-          <td>Total Quantity</td>
+          <td>Quantity</td>
           <td>Discount</td>
           <td>Image</td>
           <td>Action By</td>
@@ -36,7 +34,7 @@
             <td>{{$mainwarehouselist->product->name}}</td>
             <td>{{$mainwarehouselist->product->price}}</td>
             <td>{{$mainwarehouselist->product->unit}}</td>
-            <td>{{$mainwarehouselist->date}}</td>
+            <td>{{date('d-m-y',strtotime($mainwarehouselist->date))}}</td>
             <td>{{$mainwarehouselist->address}}</td>
             <td>{{$mainwarehouselist->amount}}</td>
             <td>{{$mainwarehouselist->discount}}</td>

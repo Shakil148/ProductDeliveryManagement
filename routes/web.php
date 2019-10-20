@@ -20,18 +20,26 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 //middlewares to controller
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
-//Admin all routes
+//All routes
 Route::group(['middleware' => 'auth'], function() {
+    //all user index route
     Route::resource('user','AdminController');
     //Route::resource('admin','ProductController');
     Route::get('/viewer', 'ViewerController@viewer');
     Route::get('/tsm', 'TsmController@tsm');
     Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
-    Route::resource('product', 'ProductController',['parameters' => [
-        'product' => 'admin_product'
-    ]]);
-    Route::resource('mainwarehouse', 'MainWarehouseController');
+    //product route
+    Route::post('/products.store/{id}',[
+        'uses' => 'ProductController@productStore',
+        'as' =>'productStore.store']);
+    Route::get('/products.create/{id}',[
+        'uses' => 'ProductController@productCreate',
+        'as' =>'productStore.create']);
+    Route::resource('product', 'ProductController');
+    //Mainwarehouse route
+    Route::resource('mainwarehouse', 'MainWarehouseController')->except('create');
+    //WarehouseOrder route
     Route::get('/localwarehouseorder',[
         'uses' => 'WarehouseOrderController@order',
         'as' =>'warehouses.order']);
@@ -57,8 +65,9 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'WarehouseOrderController@getCheckout',
         'as' => 'warehouses.checkout']);
     Route::post('/checkout', 'WarehouseOrderController@postCheckout');
-    
+    //warehouse route
     Route::resource('localwarehouse', 'WarehouseController');
+    //Order route
     Route::get('/orderinvoice/{id}',[
         'uses' => 'OrderController@orderInvoice',
         'as' => 'order.invoice']);
@@ -81,13 +90,12 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'OrderController@invoiceUpdate',
         'as' => 'order.invoiceUpdate']);
     Route::resource('order', 'OrderController');
+    //Distribution route
     Route::get('/distributorprint/{id}',[
         'uses' => 'DistributorController@distributorPrint',
         'as' => 'distributor.print']);
     Route::resource('distributor', 'DistributorController');
-    // Route::post('/delearspayment/{id}',[
-    //     'uses' => 'DealerController@balance',
-    //     'as' => 'dealer.balance']);
+    //Dealer route
     Route::get('/accountsummary/{id}',[ 
         'uses' => 'DealerController@accountSummary',
         'as' => 'dealer.summary']);
@@ -98,6 +106,7 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'DealerController@summaryDestroy',
         'as' => 'accountSummary.destroy']);
     Route::resource('dealer', 'DealerController');
+    //Payemt route
     // Route::get('/paymentcreate/{id}',[
     //     'uses' => 'PaymentController@paymentCreate',
     //     'as' => 'payment.creates']);
@@ -108,6 +117,7 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::post('/create/{id}',[
     //     'uses' => 'DealerBalanceRecordController@store',
     //     'as' => 'balances.store']);
+    //DealerBalanceRecord route 
     Route::get('/dealerbalanceedit/{id}',[
         'uses' => 'DealerBalanceRecordController@balanceEdit',
         'as' => 'balance.balanceEdit']);

@@ -106,9 +106,12 @@ class DealerController extends Controller
      */
     public function edit($id)
     {
-        if( ( Auth::user()->role ) != "viewer" ){
+        if( ( Auth::user()->role ) == "admin" ){
         $dealer = Dealer::find($id);
         return view('dealer.edit', compact('dealer'));
+        }
+        else{
+            return redirect()->back()->with('failed','You are not Admin');
         }
     }
 
@@ -168,10 +171,15 @@ class DealerController extends Controller
      */
     public function destroy($id)
     {
+        if( ( Auth::user()->role ) == "admin" ){
         $dealer = Dealer::find($id);
         $dealer->delete();
 
         return redirect('/dealer')->with('success', 'Dealer deleted!');
+    }
+    else{
+        return redirect()->back()->with('failed','You are not Admin');
+    }
     }
     public function summaryDestroy($id)
     {

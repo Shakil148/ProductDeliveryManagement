@@ -53,6 +53,10 @@
                 </select>
             </div>
             <div class="form-group">
+              <label for="amount">Total Stock:</label>
+              <input type="text"  class="form-control" name="totalStock" value="{{ $product->totalStock }}"/>
+          </div>
+            <div class="form-group">
                 <label for="image">image:</label>
                 <input type="file" class="form-control" name="image" value={{ $product->image }} />
             </div>

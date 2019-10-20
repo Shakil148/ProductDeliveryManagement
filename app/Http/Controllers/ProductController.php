@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Auth;
 use SGFL\Product;
+use SGFL\MainWarehouse;
 use Image;
 
 class ProductController extends Controller
@@ -39,6 +40,11 @@ class ProductController extends Controller
     public function create()
     {
         return view('product.create');
+    }
+    public function productCreate($id)
+    {
+        $product = Product::find($id);   
+        return view('product.productStore', compact('product'));
     }
 
     /**
@@ -83,6 +89,28 @@ class ProductController extends Controller
         $product->userName = Auth::user()->name;
         $product->save();
         return redirect('/product')->with('success', 'Product Created!');
+    }
+    public function productStore(Request $request, $id)
+    {
+        
+        $request->validate([
+            'address'=>'required',
+            'amount'=>'required',
+            'discount'=>'required',
+            ]);
+        $product = Product::find($id);   
+        $mainwarehouse = new MainWarehouse;
+        $mainwarehouse->productId =  $id;
+        $mainwarehouse->date =  $request->get('date');
+        $mainwarehouse->address =  $request->get('address');
+        $mainwarehouse->amount = $request->get('amount');
+        $mainwarehouse->discount = $request->get('discount');
+        $mainwarehouse->userName = Auth::user()->name;
+        $mainwarehouse->save();
+        $product->totalStock += $request->get('amount');
+        $product->save();
+
+        return redirect()->back()->with('success','Product Stored successfully');
     }
 
     /**

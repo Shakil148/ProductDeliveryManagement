@@ -19,8 +19,9 @@ class CreateProductsTable extends Migration
             $table->float('price')->nullable();
             $table->float('unit')->nullable();
             $table->date('date')->nullable();
-            $table->text('status')->nullable()->change();
+            $table->text('status')->nullable();
             $table->string('image')->nullable();
+            $table->string('totalStock')->nullable();
             $table->text('userName')->nullable();
             $table->timestamps();
         });
