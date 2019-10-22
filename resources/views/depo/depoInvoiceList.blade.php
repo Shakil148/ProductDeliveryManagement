@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-16">
             <div class="card">
-            <h3 class="display-5 text-center mt-2 bg-secondary">Invoice List</h3>
+            <h3 class="display-5 text-center mt-2 bg-secondary">Depo Invoice List</h3>
             @if(Session::has('success'))
             <div class="alert alert-success">
                 {{Session::get('success')}}
@@ -23,12 +23,11 @@
     <thead class="bg-dark">
         <tr>
           <td>#</td>
-          <td>Dealer Name</td>
-          <td>Code</td>
+          <td>Depo Name</td>
+          <td>Address</td>
           <td>Invoice No</td>
           <td>InvDate</td>
           <td>Grand Unit</td>
-          <td class="text-center">Grand Price</td>
           <td>Truck No</td>
           <td>Driver Name</td>
           <td>Driver Mobile</td>
@@ -44,33 +43,32 @@
     </thead>
     
     <tbody>
-        @foreach($dealerInvoice as $invoiceList)
+        @foreach($depoInvoice as $invoiceList)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            <td>{{$invoiceList->dealer->name}}</td>
-            <td>{{$invoiceList->dealer->code}}</td>
+            <td>{{$invoiceList->name}}</td>
+            <td>{{$invoiceList->address}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
             <td>{{date('d-m-y', strtotime($invoiceList->date))}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
-            <td class="text-center">{{$invoiceList->totalPrice}}</td>
             <td>{{$invoiceList->truckNo}}</td>
             <td>{{$invoiceList->driverName}}</td>
             <td>{{$invoiceList->driverMobile}}</td>
             <td>{{$invoiceList->comment}}</td>
             <td>{{$invoiceList->userName}}</td>
             <td class="text-center"> 
-                <a href="/invoicedetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
+                <a href="/depoInvoiceDetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
             </td>
             <td class="text-center"> 
-                <a  target="_blank" href="{{ route('order.invoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
+                <a  target="_blank" href="{{ route('depo.depoInvoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
             </td>
             @if( ( Auth::user()->role ) == "admin" )
             <td>
-                <a href="{{ route('order.invoiceEdit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('depo.depoInvoiceEdit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 
-                action="{{ route('order.destroy', $invoiceList->id)}}" method="post">
+                action="{{ route('depoInvoice.destroy', $invoiceList->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
@@ -83,7 +81,6 @@
     </tbody>
     <tfoot>
         <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -131,7 +128,7 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 $('#dtBasicExample').DataTable({
     "footerCallback": function () {
         var api = this.api(),
-            columns = [5, 6]; // Add columns here
+            columns = [5]; // Add columns here
 
         for (var i = 0; i < columns.length; i++) {
             $('tfoot th').eq(columns[i]).html('Page: ' + api.column(columns[i], { filter: 'applied', page: 'current' }).data().sum() + '<br>');

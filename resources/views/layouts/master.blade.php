@@ -117,9 +117,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{URL::to('#')}}"  class="nav-link">
+                  <a href="{{URL::to('depoinvoicelist')}}"  class="nav-link">
                     <i class="nav-icon fas fa-warehouse ash"></i>
-                    <p>Warehouse Invoices</p>
+                    <p>DEPO Invoices</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -138,6 +138,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-cart-plus pink"></i>
               <p>
                 Product
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="{{URL::to('depo')}}" class="nav-link ">
+              <i class="nav-icon fas fa-warehouse green"></i>
+              <p>
+                DEPO
               </p>
             </a>
           </li>

@@ -1,6 +1,7 @@
 @extends('layouts.master') 
 @section('content')
 @if( ( Auth::user()->role ) != "viewer" )
+@if($dealer->status != "Inactive")
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -23,7 +24,6 @@
                 {{Session::get('success')}}
             </div>
         @endif
-        @if($dealer->status != "Inactive")
         <form class = "mb-5" method="post" action="{{ route('balance.update', $dealer->id) }}">
             @method('PATCH') 
             @csrf

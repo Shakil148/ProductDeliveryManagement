@@ -2,7 +2,7 @@
 <!------ Include the above in your HEAD tag ---------->
 @extends('layouts.master')
 @section('content')
-@if($dealer->status != "Inactive")
+@if($depo->status != "Inactive")
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -12,7 +12,7 @@
   <div class="row clearfix">
     <div class="col-md-12">
 
-    <h2 class="black white-text text-center bg-info mb-2">Delivery Order Invoice</h2>
+    <h2 class="black white-text text-center bg-dark mb-2">Delivery Depo Invoice</h2>
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -27,15 +27,15 @@
           {{Session::get('success')}}
       </div>
     @endif
-    <form method="post" class="" action="{{ route('dealer.invoice', $dealer->id) }}">
+    <form method="post" class="" action="{{ route('depo.invoiceStore', $depo->id) }}">
           @csrf
           <div class="form-group col-md-12 text-center mb-2">    
-              <h5 for="dealerId">Dealer Name: <b class="red">{{$dealer->name}}</b></h5>
+              <h5 for="depoId">Depo Name: <b class="red">{{$depo->name}}</b></h5>
         </div>
         
             <div class="col-md-9">
               <label for="invoiceNo">Invoice No:</label>
-              <input type="text" value="{{$newOrderId}}" class="col-md-2" name="invoiceNo" readonly/>
+              <input type="text" value="{{$newDepoId}}" class="col-md-2" name="invoiceNo" readonly/>
             </div>
               
             <div class="text-right mb-5">
@@ -59,8 +59,6 @@
             <th class="text-center"> Invoice Unit</th>
             <th class="text-center"> Free Unit</th>
             <th class="text-center"> Total Unit</th>
-            <th class="text-center"> Price </th>
-            <th class="text-center"> Total Price </th>
           </tr>
         </thead>
         
@@ -85,14 +83,7 @@
             <td><input type="number" name='invoiceUnit[]'placeholder='Enter Qty' class="form-control qty" value="{{ old('invoiceUnit[]')}}" step="0" min="0" /></td>
             <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0" value="{{ old('freeUnit[]')}}"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
-            <td>
-            <div class="form-group">
-              <input type="text" for="price" name='price[]' placeholder='0.00' 
-              class="form-control price" readonly/>
-            </div>
-            </td>
-            <td><input type="text" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
-          </tr>
+           </tr>
           <tr id='addr1'></tr>
         </tbody>
         
@@ -104,19 +95,13 @@
         </div>
         <div class="row clearfix" style="margin-top:20px">
     <div class="pull-right col-md-4">
-      <table class="table table-bordered table-hover" id="tab_logic_total">
+      <table class="table table-bordered table-hover col-md-2" id="tab_logic_total">
         <tbody>
           <tr>
             <th class="text-center">Grand Total Unit</th>
-            <th class="text-center">Grand Total Price</th>
-            <th class="text-center">Remain Order Unit</th>
-            <th class="text-center">Remain Balance</th>
           </tr>
           <tr>
-            <td><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
-            <td><input type="text" class="form-group" name='totalPrice' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
-            <td><input type="number" class="form-group" name='remainUnit' placeholder='0.00' value="" class="form-control" readonly/></td>
-            <td><input type="number" class="form-group" name='remainBalance' id="total_amount"  placeholder="{{$dealer->amount}}" class="form-control" readonly/></td>
+            <td class="text-center"><input type="number" class="form-group" name='grandTotalUnit' placeholder='0.00' class="form-control" id="sub_grand_total" readonly/></td>
           </tr>
           <!-- <tr>
             <th class="text-center">Tax</th>
@@ -166,7 +151,7 @@
         <div class="col-md-16">
             <div class="card">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3"></div>
-                 <h2>Dealer is Not Active</h2>
+                 <h2>Depo is Not Active</h2>
             </div>
         </div>
       </div>

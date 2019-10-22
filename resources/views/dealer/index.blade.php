@@ -8,7 +8,7 @@
                 <h3 class="display-5 text-center mt-2 bg-secondary">Dealers List</h3>
                 <div>
                 @if(Session::has('success'))
-            <div class="alert alert-danger">
+            <div class="alert alert-success">
                 {{Session::get('success')}}
             </div>
             @endif

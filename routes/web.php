@@ -95,6 +95,23 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'DistributorController@distributorPrint',
         'as' => 'distributor.print']);
     Route::resource('distributor', 'DistributorController');
+    //Depo route
+    Route::get('/depoInvoiceprint/{id}',[
+        'uses' => 'DepoController@depoInvoicePrint',
+        'as' => 'depo.depoInvoiceprint']);
+    Route::get('/depoInvoiceDetail/{id}',[
+        'uses' => 'DepoController@depoInvoiceDetail',
+        'as' => 'depoInvoice.detail']);
+    Route::get('/depoinvoicelist',[
+        'uses' => 'DepoController@depoInvoiceList',
+        'as' => 'depo.depoInvoiceList']);
+    Route::get('/depoInvoice/{id}',[ 
+        'uses' => 'DepoController@depoInvoice',
+        'as' => 'depo.invoice']);
+    Route::post('/depoInvoice/{id}',[ 
+        'uses' => 'DepoController@depoInvoiceStore',
+        'as' => 'depo.invoiceStore']);
+    Route::resource('depo', 'DepoController');
     //Dealer route
     Route::get('/accountsummary/{id}',[ 
         'uses' => 'DealerController@accountSummary',
@@ -106,7 +123,7 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'DealerController@summaryDestroy',
         'as' => 'accountSummary.destroy']);
     Route::resource('dealer', 'DealerController');
-    //Payemt route
+    //Payment route
     // Route::get('/paymentcreate/{id}',[
     //     'uses' => 'PaymentController@paymentCreate',
     //     'as' => 'payment.creates']);

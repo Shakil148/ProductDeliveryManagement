@@ -27,4 +27,8 @@ class Product extends Model
     {
         return $this->hasOne('SGFL\DealerInvoiceDetail','productId','id');
     }
+    public function depoInvoiceDetail()
+    {
+        return $this->hasOne('SGFL\DepoInvoiceDetail','productId','id');
+    }
 }
