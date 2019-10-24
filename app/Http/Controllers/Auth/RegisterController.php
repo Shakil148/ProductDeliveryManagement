@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'contact' => ['required', 'string', 'min:11','max:11'],
-            'role' => 'required | in:admin, moderator, tsm,accounts, factoryIncharge, viewer',
+            'role' => 'required | in:admin,moderator,tsm,accounts,factoryIncharge,viewer',
         ]);
   
     }

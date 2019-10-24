@@ -25,6 +25,7 @@ class DepoController extends Controller
     public function depoInvoiceList()
     {
         $depoInvoices = DepoInvoice::with('depo')
+        ->orderBy('created_at', 'desc')
         ->get();
         // dd($depoInvoices);
         return view('depo.depoInvoiceList', compact('depoInvoices'));
@@ -107,7 +108,6 @@ class DepoController extends Controller
                 'product' => $request->product[$i],
                 'productId' => $request->productId[$i],
                 'invoiceUnit' => $request->invoiceUnit[$i],
-                'freeUnit' => $request->freeUnit[$i],
                 'totalUnit' => $request->totalUnit[$i],
                 
             );

@@ -39,6 +39,9 @@ class LoginController extends Controller
         elseif (Auth::check() && Auth::user()->role == 'viewer') {
             return('/viewer');
         }
+        elseif (Auth::check() && Auth::user()->role == 'factoryIncharge') {
+            return('/factoryIncharge');
+        }
         else {
             return('/admin');
         }

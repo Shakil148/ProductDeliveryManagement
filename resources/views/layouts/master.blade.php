@@ -174,12 +174,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          @if( ( Auth::user()->role ) != "factoryIncharge" )
           <li class="nav-item">
             <a href="{{URL::to('#')}}"  class="nav-link">
               <i class="nav-icon fas fa-warehouse teal "></i>
               <p>Local Warehouse</p>
             </a>
           </li>
+          @endif
           @endif
           @if( ( Auth::user()->role ) != "factoryIncharge" )
           <li class="nav-item">
@@ -290,11 +292,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 // Basic example of pagination
 
 //datetime picker
-  $(function() {
-    $('#datetimepicker1').datepicker({
-      language: 'pt-BR'
-    });
-  });
+  // $(function() {
+  //   $('#datetimepicker1').datepicker({
+  //     language: 'pt-BR'
+  //   });
+  // });
 
 // Invoice javascript 
 

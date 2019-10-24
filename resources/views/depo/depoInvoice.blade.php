@@ -12,7 +12,7 @@
   <div class="row clearfix">
     <div class="col-md-12">
 
-    <h2 class="black white-text text-center bg-dark mb-2">Delivery Depo Invoice</h2>
+    <h2 class="black white-text text-center bg-info mb-2">Delivery Order Invoice</h2>
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -27,7 +27,7 @@
           {{Session::get('success')}}
       </div>
     @endif
-    <form method="post" class="" action="{{ route('depo.invoiceStore', $depo->id) }}">
+    <form method="post" class="" action="{{ route('depo.invoice', $depo->id) }}">
           @csrf
           <div class="form-group col-md-12 text-center mb-2">    
               <h5 for="depoId">Depo Name: <b class="red">{{$depo->name}}</b></h5>
@@ -57,6 +57,7 @@
             <th class="text-center"> Order No </th> -->
             <th class="text-center"> Product </th>
             <th class="text-center"> Invoice Unit</th>
+            <!-- <th class="text-center"> Free Unit</th> -->
             <th class="text-center"> Total Unit</th>
           </tr>
         </thead>
@@ -80,8 +81,9 @@
             </div>
             </td>
             <td><input type="number" name='invoiceUnit[]'placeholder='Enter Qty' class="form-control qty" value="{{ old('invoiceUnit[]')}}" step="0" min="0" /></td>
+            <!-- <td><input type="number" name=''   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0" value="{{ old('freeUnit[]')}}"/></td> -->
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
-           </tr>
+          </tr>
           <tr id='addr1'></tr>
         </tbody>
         
@@ -238,7 +240,7 @@ function calc()
 		{
 			var qty = $(this).find('.qty').val();
 			var freeUnit = $(this).find('.freeUnit').val();
-			$(this).find('.totalUnit').val(+qty + +freeUnit);
+			$(this).find('.totalUnit').val(+qty );
 			var price = $(this).find('.price').val();
 			$(this).find('.total').val((qty*price).toFixed(2));
 			
