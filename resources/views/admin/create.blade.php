@@ -61,7 +61,8 @@
                         <option value="moderator">Moderator</option>
                         <option value="tsm">TSM</option>
                         <option value="accounts">Accounts</option>
-                        <option value="viewer">Viwer</option>
+                        <option value="factoryIncharge">Factory Incharge</option>
+                        <option value="viewer">Viewer</option>
                     </select> 
 
                 </div>

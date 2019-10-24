@@ -31,6 +31,9 @@ class TSM
             elseif (Auth::check() && Auth::user()->role == 'viewer') {
                 return redirect('/viewer');
             }
+            elseif (Auth::check() && Auth::user()->role == 'factoryIncharge') {
+                return redirect('/factoryIncharge');
+            }
             else  {
                 return redirect('/admin');
             }

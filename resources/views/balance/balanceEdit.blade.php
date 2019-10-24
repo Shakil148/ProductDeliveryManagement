@@ -66,9 +66,9 @@
           <div class="form-group">    
               <label for="type">Payment Status:</label>
                 <select id='type' name='status' class="form-control">
-                    <option {{ $balanceRecord->status == 'paid' ? 'selected':'' }}>Paid</option>
-                    <option {{ $balanceRecord->status == 'unpaid' ? 'selected':'' }}>Unpaid</option>
-                    <option {{ $balanceRecord->status == 'refund' ? 'selected':'' }}>Refund</option>
+                    <option {{ $balanceRecord->status == 'Paid' ? 'selected':'' }}>Paid</option>
+                    <option {{ $balanceRecord->status == 'Unpaid' ? 'selected':'' }}>Unpaid</option>
+                    <option {{ $balanceRecord->status == 'Refund' ? 'selected':'' }}>Refund</option>
                 </select>
             </div>
           <div class="form-group">

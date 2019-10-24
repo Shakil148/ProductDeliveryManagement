@@ -49,11 +49,12 @@
             <div class="form-group">    
               <label for="role">Role:</label>
                 <select id='role' name='role' class="form-control">
-                    <option {{ $user->role == 'admin' ? 'selected':'' }}>Admin</option>
-                    <option {{ $user->role == 'moderator' ? 'selected':'' }}>Moderator</option>
-                    <option {{ $user->role == 'tsm' ? 'selected':'' }}>TSM</option>
-                    <option {{ $user->role == 'accounts' ? 'selected':'' }}>Accounts</option>
-                    <option {{ $user->role == 'viewer' ? 'selected':'' }}>Viewer</option>
+                    <option value="admin" {{ $user->role == 'admin' ? 'selected':'' }}>Admin</option>
+                    <option value="moderator"{{ $user->role == 'moderator' ? 'selected':'' }}>Moderator</option>
+                    <option value="tsm" {{ $user->role == 'tsm' ? 'selected':'' }}>TSM</option>
+                    <option value="accounts" {{ $user->role == 'accounts' ? 'selected':'' }}>Accounts</option>
+                    <option value="factoryIncharge" {{ $user->role == 'factoryIncharge' ? 'selected':'' }}>Factory Incharge</option>
+                    <option value="viewer" {{ $user->role == 'viewer' ? 'selected':'' }}>Viewer</option>
                 </select>
             </div>
             <div class="form-group">

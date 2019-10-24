@@ -22,6 +22,14 @@ class ViewerController extends Controller
     { 
         return view('viewer.page');
     }
+    public function accounts()
+    { 
+        return view('viewer.accounts');
+    }
+    public function factoryIncharge()
+    { 
+        return view('viewer.factoryIncharge');
+    }
 
 
 }

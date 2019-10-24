@@ -22,10 +22,12 @@ Auth::routes();
 //Route::resource('product', 'ProductController', ['middleware' => 'admin']);
 //All routes
 Route::group(['middleware' => 'auth'], function() {
-    //all user index route
+    //all user route
     Route::resource('user','AdminController');
     //Route::resource('admin','ProductController');
     Route::get('/viewer', 'ViewerController@viewer');
+    Route::get('/accounts', 'ViewerController@accounts');
+    Route::get('/factoryIncharge', 'ViewerController@factoryIncharge');
     Route::get('/tsm', 'TsmController@tsm');
     Route::get('/moderator', 'ModeratorController@moderator');
     Route::get('/admin', 'AdminController@admin');
@@ -169,9 +171,9 @@ Route::group(['middleware' => 'tsm'], function() {
 
 
 //Accounts all routes
-Route::get('/accounts', function(){
-    echo "Hello Accounts";
-})->middleware('accounts');
+// Route::get('/accounts', function(){
+//     echo "Hello Accounts";
+// })->middleware('accounts');
 
 //Admin all routes
 Route::group(['middleware' => 'admin'], function() {    

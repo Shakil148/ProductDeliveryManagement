@@ -116,23 +116,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
               <ul class="nav nav-treeview">
+              @if( ( Auth::user()->role ) != "viewer" )
                 <li class="nav-item">
                   <a href="{{URL::to('depoinvoicelist')}}"  class="nav-link">
                     <i class="nav-icon fas fa-warehouse ash"></i>
                     <p>DEPO Invoices</p>
                   </a>
                 </li>
+                @endif
+                @if( ( Auth::user()->role ) != "factoryIncharge" )
                 <li class="nav-item">
                   <a href="{{URL::to('orderinvoicelist')}}"  class="nav-link">
                     <i class="fas fa-user-tie nav-icon cyan"></i>
                     <p>Dealer Invoices </p>
                   </a>
                 </li>
+                @endif
               </ul>
           </li>
             </ul>
           </li>
-          @if( ( Auth::user()->role ) != "viewer" )
+          @if( ( Auth::user()->role ) != "viewer" && ( Auth::user()->role ) != "factoryIncharge" && ( Auth::user()->role ) != "accounts" )
           <li class="nav-item">
             <a href="{{URL::to('product')}}" class="nav-link ">
               <i class="nav-icon fas fa-cart-plus pink"></i>
@@ -141,7 +145,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-          
+          @endif
+          @if( ( Auth::user()->role ) != "viewer")
           <li class="nav-item">
             <a href="{{URL::to('depo')}}" class="nav-link ">
               <i class="nav-icon fas fa-warehouse green"></i>
@@ -150,7 +155,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-          
+          @endif
+          @if( ( Auth::user()->role ) != "viewer" && ( Auth::user()->role ) != "accounts" )
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-warehouse ash"></i>
@@ -175,13 +181,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           @endif
+          @if( ( Auth::user()->role ) != "factoryIncharge" )
           <li class="nav-item">
             <a href="{{URL::to('dealer')}}"  class="nav-link">
               <i class="fas fa-user-tie nav-icon cyan"></i>
               <p>Dealer</p>
             </a>
           </li>
-          @if( ( Auth::user()->role ) != "viewer" )
+          @endif
+          @if( ( Auth::user()->role ) != "viewer" && ( Auth::user()->role ) != "factoryIncharge" && ( Auth::user()->role ) != "accounts" )
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-luggage-cart red"></i>
@@ -197,12 +205,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Local Warehouse</p>
                 </a>
               </li>
+              @if( ( Auth::user()->role ) != "admin")
               <li class="nav-item">
                 <a href="{{URL::to('localwarehouseorder')}}"  class="nav-link">
                   <i class="fas fa-user-tie nav-icon cyan"></i>
                   <p>Dealer</p>
                 </a>
               </li>
+              @endif
             </ul>
           </li>
           

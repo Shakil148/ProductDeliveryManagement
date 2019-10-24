@@ -5,7 +5,7 @@ namespace SGFL\Http\Middleware;
 use Closure;
 use Auth;
 
-class Viewer
+class FactoryIncharge
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Viewer
     {
         
 
-          if (Auth::check() && Auth::user()->role == 'viewer') {
+          if (Auth::check() && Auth::user()->role == 'factoryIncharge') {
                 return $next($request);
             }
             elseif (Auth::check() && Auth::user()->role == 'moderator') {
@@ -30,8 +30,8 @@ class Viewer
             elseif (Auth::check() && Auth::user()->role == 'accounts') {
                 return redirect('/accounts');
             }
-            elseif (Auth::check() && Auth::user()->role == 'factoryIncharge') {
-                return redirect('/factoryIncharge');
+            elseif (Auth::check() && Auth::user()->role == 'viewer') {
+                return redirect('/viewer');
             }
             else  {
                 return redirect('/admin');

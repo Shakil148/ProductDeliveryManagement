@@ -61,11 +61,12 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin' => 'SGFL\Http\Middleware\Admin',
+        'admin' => 'SGFL\Http\Middleware\admin',
         'moderator' => 'SGFL\Http\Middleware\moderator',
         'tsm' => 'SGFL\Http\Middleware\tsm',
         'accounts' => 'SGFL\Http\Middleware\accounts',
         'viewer' => 'SGFL\Http\Middleware\viewer',
+        'factoryIncharge' => 'SGFL\Http\Middleware\factoryIncharge',
         
     ];
 
