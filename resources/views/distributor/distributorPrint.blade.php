@@ -21,7 +21,7 @@
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                            <input id="printpagebutton" type="button" class="btn btn-success" value="Print" onclick="printpage()"/>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
                             <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
@@ -89,6 +89,19 @@ function myFunction() {
     window.print();
 }
 </script>
+<script type="text/javascript">
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again 
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+</script>
  
 <div class="container" id="box">
  <div class="row well">
@@ -108,7 +121,6 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
                             <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
@@ -171,11 +183,7 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
+
  
 <div class="container" id="box">
  <div class="row well">
@@ -195,7 +203,6 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                             <p class="font-weight-bold mb-1">Invoice No#{{$distributor->invoiceNo}}</p>
                             <p class="text-muted"> Date:{{date('d-m-y',strtotime($distributor->date))}}</p>
                         </div>
@@ -259,11 +266,6 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
 
 
 

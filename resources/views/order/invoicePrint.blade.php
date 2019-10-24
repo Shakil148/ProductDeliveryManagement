@@ -12,9 +12,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                <h4 class="font-weight-bold text-muted text-center">Dealer Invoice</h4>
                     <div class="row ">
                     <p class="font-weight-bold text-success ">Company Copy</p>
-                        <div class="col-md-7 text-center">
+                        <div class="col-md-8 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -23,8 +24,8 @@
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <input id="printpagebutton" type="button" class="btn btn-success" value="Print" onclick="printpage()"/>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -100,6 +101,19 @@ function myFunction() {
     window.print();
 }
 </script>
+<script type="text/javascript">
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again 
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+</script>
 @endforeach
 @foreach($invoicePrint as $invoicePrintList)
  
@@ -110,9 +124,10 @@ function myFunction() {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                <h4 class="font-weight-bold text-muted text-center">Dealer Invoice</h4>
                     <div class="row ">
                     <p class="font-weight-bold text-success ">Distribution Copy</p>
-                        <div class="col-md-7 text-center">
+                        <div class="col-md-8 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -121,8 +136,7 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -193,11 +207,6 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
 @endforeach
 @foreach($invoicePrint as $invoicePrintList)
  
@@ -208,9 +217,10 @@ function myFunction() {
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                <h4 class="font-weight-bold text-muted text-center">Dealer Invoice</h4>
                     <div class="row ">
                     <p class="font-weight-bold text-success ">Customer Copy</p>
-                        <div class="col-md-7 text-center">
+                        <div class="col-md-8 text-center">
                         <img src="{{ asset('images/1567415894.png') }}" width="50" height="50" alt="SGFL Logo" class="brand-image img-circle elevation-3"/>
                             <p class="font-weight-bold mb-1">Company Information</p>
                             <p><span class="font-weight-bold"><b>SGFL</b></span></p>
@@ -219,8 +229,7 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -291,11 +300,7 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
+
 @endforeach
 
 

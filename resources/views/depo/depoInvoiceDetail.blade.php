@@ -14,8 +14,6 @@
           <td>#</td>
           <td>Products</td>
           <td>Invoice Unit</td>
-          <td>Free Unit</td>
-          <td>Total Unit</td>
           @if( ( Auth::user()->role ) == "admin" )
           <td>Edit</td>
           <td>Delete</td>
@@ -29,8 +27,6 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$invoiceList->product}}</td>
             <td>{{$invoiceList->invoiceUnit}}</td>
-            <td>{{$invoiceList->freeUnit}}</td>
-            <td>{{$invoiceList->totalUnit}}</td>
             @if( ( Auth::user()->role ) == "admin" )
             <td>
                 <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>

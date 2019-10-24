@@ -21,7 +21,6 @@ class CreateDepoInvoiceDetailsTable extends Migration
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->text('product')->nullable();
             $table->integer('invoiceUnit')->nullable();
-            $table->integer('freeUnit')->nullable();
             $table->integer('totalUnit')->nullable();
             $table->timestamps();
         });

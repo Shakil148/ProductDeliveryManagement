@@ -20,7 +20,7 @@ class DepoInvoice extends Model
         'userName',
     ];
     public function depo()
-   {
+    {
         return $this->belongsTo('SGFL\Depo','depoId','id');
     } 
     public function depoInvoiceDetail()

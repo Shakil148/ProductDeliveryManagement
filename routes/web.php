@@ -96,21 +96,30 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'distributor.print']);
     Route::resource('distributor', 'DistributorController');
     //Depo route
-    Route::get('/depoInvoiceprint/{id}',[
+    Route::get('/depoInvoicePrint/{id}',[
         'uses' => 'DepoController@depoInvoicePrint',
-        'as' => 'depo.depoInvoiceprint']);
+        'as' => 'depo.depoInvoicePrint']);
     Route::get('/depoInvoiceDetail/{id}',[
         'uses' => 'DepoController@depoInvoiceDetail',
         'as' => 'depoInvoice.detail']);
     Route::get('/depoinvoicelist',[
         'uses' => 'DepoController@depoInvoiceList',
         'as' => 'depo.depoInvoiceList']);
-    Route::get('/depoInvoice/{id}',[ 
-        'uses' => 'DepoController@depoInvoice',
-        'as' => 'depo.invoice']);
+    Route::delete('/depoInvoiceDestroy/{id}',[ 
+        'uses' => 'DepoController@depoInvoiceDestroy',
+        'as' => 'depoInvoice.destroy']);
+    Route::post('/depoInvoiceUpdate/{id}',[ 
+        'uses' => 'DepoController@depoInvoiceUpdate',
+        'as' => 'depoInvoice.update']);
+    Route::get('/DepoInvoiceEdit/{id}',[
+        'uses' => 'DepoController@depoInvoiceEdit',
+        'as' => 'depoInvoice.edit']);
     Route::post('/depoInvoice/{id}',[ 
         'uses' => 'DepoController@depoInvoiceStore',
         'as' => 'depo.invoiceStore']);
+    Route::get('/depoInvoice/{id}',[ 
+        'uses' => 'DepoController@depoInvoice',
+        'as' => 'depo.invoice']);
     Route::resource('depo', 'DepoController');
     //Dealer route
     Route::get('/accountsummary/{id}',[ 

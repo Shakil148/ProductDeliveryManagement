@@ -11,6 +11,11 @@
                 {{Session::get('success')}}
             </div>
             @endif
+            @if(Session::has('failed'))
+            <div class="alert alert-danger">
+                {{Session::get('failed')}}
+            </div>
+            @endif
     <div>
     <a style="margin: 19px;" href="{{ route('depo.create')}}" class="btn btn-primary">New Depo</a>
     </div>

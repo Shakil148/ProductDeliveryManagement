@@ -24,10 +24,10 @@ class DepoController extends Controller
 
     public function depoInvoiceList()
     {
-        $depoInvoice = DepoInvoice::with('depo')
-        ->orderBy('created_at', 'desc')
+        $depoInvoices = DepoInvoice::with('depo')
         ->get();
-        return view('depo.depoInvoicelist', compact('depoInvoice'));
+        // dd($depoInvoices);
+        return view('depo.depoInvoiceList', compact('depoInvoices'));
     }
     public function depoInvoicePrint($id)
     {
@@ -40,7 +40,7 @@ class DepoController extends Controller
     
     public function depoInvoiceDetail($id)
     {
-        $depoInvoiceDetail = depoInvoiceDetail::where('depoInvoiceId','=',$id)->get();
+        $depoInvoiceDetail = DepoInvoiceDetail::where('depoInvoiceId','=',$id)->get();
         return view('depo.depoInvoiceDetail',compact('depoInvoiceDetail'));
     }
 
@@ -169,8 +169,23 @@ class DepoController extends Controller
      */
     public function edit($id)
     {
+        if( ( Auth::user()->role ) == "admin" ){
          $depo = Depo::find($id);
         return view('depo.edit', compact('depo'));
+        }
+        else{
+            return redirect()->back()->with('failed','You are not Admin');
+        }
+    }
+    public function depoInvoiceEdit($id)
+    {
+        if( ( Auth::user()->role ) == "admin" ){
+         $depoInvoice = DepoInvoice::find($id);
+        return view('depo.depoInvoiceEdit', compact('depoInvoice'));
+    }
+    else{
+        return redirect()->back()->with('failed','You are not Admin');
+    }
     }
 
     /**
@@ -198,6 +213,24 @@ class DepoController extends Controller
 
         return redirect('/depo')->with('success', 'Depo updated!');
     }
+    public function depoInvoiceUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'date'=>['required'], 
+            'driverMobile'=>['required','min:11','max:11'],
+
+        ]);
+        $depo = DepoInvoice::find($id);
+        $depo->date =  $request->get('date');
+        $depo->truckNo = $request->get('truckNo');
+        $depo->driverName = $request->get('driverName');
+        $depo->driverMobile = $request->get('driverMobile');
+        $depo->comment = $request->get('comment');
+        $depo->save();
+
+
+        return redirect()->back()->with('success','Invoice Updated');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -205,8 +238,28 @@ class DepoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function depoInvoiceDestroy($id)
+    {
+        if( ( Auth::user()->role ) == "admin" ){
+            $depoInvoice = DepoInvoice::find($id);
+            $depoInvoice->delete();
+    
+            return redirect()->back()->with('failed','DEPO Invoice Deleted');
+            }
+            else{
+                return redirect()->back()->with('failed','You are not Admin');
+            }
+    }
     public function destroy($id)
     {
-        //
+        if( ( Auth::user()->role ) == "admin" ){
+            $depo = Depo::find($id);
+            $depo->delete();
+    
+            return redirect()->back()->with('failed','DEPO Deleted');
+            }
+            else{
+                return redirect()->back()->with('failed','You are not Admin');
+            }
     }
 }

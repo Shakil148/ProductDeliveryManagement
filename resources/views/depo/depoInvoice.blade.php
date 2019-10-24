@@ -57,7 +57,6 @@
             <th class="text-center"> Order No </th> -->
             <th class="text-center"> Product </th>
             <th class="text-center"> Invoice Unit</th>
-            <th class="text-center"> Free Unit</th>
             <th class="text-center"> Total Unit</th>
           </tr>
         </thead>
@@ -81,7 +80,6 @@
             </div>
             </td>
             <td><input type="number" name='invoiceUnit[]'placeholder='Enter Qty' class="form-control qty" value="{{ old('invoiceUnit[]')}}" step="0" min="0" /></td>
-            <td><input type="number" name='freeUnit[]'   placeholder='Enter Free Qty' class="form-control freeUnit" step="0" min="0" value="{{ old('freeUnit[]')}}"/></td>
             <td><input type="number" name='totalUnit[]'  placeholder='0.00' class="form-control totalUnit" step="0" min="0" readonly/></td>
            </tr>
           <tr id='addr1'></tr>

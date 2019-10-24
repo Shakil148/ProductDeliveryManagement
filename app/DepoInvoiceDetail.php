@@ -13,7 +13,6 @@ class DepoInvoiceDetail extends Model
         'depoInvoiceId',
         'product',
         'invoiceUnit',
-        'freeUnit',
         'totalUnit',
     ];
     public function depoInvoice()

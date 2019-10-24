@@ -43,11 +43,11 @@
     </thead>
     
     <tbody>
-        @foreach($depoInvoice as $invoiceList)
+        @foreach($depoInvoices as $invoiceList)
         <tr class="table-info">
             <td>{{$loop->iteration}}</td>
-            <td>{{$invoiceList->name}}</td>
-            <td>{{$invoiceList->address}}</td>
+            <td>{{$invoiceList->depo->name}}</td>
+            <td>{{$invoiceList->depo->address}}</td>
             <td>{{$invoiceList->invoiceNo}}</td>
             <td>{{date('d-m-y', strtotime($invoiceList->date))}}</td>
             <td>{{$invoiceList->grandTotalUnit}}</td>
@@ -60,11 +60,11 @@
                 <a href="/depoInvoiceDetail/{{$invoiceList->id}}"class="btn btn-body"><i class="fa fa-eye"></i></a>
             </td>
             <td class="text-center"> 
-                <a  target="_blank" href="{{ route('depo.depoInvoiceprint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
+                <a  target="_blank" href="{{ route('depo.depoInvoicePrint', $invoiceList->id)}} "class="btn btn-success"><i class="fa fa-print "></i></a>
             </td>
             @if( ( Auth::user()->role ) == "admin" )
             <td>
-                <a href="{{ route('depo.depoInvoiceEdit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('depoInvoice.edit', $invoiceList->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
             </td>
             <td>
                 <form onclick="return confirm('Are you sure?')" 

@@ -24,8 +24,8 @@
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <input id="printpagebutton" type="button" class="btn btn-success" value="Print" onclick="printpage()"/>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -50,7 +50,6 @@
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
                                 </thead> 
@@ -60,7 +59,6 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->freeUnit}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
                                     @endforeach
@@ -92,6 +90,19 @@ function myFunction() {
     window.print();
 }
 </script>
+<script type="text/javascript">
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again 
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+</script>
 @endforeach
 @foreach($depoInvoicePrint as $invoicePrintList)
  
@@ -114,8 +125,7 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -140,7 +150,6 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
                                 </thead> 
@@ -150,7 +159,6 @@ function myFunction() {
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->freeUnit}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
                                     @endforeach
@@ -177,11 +185,6 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
 @endforeach
 @foreach($depoInvoicePrint as $invoicePrintList)
  
@@ -204,8 +207,7 @@ function myFunction() {
                             <p><span class="text-muted">Email: </span> sgfl@gmail.com</p>
                         </div>
                         <div class="col-md-0 text-right d-inline">
-                            <button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                            <p class="font-weight-bold mb-1">Invoice No#{{$invoicePrintList->invoiceNo}}</p>
+                            <p class="font-weight-bold mb-1">Inv No#{{$invoicePrintList->invoiceNo}}</p>
                             <p class="text-muted">Date: {{date('d-m-y',strtotime($invoicePrintList->date))}}</p>
                         </div>
                         <div class="col-md-9">
@@ -230,7 +232,6 @@ function myFunction() {
                                         <th class="border-0 text-uppercase small font-weight-bold">#</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Free Unit</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total Unit</th>
                                     </tr>
                                 </thead> 
@@ -240,7 +241,6 @@ function myFunction() {
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invoiceList->product}}</td>
                                         <td>{{$invoiceList->invoiceUnit}}</td>
-                                        <td>{{$invoiceList->freeUnit}}</td>
                                         <td>{{$invoiceList->totalUnit}}</td>
                                     </tr>
                                     @endforeach
@@ -267,11 +267,6 @@ function myFunction() {
         
 	</div>
 </div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
 @endforeach
 
 
