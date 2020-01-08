@@ -12,15 +12,11 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(SGFL\User::class, function (Faker\Generator $faker) {
+$factory->define(SGFL\DealerInvoice::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => substr($faker->name, 0, 20),
-        'address' => substr($faker->address, 0, 20),
-        'email' => substr($faker->unique()->email,0, 30),
-        'designation' => substr($faker->domainName, 0, 20),
-        'password' => $password ?: $password = bcrypt('aaaaaa'),
-        'remember_token' => str_random(10),
+        'invoiceNo' => $faker->text(),
+        'date' => substr($faker->date, 0, 20),
     ];
 });
