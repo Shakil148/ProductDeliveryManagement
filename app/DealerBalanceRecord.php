@@ -9,7 +9,8 @@ class DealerBalanceRecord extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'dealerId', 
+        'dealerId',
+        'paymentNo', 
         'type',
         'accountNo',
         'bankName',
