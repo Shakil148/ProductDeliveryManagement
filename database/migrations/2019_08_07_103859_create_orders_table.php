@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('orderNo')->nullable();
             $table->date('orderDate')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('freeAmount')->nullable();
-            $table->string('totalBill')->nullable();
-            $table->string('advancePayment');
+            $table->string('amount')->default('0')->nullable();
+            $table->string('freeAmount')->default('0')->nullable();
+            $table->string('totalBill')->default('0')->nullable();
+            $table->string('advancePayment')->default('0');
             $table->integer('productId')->unsigned()->index()->nullable();
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->integer('warehouseId')->unsigned()->index()->nullable();

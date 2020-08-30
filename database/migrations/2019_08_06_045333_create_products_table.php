@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->date('date')->nullable();
             $table->text('status')->nullable();
             $table->string('image')->nullable();
-            $table->string('totalStock')->nullable();
+            $table->string('totalStock')->default('0')->nullable();
             $table->text('userName')->nullable();
             $table->timestamps();
         });

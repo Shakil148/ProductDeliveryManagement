@@ -20,7 +20,7 @@ class CreateDealersTable extends Migration
             $table->string('contact')->nullable();
             $table->text('address')->nullable();
             $table->string('status')->nullable();
-            $table->float('amount',20,2)->nullable();
+            $table->float('amount',20,2)->default('0')->nullable();
             $table->timestamps();
         });
     }

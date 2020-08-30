@@ -20,9 +20,9 @@ class CreateAccountSummariesTable extends Migration
             $table->text('date')->nullable();
             $table->text('invoiceNo')->nullable();
             $table->text('paymentNo')->nullable();
-            $table->text('paidAmount')->nullable();
-            $table->text('doAmount')->nullable();
-            $table->text('balance')->nullable();
+            $table->text('paidAmount')->default('0')->nullable();
+            $table->text('doAmount')->default('0')->nullable();
+            $table->text('balance')->default('0')->nullable();
             $table->timestamps();
         });
     }

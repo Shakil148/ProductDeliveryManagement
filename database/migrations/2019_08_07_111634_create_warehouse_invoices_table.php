@@ -17,7 +17,7 @@ class CreateWarehouseInvoicesTable extends Migration
             $table->increments('id');
             $table->string('orderNo')->nullable();
             $table->date('orderDate')->nullable();
-            $table->string('amount')->nullable();
+            $table->string('amount')->default('0')->nullable();
             $table->text('cart')->nullable();
             $table->string('paymentId')->nullable();
             $table->integer('productId')->unsigned()->index()->nullable();

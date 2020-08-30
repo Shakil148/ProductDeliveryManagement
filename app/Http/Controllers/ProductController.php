@@ -59,7 +59,7 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'unit'=>'required',
-            'image'=>'required',
+            'image'=>'image|required',
             'status'=>'required',
         ]);
 
@@ -74,18 +74,23 @@ class ProductController extends Controller
             'unit' => $request->get('unit'),
             'date' => $request->get('date'),
             'status' => $request->get('status'),
+            'image' => $request->image->getClientOriginalName(),
             
         ]);
         //$product->mime = $cover->getClientMimeType();
         //$product->original_filename = $cover->getClientOriginalName();
         //$product->filename = $cover->getFilename().'.'.$extension;
-        if ($request->hasfile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/') . $filename;
-            Image::make($image)->save($location);
-            $product->image = $filename;
-          }
+        // if ($request->hasfile('image')) {
+        //     $image = $request->file('image');
+        //     $filename = time() . '.' . $image->getClientOriginalExtension();
+        //     $location = public_path('images/') . $filename;
+        //     Image::make($image)->save($location);
+        //     $product->image = $filename;
+        //   }
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+            $image->move('images', $image->getClientOriginalName());
+        }
         $product->userName = Auth::user()->name;
         $product->save();
         return redirect('/product')->with('success', 'Product Created!');
@@ -159,17 +164,18 @@ class ProductController extends Controller
         $product->date = $request->get('date');
         $product->status = $request->get('status');
         
-        if ($request->hasfile('image')) {
-            Storage::delete($product->image);
-    
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/') . $filename;
-    
-            Image::make($image)->save($location);
-    
-            $product->image = $filename;
-          }
+        if ($request->hasFile('image')) {
+            // Check if the old image exists inside folder
+            if (file_exists(public_path('images/') . $product->image)) {
+                unlink(public_path('images/') . $product->image);
+            }
+
+            // Upload the new image
+            $image = $request->image;
+            $image->move('images', $image->getClientOriginalName());
+
+            $product->image = $request->image->getClientOriginalName();
+        }
         $product->save();
 
 

@@ -21,10 +21,10 @@ class CreateDealerInvoicesTable extends Migration
             $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
             $table->text('invoiceNo')->nullable();
             $table->text('date')->nullable();
-            $table->float('totalPrice')->nullable();
+            $table->float('totalPrice')->default('0')->nullable();
             $table->integer('remainUnit')->nullable();
-            $table->float('remainBalance',20,2)->nullable();
-            $table->float('grandTotalUnit')->nullable();
+            $table->float('remainBalance',20,2)->default('0')->nullable();
+            $table->float('grandTotalUnit')->default('0')->nullable();
             $table->text('truckNo')->nullable();
             $table->text('driverName')->nullable();
             $table->text('driverMobile')->nullable();

@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->string('type')->nullable();
             $table->string('accountNo')->nullable();
             $table->string('bankName')->nullable();
-            $table->string('amount')->nullable();
+            $table->string('amount')->default('0')->nullable();
             $table->string('status')->nullable();
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers')->onDelete('cascade');

@@ -17,7 +17,7 @@ class CreateDealerBalancesTable extends Migration
             $table->increments('id');
             $table->integer('dealerId')->unsigned()->index()->nullable();
             $table->foreign('dealerId')->references('id')->on('dealers')->onDelete('cascade');
-            $table->integer('amount')->nullable();
+            $table->integer('amount')->default('0')->nullable();
             $table->timestamps();
         });
     }

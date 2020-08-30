@@ -21,7 +21,7 @@ class CreateDealerBalanceRecordsTable extends Migration
             $table->text('type')->nullable();
             $table->string('accountNo')->nullable();
             $table->text('bankName')->nullable();
-            $table->integer('amount')->nullable();
+            $table->integer('amount')->default('0')->nullable();
             $table->date('date')->nullable();
             $table->text('status')->nullable();
             $table->text('comment')->nullable();
