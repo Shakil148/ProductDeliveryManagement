@@ -19,7 +19,7 @@ class CreateDepoInvoicesTable extends Migration
             $table->foreign('depoId')->references('id')->on('depos')->onDelete('cascade');
             $table->text('invoiceNo')->nullable();
             $table->text('date')->nullable();
-            $table->float('grandTotalUnit'->default('0'))->nullable();
+            $table->float('grandTotalUnit')->default('0')->nullable();
             $table->text('truckNo')->nullable();
             $table->text('driverName')->nullable();
             $table->text('driverMobile')->nullable();
