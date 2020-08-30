@@ -163,6 +163,18 @@ class OrderController extends Controller
         $accountSummary->balance = round($dealer->amount, 2);
         $accountSummary->save();
 
+        foreach($request->productId as $i=>$v){
+        $product = Product::find($request->productId[$i]);
+        if($product->totalStock < $request->totalUnit[$i])
+            return redirect()->back()->with('success',$request->product[$i].' is out of stock');
+        }
+
+        foreach($request->productId as $i=>$v){
+        $product = Product::find($request->productId[$i]);
+        $product->totalStock -= $request->totalUnit[$i];
+        $product->save();
+        }
+
         if(count($request->product) > 0)
         {
         foreach($request->product as $i=>$v){
@@ -180,6 +192,7 @@ class OrderController extends Controller
                 'freeUnit' => $request->freeUnit[$i],
                 'totalUnit' => $request->totalUnit[$i],
                 'total' => $request->total[$i],
+
             );
         DealerInvoiceDetail::insert($data2);
       }

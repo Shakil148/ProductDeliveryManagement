@@ -35,7 +35,7 @@
         
             <div class="col-md-9">
               <label for="invoiceNo">Invoice No:</label>
-              <input type="text" value="{{$newOrderId}}" class="col-md-2" name="invoiceNo" readonly/>
+              <input type="text" value="{{$newOrderId}}" class="col-md-3" name="invoiceNo" readonly/>
             </div>
               
             <div class="text-right mb-5">
@@ -76,7 +76,7 @@
                   <!-- Read Products -->
                   @foreach($product as $productlist)
                   @if($productlist->status != "Inactive")
-                    <option data-price='{{ $productlist->unit }}' >{{ $productlist->name }}{{ old('$product->name') }}</option>
+                    <option data-price='{{ $productlist->unit }}' data-value='{{ $productlist->id }}' >{{ $productlist->name }}{{ old('$product->name') }}</option>
                   @endif
                   @endforeach
                 </select>
@@ -89,6 +89,12 @@
             <div class="form-group">
               <input type="text" for="price" name='price[]' placeholder='0.00' 
               class="form-control price" readonly/>
+            </div>
+            </td>
+            <td hidden>
+            <div class="form-group">
+              <input type="text" for="productId" name='productId[]' placeholder='0.00' 
+              class="form-control productId" readonly/>
             </div>
             </td>
             <td><input type="text" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
@@ -220,6 +226,11 @@ $('.product-type').click(function() {
      $(this).parent().parent().find('.price')
 .val(price);
 calc();
+});
+$(".product-type").click(function() {
+  var productId = $(this).find(':selected').data('value');
+     $(this).parent().parent().find('.productId')
+.val(productId);
 });
 }
 $(document).ready(function(){

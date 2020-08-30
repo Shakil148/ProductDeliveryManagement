@@ -23,7 +23,7 @@ class CreateDealerInvoicesTable extends Migration
             $table->text('date')->nullable();
             $table->float('totalPrice')->nullable();
             $table->integer('remainUnit')->nullable();
-            $table->float('remainBalance')->nullable();
+            $table->float('remainBalance',20,2)->nullable();
             $table->float('grandTotalUnit')->nullable();
             $table->text('truckNo')->nullable();
             $table->text('driverName')->nullable();
