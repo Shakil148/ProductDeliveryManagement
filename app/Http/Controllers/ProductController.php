@@ -163,7 +163,8 @@ class ProductController extends Controller
         $product->unit = $request->get('unit');
         $product->date = $request->get('date');
         $product->status = $request->get('status');
-        
+        $product->totalStock = $request->get('totalStock');
+
         if ($request->hasFile('image')) {
             // Check if the old image exists inside folder
             if (file_exists(public_path('images/') . $product->image)) {

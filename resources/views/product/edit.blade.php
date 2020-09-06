@@ -53,7 +53,7 @@
                 </select>
             </div>
             <div class="form-group">
-              <label for="amount">Total Stock:</label>
+              <label for="totalStock">Total Stock:</label>
               <input type="text"  class="form-control" name="totalStock" value="{{ $product->totalStock }}"/>
           </div>
             <div class="form-group">
